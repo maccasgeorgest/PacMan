@@ -13,10 +13,6 @@ public class MapParser {
     public MapParser() {}
     
     public ArrayList<GameCell> parse(PApplet app, String filename) {
-        if (!validMap(filename)) {
-            return null;
-        }
-
         ArrayList<GameCell> mapList = new ArrayList<GameCell>(); // List to be returned
         
         try {
@@ -63,35 +59,5 @@ public class MapParser {
         charKey.put("5", "src/main/resources/downLeft.png");
         charKey.put("6", "src/main/resources/downRight.png");
         return charKey.get(key);
-    }
-
-    public static boolean validMap(String filename) {
-        if (filename == null) {
-            return false;
-        }
-        try {
-            File testMap = new File(filename);
-            Scanner fileReader = new Scanner(testMap);
-            boolean containsWaka = false;
-            boolean containsFruit = false;
-            while (fileReader.hasNextLine()) {
-                String[] line = fileReader.nextLine().split("");
-                for (String symbol : line) {
-                    if (symbol.equals("p")) {
-                        containsWaka = true;
-                    }
-                    if (symbol.equals("7")) {
-                        containsFruit = true;
-                    }
-                }
-            }
-            fileReader.close();
-            if (!containsFruit || !containsWaka) {
-                return false;
-            }
-        } catch (FileNotFoundException e) {
-            return false;
-        }
-        return true;
     }
 }

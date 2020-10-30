@@ -1,3 +1,5 @@
+ghost/ParseJSON.java
+ ghost.ParseJSON
 ghost/Wall.java
  ghost.Wall
 ghost/GameCell.java

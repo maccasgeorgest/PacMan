@@ -11,8 +11,14 @@ public class App extends PApplet {
     public Waka waka = null; 
     public ArrayList<GameCell> sprites = new ArrayList<GameCell>(); 
 
+    public String map;
+    public long lives;
+    public long speed;
+    public int[] modeLengths;
+
     public App() {
         //Set up your objects
+        ParseJSON.reader("config.json", this);
     }
 
     public void setWaka() {
@@ -29,7 +35,7 @@ public class App extends PApplet {
 
         // Load images
         MapParser mp = new MapParser();
-        this.sprites = mp.parse(this, "map.txt");
+        this.sprites = mp.parse(this, this.map);
 
         this.setWaka(); // ALlows for easier control of the game waka
     }
