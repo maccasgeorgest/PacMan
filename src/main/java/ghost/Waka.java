@@ -6,7 +6,7 @@ public class Waka extends GameCell {
 
     private int yVel;
     private int xVel;
-    private String closedSprite = "src/main/resources/playerClosed.png";
+    private int changeSprite = 1;  // modulo 0 is undefined
 
     public Waka(PImage sprite, int x, int y) {
         super(sprite, x, y);
@@ -17,6 +17,14 @@ public class Waka extends GameCell {
     public void tick(App app) { 
         this.y += yVel;
         this.x += xVel;
+
+        this.spriteTransition(app);
+
+        if (this.changeSprite < 16) {
+            this.changeSprite++;
+        } else {
+            this.changeSprite = 1;
+        }
     }
 
     // Controls Waka movement by changing direction of velocity
@@ -36,7 +44,10 @@ public class Waka extends GameCell {
         }
     }
 
-    public String getClosedSprite() {
-        return this.closedSprite;
+    public void spriteTransition(App app) {
+        if (this.changeSprite % 8 == 0) {
+            this.sprite = app.loadImage("src/main/resources/playerClosed.png");
+            return;
+        }
     }
 }
