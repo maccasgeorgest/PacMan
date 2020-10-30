@@ -20,7 +20,20 @@ public class Fruit extends GameCell {
     // Determines if fruit object has been consumed by Waka
     public boolean isEaten(Waka waka) {
         if (this.uneaten) {
+            if (waka.getCellCoord()[0] == this.getCellCoord()[0] && waka.getCellCoord()[1] == this.getCellCoord()[1]) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 }
+
+//   
+// -----------------
+// |                |
+// |                |
+// |                |
+// |                |
+// -----------------

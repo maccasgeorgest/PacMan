@@ -16,6 +16,7 @@ public class Waka extends GameCell {
     }
 
     public void tick(App app) { 
+        this.setCellCoord();
         this.y += yVel;
         this.x += xVel;
         lastSprite = app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
