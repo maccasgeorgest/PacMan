@@ -37,7 +37,7 @@ public class App extends PApplet {
         MapParser mp = new MapParser();
         this.sprites = mp.parse(this, this.map);
 
-        this.setWaka(); // ALlows for easier control of the game waka
+        this.setWaka(); // Allows for easier control of the game waka
     }
 
     public void settings() {

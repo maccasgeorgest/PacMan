@@ -4,9 +4,10 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public abstract class GameCell {
-    public PImage sprite;  // these attributes are public so that 
-    public int x;          // the subclasses can directly access them
-    public int y;
+    protected PImage sprite;  // these attributes are protected so that 
+    protected int x;          // the subclasses can directly access them
+    protected int y;
+    protected int[] cellCoord = {this.x, this.y, this.x + 16, this.y + 16};
 
     public GameCell(PImage sprite, int x, int y) {
         this.sprite = sprite;
