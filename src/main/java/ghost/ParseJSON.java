@@ -20,9 +20,11 @@ public class ParseJSON {
             String  map = (String) jsonObject.get("map");
             app.map = map;
             long  lives = (long) jsonObject.get("lives");
-            app.lives = lives;
+            int livesInt = lives.intValue();
+            app.lives = livesInt;
             long  speed = (long) jsonObject.get("speed");
-            app.speed = speed;
+            int speedInt = lives.intValue();
+            app.speed = speedInt;
             // DO MODELENGTHS
 
         } catch (FileNotFoundException e) {

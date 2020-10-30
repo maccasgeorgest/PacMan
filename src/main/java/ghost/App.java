@@ -12,8 +12,8 @@ public class App extends PApplet {
     public ArrayList<GameCell> sprites = new ArrayList<GameCell>(); 
 
     public String map;
-    public long lives;
-    public long speed;
+    public int lives;
+    public int speed;
     public int[] modeLengths;
 
     public App() {
@@ -56,16 +56,16 @@ public class App extends PApplet {
         if (key == CODED) {
             if (keyCode == UP) {
                 this.waka.sprite = this.loadImage("src/main/resources/playerUp.png");
-                this.waka.move("up");
+                this.waka.move("up", this);
             } else if (keyCode == DOWN) {
                 this.waka.sprite = this.loadImage("src/main/resources/playerDown.png");
-                this.waka.move("down");
+                this.waka.move("down", this);
             } else if (keyCode == LEFT) {
                 this.waka.sprite = this.loadImage("src/main/resources/playerLeft.png");
-                this.waka.move("left");
+                this.waka.move("left", this);
             } else if (keyCode == RIGHT) {
                 this.waka.sprite = this.loadImage("src/main/resources/playerRight.png");
-                this.waka.move("right");
+                this.waka.move("right", this);
             }
         }
     }

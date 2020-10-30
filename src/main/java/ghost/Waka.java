@@ -20,18 +20,18 @@ public class Waka extends GameCell {
     }
 
     // Controls Waka movement by changing direction of velocity
-    public void move(String command) {
+    public void move(String command, App app) {
         if (command.equals("up")) {
-            yVel = -1;
+            yVel = -1 * (app.speed);
             xVel = 0;
         } else if (command.equals("down")) {
-            yVel = 1;
+            yVel = app.speed;
             xVel = 0;
         } else if (command.equals("left")) {
-            xVel = -1;
+            xVel = -1 * (app.speed);
             yVel = 0;
         } else if (command.equals("right")) {
-            xVel = 1;
+            xVel = app.speed;
             yVel = 0;
         }
     }
