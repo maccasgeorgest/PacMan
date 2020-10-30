@@ -10,22 +10,28 @@ public class App extends PApplet {
 
     public Waka waka = null; 
     public ArrayList<GameCell> sprites = new ArrayList<GameCell>(); 
+    public int fruitCount = 0;
 
     public String map;
     public int lives;
     public int speed;
     public int[] modeLengths;
 
+    public boolean gameWin = false;
+
     public App() {
         //Set up your objects
         ParseJSON.reader("config.json", this);
     }
 
-    public void setWaka() {
+    // Sets the waka for the game, and counts the total number of fruit
+    public void setGameAttributes() {
         for (GameCell cell : this.sprites) {
             if (cell instanceof Waka) {
                 this.waka = (Waka) cell;
                 break;
+            } else if (cell instanceof Fruit) {
+                this.fruitCount++;
             }
         }
     }
@@ -37,7 +43,7 @@ public class App extends PApplet {
         MapParser mp = new MapParser();
         this.sprites = mp.parse(this, this.map);
 
-        this.setWaka(); // Allows for easier control of the game waka
+        this.setGameAttributes(); // Allows for easier control of the game waka
     }
 
     public void settings() {
@@ -45,6 +51,9 @@ public class App extends PApplet {
     }
 
     public void draw() { 
+        if (this.gameWin) {
+            // CODE FOR WINNING GAME
+        }
         background(0, 0, 0);
         for (GameCell cell : this.sprites) {
             cell.tick(this);
