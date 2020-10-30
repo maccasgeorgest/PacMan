@@ -42,6 +42,10 @@ application {
     mainClassName = 'ghost.App'
 }
 
+compileJava {
+    options.compilerArgs << '-Xlint:unchecked'
+}
+
 test {
     // Use junit platform for unit tests
     useJUnitPlatform()
