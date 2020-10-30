@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
+// import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 
@@ -19,11 +19,11 @@ public class ParseJSON {
 
             String  map = (String) jsonObject.get("map");
             app.map = map;
-            long  lives = (long) jsonObject.get("lives");
+            Long  lives = (long) jsonObject.get("lives");
             int livesInt = lives.intValue();
             app.lives = livesInt;
-            long  speed = (long) jsonObject.get("speed");
-            int speedInt = lives.intValue();
+            Long speed = (long) jsonObject.get("speed");
+            int speedInt = speed.intValue();
             app.speed = speedInt;
             // DO MODELENGTHS
 
