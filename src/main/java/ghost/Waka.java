@@ -7,6 +7,7 @@ public class Waka extends GameCell {
     private int yVel;
     private int xVel;
     private int changeSprite = 1;  // modulo 0 is undefined
+    private PImage lastSprite;
 
     public Waka(PImage sprite, int x, int y) {
         super(sprite, x, y);
@@ -17,13 +18,13 @@ public class Waka extends GameCell {
     public void tick(App app) { 
         this.y += yVel;
         this.x += xVel;
-
+        lastSprite = app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
         this.spriteTransition(app);
 
         if (this.changeSprite < 16) {
             this.changeSprite++;
         } else {
-            this.changeSprite = 1;
+            this.changeSprite = 0;
         }
     }
 
@@ -45,9 +46,24 @@ public class Waka extends GameCell {
     }
 
     public void spriteTransition(App app) {
-        if (this.changeSprite % 8 == 0) {
+        if (this.changeSprite > 8) {
             this.sprite = app.loadImage("src/main/resources/playerClosed.png");
             return;
+        }
+        if (xVel > 0) {
+            this.sprite = app.loadImage("src/main/resources/playerRight.png");
+            this.lastSprite = app.loadImage("src/main/resources/playerRight.png");
+        } else if (xVel < 0) {
+            this.sprite = app.loadImage("src/main/resources/playerLeft.png");
+            this.lastSprite = app.loadImage("src/main/resources/playerLeft.png");
+        } else if (yVel > 0) {
+            this.sprite = app.loadImage("src/main/resources/playerDown.png");
+            this.lastSprite = app.loadImage("src/main/resources/playerDown.png");
+        } else if (yVel < 0) {
+            this.sprite = app.loadImage("src/main/resources/playerUp.png");
+            this.lastSprite = app.loadImage("src/main/resources/playerUp.png");
+        } else if (xVel == 0 && yVel == 0) {
+            this.sprite = lastSprite;
         }
     }
 }

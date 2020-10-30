@@ -55,16 +55,12 @@ public class App extends PApplet {
     public void keyPressed() {
         if (key == CODED) {
             if (keyCode == UP) {
-                this.waka.sprite = this.loadImage("src/main/resources/playerUp.png");
                 this.waka.move("up", this);
             } else if (keyCode == DOWN) {
-                this.waka.sprite = this.loadImage("src/main/resources/playerDown.png");
                 this.waka.move("down", this);
             } else if (keyCode == LEFT) {
-                this.waka.sprite = this.loadImage("src/main/resources/playerLeft.png");
                 this.waka.move("left", this);
             } else if (keyCode == RIGHT) {
-                this.waka.sprite = this.loadImage("src/main/resources/playerRight.png");
                 this.waka.move("right", this);
             }
         }
