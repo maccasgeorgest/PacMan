@@ -1,7 +1,7 @@
-ghost/CollisionGauge.java
- ghost.CollisionGauge
 ghost/ParseJSON.java
  ghost.ParseJSON
+ghost/CollisionGauge.java
+ ghost.CollisionGauge
 ghost/Wall.java
  ghost.Wall
 ghost/GameCell.java
