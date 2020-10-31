@@ -13,7 +13,7 @@ public abstract class GameCell {
         this.sprite = sprite;
         this.x = x;
         this.y = y;
-        this.cellCoord = new int[]{this.x, this.y, this.x + 16, this.y + 16};
+        this.cellCoord = new int[]{this.x, this.y, this.y + 16, this.y + 16};
     }
 
     public abstract void tick(App app); // handles logic
@@ -31,5 +31,21 @@ public abstract class GameCell {
         this.cellCoord[1] = this.y;
         this.cellCoord[2] = this.x + 16;
         this.cellCoord[3] = this.y + 16;
+    }
+
+    public int Left() {
+        return this.cellCoord[0];
+    }
+
+    public int Top() {  
+        return this.cellCoord[1];
+    }
+
+    public int Right() {
+        return this.cellCoord[2];
+    }
+
+    public int Bottom() {
+        return this.cellCoord[3];
     }
 }

@@ -67,4 +67,11 @@ public class Waka extends GameCell {
             this.sprite = lastSprite;
         }
     }
+
+    public void setXVel(int xVel) {
+        this.xVel = xVel;
+    }
+    public void setYVel(int yVel) {
+        this.yVel = yVel;
+    }
 }

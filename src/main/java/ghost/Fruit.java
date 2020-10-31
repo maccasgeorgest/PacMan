@@ -26,23 +26,23 @@ public class Fruit extends GameCell {
     public void isEaten(Waka waka) {
         if (this.uneaten) { 
             // TOP
-            if (waka.getCellCoord()[3] < this.getCellCoord()[3] && waka.getCellCoord()[3] > this.getCellCoord()[1]
-                && waka.getCellCoord()[0] >= this.getCellCoord()[0] && waka.getCellCoord()[2] <= this.getCellCoord()[2]) {
+            if (waka.Bottom() < this.Bottom() && waka.Bottom() > this.Top()
+                && waka.Left() >= this.Left() && waka.Right() <= this.Right()) {
                 this.uneaten = false;
             }
             // BOTTOM
-            else if (waka.getCellCoord()[1] < this.getCellCoord()[3] && waka.getCellCoord()[1] > this.getCellCoord()[1]
-                && waka.getCellCoord()[0] >= this.getCellCoord()[0] && waka.getCellCoord()[2] <= this.getCellCoord()[2]) {
+            else if (waka.Top() < this.Bottom() && waka.Top() > this.Top()
+                && waka.Left() >= this.Left() && waka.Right() <= this.Right()) {
                 this.uneaten = false;
             }
             // LEFT
-            else if (waka.getCellCoord()[2] < this.getCellCoord()[2] && waka.getCellCoord()[2] > this.getCellCoord()[0]
-                && waka.getCellCoord()[1] >= this.getCellCoord()[1] && waka.getCellCoord()[3] <= this.getCellCoord()[3]) {
+            else if (waka.Right() < this.Right() && waka.Right() > this.Left()
+                && waka.Top() >= this.Top() && waka.Bottom() <= this.Bottom()) {
                 this.uneaten = false;
             }
             // RIGHT
-            else if (waka.getCellCoord()[0] < this.getCellCoord()[2] && waka.getCellCoord()[0] > this.getCellCoord()[0]
-                && waka.getCellCoord()[1] >= this.getCellCoord()[1] && waka.getCellCoord()[3] <= this.getCellCoord()[3]) {
+            else if (waka.Left() < this.Right() && waka.Left() > this.Left()
+                && waka.Top() >= this.Top() && waka.Bottom() <= this.Bottom()) {
                 this.uneaten = false;
             }
         }

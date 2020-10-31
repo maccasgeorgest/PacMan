@@ -59,6 +59,7 @@ public class App extends PApplet {
             cell.tick(this);
             cell.draw(this);
         }
+        this.image(this.waka.sprite, this.waka.Left(), this.waka.Top()); // so that waka is redrawn upon all other objects
     }
 
     public void keyPressed() {
