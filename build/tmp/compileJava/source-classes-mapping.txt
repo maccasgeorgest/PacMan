@@ -1,13 +1,13 @@
 ghost/ParseJSON.java
  ghost.ParseJSON
-ghost/MapParser.java
- ghost.MapParser
 ghost/CollisionGauge.java
  ghost.CollisionGauge
 ghost/Wall.java
  ghost.Wall
 ghost/GameCell.java
  ghost.GameCell
+ghost/MapParser.java
+ ghost.MapParser
 ghost/Waka.java
  ghost.Waka
 ghost/Fruit.java

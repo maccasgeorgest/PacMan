@@ -8,6 +8,7 @@ public class Waka extends GameCell {
     private int xVel;
     private int changeSprite = 1;  // modulo 0 is undefined
     private PImage lastSprite;
+    private PImage liveSprite;
 
     public Waka(PImage sprite, int x, int y) {
         super(sprite, x, y);
@@ -20,6 +21,12 @@ public class Waka extends GameCell {
         this.y += yVel;
         this.x += xVel;
         lastSprite = app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
+        liveSprite = app.loadImage("src/main/resources/playerRight.png");  
+        // draw lives 
+        int space = 29;
+        for (int i = 0; i < app.lives; i ++) {
+            app.image(this.liveSprite, i * space + 9, 543);
+        }
         this.spriteTransition(app);
 
         if (this.changeSprite < 16) {
