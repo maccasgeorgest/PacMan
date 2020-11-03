@@ -6,15 +6,15 @@ ghost/Wall.java
  ghost.Wall
 ghost/GameCell.java
  ghost.GameCell
-ghost/MapParser.java
- ghost.MapParser
-ghost/Waka.java
- ghost.Waka
-ghost/Fruit.java
- ghost.Fruit
 ghost/EmptyCell.java
  ghost.EmptyCell
+ghost/Waka.java
+ ghost.Waka
 ghost/Ghost.java
  ghost.Ghost
+ghost/MapParser.java
+ ghost.MapParser
+ghost/Fruit.java
+ ghost.Fruit
 ghost/App.java
  ghost.App
