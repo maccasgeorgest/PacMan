@@ -14,6 +14,10 @@ ghost/Fruit.java
  ghost.Fruit
 ghost/CollisionGauge.java
  ghost.CollisionGauge
+ghost/App.java
+ ghost.App
+ghost/MapParser.java
+ ghost.MapParser
 ghost/Whim.java
  ghost.Whim
 ghost/Chaser.java
@@ -22,9 +26,5 @@ ghost/Ambusher.java
  ghost.Ambusher
 ghost/Ignorant.java
  ghost.Ignorant
-ghost/MapParser.java
- ghost.MapParser
 ghost/Ghost.java
  ghost.Ghost
-ghost/App.java
- ghost.App

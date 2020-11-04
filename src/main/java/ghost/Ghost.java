@@ -5,6 +5,7 @@ import processing.core.PImage;
 public class Ghost extends MovableCharacter {
 
     private boolean frightened = false;
+    private boolean scatter = false;
 
     public Ghost(PImage sprite, int x, int y) {
         super(sprite, x, y);
@@ -17,5 +18,13 @@ public class Ghost extends MovableCharacter {
 
     public void frighten() {
         this.frightened = true;
+    }
+
+    public void switchMode() {
+        if (this.scatter) {
+            this.scatter = false;
+        } else {
+            this.scatter = true;
+        }
     }
 }
