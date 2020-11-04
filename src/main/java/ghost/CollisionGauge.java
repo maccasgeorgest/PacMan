@@ -2,27 +2,18 @@ package ghost;
 
 public class CollisionGauge {
 
-    public static boolean checkCollision(GameCell character, Wall wall) {
-        // TOP
-        if (character.Bottom() < wall.Bottom() && character.Bottom() > wall.Top()
-            && character.Left() >= wall.Left() && character.Right() <= wall.Right()) {
-            return true;
+    public static boolean checkCollision(MovableCharacter character, Wall wall) {
+        if (character.Right() + character.getXVel() > wall.Left() && character.Left() 
+            + character.getXVel() < wall.Right() && character.Bottom() > wall.Top() &&
+            character.Top() < wall.Bottom()) {
+                return true;
         }
-        // BOTTOM
-        else if (character.Top() < wall.Bottom() && character.Top() > wall.Top()
-            && character.Left() >= wall.Left() && character.Right() <= wall.Right()) {
-            return true;
+        if (character.Right() > wall.Left() && character.Left() < wall.Right() &&
+            character.Bottom() + character.getYVel() > wall.Top() && character.Top() 
+            + character.getYVel() < wall.Bottom()) {
+                return true;
         }
-        // LEFT
-        else if (character.Right() < wall.Right() && character.Right() > wall.Left()
-            && character.Top() >= wall.Top() && character.Bottom() <= wall.Bottom()) {
-            return true;
-        }
-        // RIGHT
-        else if (character.Left() < wall.Right() && character.Left() > wall.Left()
-            && character.Top() >= wall.Top() && character.Bottom() <= wall.Bottom()) {
-            return true;
-        }
+
         return false;
     }
 }

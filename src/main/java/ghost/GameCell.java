@@ -7,6 +7,8 @@ public abstract class GameCell {
     protected PImage sprite;  // these attributes are protected so that 
     protected int x;            // the subclasses can directly access them
     protected int y;
+    protected int yVel;
+    protected int xVel;
     protected int[] cellCoord;
 
     public GameCell(PImage sprite, int x, int y) {
@@ -47,5 +49,13 @@ public abstract class GameCell {
 
     public int Bottom() {
         return this.cellCoord[3];
+    }
+
+    public int getXVel() {
+        return this.xVel;
+    }
+    
+    public int getYVel() {
+        return this.yVel;
     }
 }

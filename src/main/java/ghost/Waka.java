@@ -2,10 +2,8 @@ package ghost;
 
 import processing.core.PImage;
 
-public class Waka extends GameCell {
+public class Waka extends MovableCharacter {
 
-    private int yVel;
-    private int xVel;
     private int changeSprite = 1;  // modulo 0 is undefined
     private PImage lastSprite;
     private PImage liveSprite;
@@ -18,8 +16,9 @@ public class Waka extends GameCell {
 
     public void tick(App app) { 
         this.setCellCoord();
-        this.y += yVel;
-        this.x += xVel;
+        this.y += this.yVel;
+        this.x += this.xVel;
+        
         lastSprite = app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
         liveSprite = app.loadImage("src/main/resources/playerRight.png");  
         // draw lives 
@@ -39,17 +38,17 @@ public class Waka extends GameCell {
     // Controls Waka movement by changing direction of velocity
     public void move(String command, App app) {
         if (command.equals("up")) {
-            yVel = -1 * (app.speed);
-            xVel = 0;
+            this.yVel = -1 * (app.speed);
+            this.xVel = 0;
         } else if (command.equals("down")) {
-            yVel = app.speed;
-            xVel = 0;
+            this.yVel = app.speed;
+            this.xVel = 0;
         } else if (command.equals("left")) {
-            xVel = -1 * (app.speed);
-            yVel = 0;
+            this.xVel = -1 * (app.speed);
+            this.yVel = 0;
         } else if (command.equals("right")) {
-            xVel = app.speed;
-            yVel = 0;
+            this.xVel = app.speed;
+            this.yVel = 0;
         }
     }
 
@@ -58,20 +57,20 @@ public class Waka extends GameCell {
             this.sprite = app.loadImage("src/main/resources/playerClosed.png");
             return;
         }
-        if (xVel > 0) {
+        if (this.xVel > 0) {
             this.sprite = app.loadImage("src/main/resources/playerRight.png");
             this.lastSprite = app.loadImage("src/main/resources/playerRight.png");
-        } else if (xVel < 0) {
+        } else if (this.xVel < 0) {
             this.sprite = app.loadImage("src/main/resources/playerLeft.png");
             this.lastSprite = app.loadImage("src/main/resources/playerLeft.png");
-        } else if (yVel > 0) {
+        } else if (this.yVel > 0) {
             this.sprite = app.loadImage("src/main/resources/playerDown.png");
             this.lastSprite = app.loadImage("src/main/resources/playerDown.png");
-        } else if (yVel < 0) {
+        } else if (this.yVel < 0) {
             this.sprite = app.loadImage("src/main/resources/playerUp.png");
             this.lastSprite = app.loadImage("src/main/resources/playerUp.png");
-        } else if (xVel == 0 && yVel == 0) {
-            this.sprite = lastSprite;
+        } else if (this.xVel == 0 && this.yVel == 0) {
+            this.sprite = this.lastSprite;
         }
     }
 

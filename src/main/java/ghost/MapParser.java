@@ -35,9 +35,15 @@ public class MapParser {
                         mapList.add(new Fruit(app.loadImage("src/main/resources/fruit.png"), x, y));
                     } else if (symbol.equals("p")) {
                         mapList.add(new Waka(app.loadImage("src/main/resources/playerLeft.png"), x - 4, y - 4));
-                    } else if (symbol.equals("g")) {
-                        mapList.add(new Ghost(app.loadImage("src/main/resources/ghost.png"), x - 6, y - 5));
-                    }
+                    } else if (symbol.equals("a")) {
+                        mapList.add(new Ghost(app.loadImage("src/main/resources/ambusher.png"), x - 6, y - 5));
+                    } else if (symbol.equals("c")) {
+                        mapList.add(new Ghost(app.loadImage("src/main/resources/chaser.png"), x - 6, y - 5));
+                    } else if (symbol.equals("i")) {
+                        mapList.add(new Ghost(app.loadImage("src/main/resources/ignorant.png"), x - 6, y - 5));
+                    } else if (symbol.equals("w")) {
+                        mapList.add(new Ghost(app.loadImage("src/main/resources/whim.png"), x - 6, y - 5));
+                    } 
                     x += 16;
                 }
                 x = 0;

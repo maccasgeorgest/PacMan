@@ -1,20 +1,22 @@
 ghost/ParseJSON.java
  ghost.ParseJSON
+ghost/MovableCharacter.java
+ ghost.MovableCharacter
+ghost/EmptyCell.java
+ ghost.EmptyCell
+ghost/GameCell.java
+ ghost.GameCell
+ghost/Ghost.java
+ ghost.Ghost
+ghost/Waka.java
+ ghost.Waka
+ghost/Fruit.java
+ ghost.Fruit
 ghost/CollisionGauge.java
  ghost.CollisionGauge
 ghost/Wall.java
  ghost.Wall
-ghost/GameCell.java
- ghost.GameCell
-ghost/EmptyCell.java
- ghost.EmptyCell
-ghost/Waka.java
- ghost.Waka
-ghost/Ghost.java
- ghost.Ghost
 ghost/MapParser.java
  ghost.MapParser
-ghost/Fruit.java
- ghost.Fruit
 ghost/App.java
  ghost.App

@@ -13,9 +13,10 @@ public class Wall extends GameCell {
 
     public void tick(App app) {
         collided = CollisionGauge.checkCollision(app.waka, this);
-        // if (collided) {
-        //     app.waka.setXVel(0);
-        //     app.waka.setYVel(0);
-        // }
+        if (collided) {
+        
+        } else {
+            
+        }
     }
 }
