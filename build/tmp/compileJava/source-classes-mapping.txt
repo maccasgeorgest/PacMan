@@ -6,17 +6,25 @@ ghost/EmptyCell.java
  ghost.EmptyCell
 ghost/GameCell.java
  ghost.GameCell
-ghost/Ghost.java
- ghost.Ghost
+ghost/Wall.java
+ ghost.Wall
 ghost/Waka.java
  ghost.Waka
 ghost/Fruit.java
  ghost.Fruit
 ghost/CollisionGauge.java
  ghost.CollisionGauge
-ghost/Wall.java
- ghost.Wall
+ghost/Whim.java
+ ghost.Whim
+ghost/Chaser.java
+ ghost.Chaser
+ghost/Ambusher.java
+ ghost.Ambusher
+ghost/Ignorant.java
+ ghost.Ignorant
 ghost/MapParser.java
  ghost.MapParser
+ghost/Ghost.java
+ ghost.Ghost
 ghost/App.java
  ghost.App
