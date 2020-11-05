@@ -26,6 +26,7 @@ public class Waka extends MovableCharacter {
         for (int i = 0; i < app.lives; i ++) {
             app.image(this.liveSprite, i * space + 9, 543);
         }
+
         this.spriteTransition(app);
 
         if (this.changeSprite < 16) {
