@@ -17,7 +17,7 @@ public class App extends PApplet {
     public String map;
     public int lives;
     public int speed;
-    public int[] modeLengths;
+    public ArrayList<Integer> modeLengths = new ArrayList<Integer>();
 
     public int restartTime;
 

@@ -2,9 +2,11 @@ package ghost;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import org.json.simple.JSONObject;
-// import org.json.simple.JSONArray;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 
@@ -14,9 +16,7 @@ public class ParseJSON {
         JSONParser parser = new JSONParser();
 
         try {
-            Object obj = parser.parse(new FileReader(filename));
-            JSONObject jsonObject = (JSONObject) obj;
-
+            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(filename));
             String  map = (String) jsonObject.get("map");
             app.map = map;
             Long  lives = (long) jsonObject.get("lives");
@@ -25,8 +25,15 @@ public class ParseJSON {
             Long speed = (long) jsonObject.get("speed");
             int speedInt = speed.intValue();
             app.speed = speedInt;
-            // DO MODELENGTHS
-
+            JSONArray modeLengths = (JSONArray) jsonObject.get("modeLengths");
+            ArrayList<Integer> modeLengthsList = new ArrayList<Integer>();
+            @SuppressWarnings("unchecked")
+            Iterator<Integer> iterator = modeLengths.iterator();
+            while (iterator.hasNext()) {
+                modeLengthsList.add(iterator.next());
+            }
+            app.modeLengths = modeLengthsList;
+            
         } catch (FileNotFoundException e) {
             return;
         } catch (IOException e) {

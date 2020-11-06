@@ -1,5 +1,5 @@
-ghost/ParseJSON.java
- ghost.ParseJSON
+ghost/MovableCharacter.java
+ ghost.MovableCharacter
 ghost/CollisionGauge.java
  ghost.CollisionGauge
 ghost/Superfruit.java
@@ -26,7 +26,7 @@ ghost/Fruit.java
  ghost.Fruit
 ghost/Ghost.java
  ghost.Ghost
-ghost/MovableCharacter.java
- ghost.MovableCharacter
+ghost/ParseJSON.java
+ ghost.ParseJSON
 ghost/App.java
  ghost.App
