@@ -34,6 +34,7 @@ public class App extends PApplet {
                 this.fruitCount++;
             }
         }
+        System.out.println(this.fruitCount);
     }
 
     public void setup() {

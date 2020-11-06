@@ -11,13 +11,16 @@ public class Ghost extends MovableCharacter {
         super(sprite, x, y);
     }
     public void tick(App app) {
+        if (app.waka.isInvincible()) {
+            this.frighten(true);
+        }
         if (this.frightened) {
             this.sprite = app.loadImage("src/main/resources/frightened.png");
         }
     }
 
-    public void frighten() {
-        this.frightened = true;
+    public void frighten(boolean fright) {
+        this.frightened = fright;
     }
 
     public void switchMode() {

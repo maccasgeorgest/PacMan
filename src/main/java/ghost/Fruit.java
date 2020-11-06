@@ -13,7 +13,7 @@ public class Fruit extends GameCell {
 
     public void tick(App app) {
         this.isEaten(app.waka); 
-        if (this.uneaten == false) {
+        if (!this.uneaten) {
             this.sprite = new PImage();
             if (!this.accounted) {
                 app.fruitCount--;

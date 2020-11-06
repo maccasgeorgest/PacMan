@@ -33,6 +33,10 @@ public class MapParser {
                         mapList.add(new Wall(app.loadImage(wallKey(symbol)), x, y));
                     } else if (symbol.equals("7")) {
                         mapList.add(new Fruit(app.loadImage("src/main/resources/fruit.png"), x, y));
+                    } else if (symbol.equals("8")) {
+                        PImage superfruit = app.loadImage("src/main/resources/fruit.png");
+                        superfruit.resize(32, 32);
+                        mapList.add(new Superfruit(superfruit, x - 8, y - 8));
                     } else if (symbol.equals("p")) {
                         mapList.add(new Waka(app.loadImage("src/main/resources/playerLeft.png"), x - 4, y - 4));
                     } else if (symbol.equals("a")) {

@@ -6,6 +6,7 @@ public class MovableCharacter extends GameCell {
 
     protected int yVel;
     protected int xVel;    
+    protected boolean skipMovement;
 
     public MovableCharacter(PImage sprite, int x, int y) {
         super(sprite, x, y, false);
