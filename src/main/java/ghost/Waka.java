@@ -46,7 +46,10 @@ public class Waka extends MovableCharacter {
         // }    
         // return false;
         
-
+        // waka attributes: inputted move, current trajectory
+        // if input move returns true go that way
+        // if false, check if current trajectory returns true or false
+        // if its false, then waka doesn't move, else go current trajectory
 
 
         if (!this.skipMovement) {

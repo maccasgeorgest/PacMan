@@ -12,6 +12,7 @@ public class App extends PApplet {
 
     public Waka waka = null; 
     public ArrayList<GameCell> sprites = new ArrayList<GameCell>(); 
+    public ArrayList<Wall> wallList = new ArrayList<Wall>();
     public int fruitCount = 0;
 
     public String map;
@@ -26,7 +27,7 @@ public class App extends PApplet {
         ParseJSON.reader("config.json", this);
     }
 
-    // Sets the waka for the game, and counts the total number of fruit
+    // Sets the waka for the game, and counts the total number of fruit and walls
     public void setGameAttributes() {
         for (GameCell cell : this.sprites) {
             if (cell.getName().equals("Waka")) {
@@ -34,8 +35,11 @@ public class App extends PApplet {
             } else if (cell.getName().equals("Fruit") || 
                     cell.getName().equals("Superfruit")) {
                 this.fruitCount++;
+            } else if (cell.getName().equals("Wall")) {
+                this.wallList.add((Wall) cell);
             }
         }
+        System.out.println(this.wallList.size());
     }
 
     public void setup() {
