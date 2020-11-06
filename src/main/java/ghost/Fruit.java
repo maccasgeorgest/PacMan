@@ -8,7 +8,7 @@ public class Fruit extends GameCell {
     private boolean accounted = false;
 
     public Fruit(PImage sprite, int x, int y) {
-        super(sprite, x, y);
+        super(sprite, x, y, false);
     }
 
     public void tick(App app) {
@@ -27,7 +27,7 @@ public class Fruit extends GameCell {
         if (this.uneaten) { 
             boolean collision = CollisionGauge.checkCollision(waka, this);
             if (collision) {
-            //    this.uneaten = false;
+                this.uneaten = false;
             }
         }
     }

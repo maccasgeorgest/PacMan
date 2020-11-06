@@ -6,8 +6,8 @@ ghost/Whim.java
  ghost.Whim
 ghost/Ignorant.java
  ghost.Ignorant
-ghost/Ghost.java
- ghost.Ghost
+ghost/MapParser.java
+ ghost.MapParser
 ghost/EmptyCell.java
  ghost.EmptyCell
 ghost/Wall.java
@@ -20,11 +20,11 @@ ghost/Ambusher.java
  ghost.Ambusher
 ghost/Waka.java
  ghost.Waka
-ghost/MovableCharacter.java
- ghost.MovableCharacter
-ghost/MapParser.java
- ghost.MapParser
 ghost/Fruit.java
  ghost.Fruit
+ghost/Ghost.java
+ ghost.Ghost
+ghost/MovableCharacter.java
+ ghost.MovableCharacter
 ghost/App.java
  ghost.App
