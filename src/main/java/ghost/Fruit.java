@@ -4,11 +4,12 @@ import processing.core.PImage;
 
 public class Fruit extends GameCell {
 
-    private boolean uneaten = true;
+    protected boolean uneaten = true;
     private boolean accounted = false;
 
     public Fruit(PImage sprite, int x, int y) {
         super(sprite, x, y, false);
+        this.name = "Fruit";
     }
 
     public void tick(App app) {

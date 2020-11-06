@@ -7,6 +7,7 @@ public abstract class GameCell {
     protected PImage sprite;  // these attributes are protected so that 
     protected int x;            // the subclasses can directly access them
     protected int y;
+    protected String name;
     protected boolean impenetrable;
     protected int[] cellCoord;
 
@@ -24,8 +25,8 @@ public abstract class GameCell {
         app.image(this.sprite, this.x, this.y);
     }
 
-    public int[] getCellCoord() {
-        return this.cellCoord;
+    public String getName() {
+        return this.name;
     }
 
     public void setCellCoord() {

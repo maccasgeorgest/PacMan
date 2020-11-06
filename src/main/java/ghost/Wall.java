@@ -9,6 +9,7 @@ public class Wall extends GameCell {
 
     public Wall(PImage sprite, int x, int y) {
         super(sprite, x, y, true);
+        this.name = "Wall";
     }
 
     public void tick(App app) {

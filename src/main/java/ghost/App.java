@@ -29,9 +29,10 @@ public class App extends PApplet {
     // Sets the waka for the game, and counts the total number of fruit
     public void setGameAttributes() {
         for (GameCell cell : this.sprites) {
-            if (cell instanceof Waka) {
+            if (cell.getName().equals("Waka")) {
                 this.waka = (Waka) cell;
-            } else if (cell instanceof Fruit) {
+            } else if (cell.getName().equals("Fruit") || 
+                    cell.getName().equals("Superfruit")) {
                 this.fruitCount++;
             }
         }
