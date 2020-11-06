@@ -1,6 +1,8 @@
 package ghost;
 
-import processing.core.PApplet;    // xming = export DISPLAY=:0
+import processing.core.PApplet; // xming = export DISPLAY=:0
+import processing.core.PFont;
+
 import java.util.ArrayList;
 
 public class App extends PApplet {
@@ -17,7 +19,7 @@ public class App extends PApplet {
     public int speed;
     public int[] modeLengths;
 
-    public boolean gameWin = false;
+    public int restartTime;
 
     public App() {
         //Set up your objects
@@ -29,12 +31,10 @@ public class App extends PApplet {
         for (GameCell cell : this.sprites) {
             if (cell instanceof Waka) {
                 this.waka = (Waka) cell;
-                break;
             } else if (cell instanceof Fruit) {
                 this.fruitCount++;
             }
         }
-        System.out.println(this.fruitCount);
     }
 
     public void setup() {
@@ -52,16 +52,16 @@ public class App extends PApplet {
     }
 
     public void draw() { 
-        if (this.gameWin) {
-            // CODE FOR WINNING GAME
+        if (this.fruitCount == 0) {
+            this.gameWinScreen();
+        } else {
+            background(0, 0, 0);
+            for (GameCell cell : this.sprites) {
+                cell.tick(this);
+                cell.draw(this);
+            }
+            this.image(this.waka.sprite, this.waka.Left(), this.waka.Top()); // so that waka is redrawn upon all other objects
         }
-        background(0, 0, 0);
-        for (GameCell cell : this.sprites) {
-            cell.tick(this);
-            cell.draw(this);
-        }
-
-        this.image(this.waka.sprite, this.waka.Left(), this.waka.Top()); // so that waka is redrawn upon all other objects
     }
 
     public void keyPressed() {
@@ -76,6 +76,28 @@ public class App extends PApplet {
                 this.waka.move("right", this);
             }
         }
+    }
+
+    public void gameWinScreen() {
+        PFont gameFont = createFont("PressStart2P-Regular.ttf", 32);
+        background(0);
+        textFont(gameFont);
+        text("YOU WIN", WIDTH/4, HEIGHT/3);
+        // restartTime = millis() + 3000;
+        // if (millis() > restartTime) {
+        //     this.fruitCount = 500;
+        // }
+    }
+
+    public void gameOverScreen() {
+        PFont gameFont = createFont("PressStart2P-Regular.ttf", 32);
+        background(0);
+        textFont(gameFont);
+        text("GAME OVER", WIDTH/5, HEIGHT/3);
+        // restartTime = millis() + 3000;
+        // if (millis() > restartTime) {
+        //     this.fruitCount = 500;
+        // }
     }
 
     public static void main(String[] args) {
