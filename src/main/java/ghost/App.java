@@ -39,7 +39,6 @@ public class App extends PApplet {
                 this.wallList.add((Wall) cell);
             }
         }
-        System.out.println(this.wallList.size());
     }
 
     public void setup() {
@@ -65,7 +64,7 @@ public class App extends PApplet {
                 cell.tick(this);
                 cell.draw(this);
             }
-            this.image(this.waka.sprite, this.waka.Left(), this.waka.Top()); // so that waka is redrawn upon all other objects
+            // this.image(this.waka.sprite, this.waka.Left(), this.waka.Top()); // so that waka is redrawn upon all other objects
         }
     }
 

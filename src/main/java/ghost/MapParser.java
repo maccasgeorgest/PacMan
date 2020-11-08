@@ -36,17 +36,17 @@ public class MapParser {
                     } else if (symbol.equals("8")) {
                         PImage superfruit = app.loadImage("src/main/resources/fruit.png");
                         superfruit.resize(32, 32);
-                        mapList.add(new Superfruit(superfruit, x - 8, y - 8));
+                        mapList.add(new Superfruit(superfruit, x, y));
                     } else if (symbol.equals("p")) {
-                        mapList.add(new Waka(app.loadImage("src/main/resources/playerLeft.png"), x - 4, y - 4));
+                        mapList.add(new Waka(app.loadImage("src/main/resources/playerLeft.png"), x, y));
                     } else if (symbol.equals("a")) {
-                        mapList.add(new Ambusher(app.loadImage("src/main/resources/ambusher.png"), x - 6, y - 5));
+                        mapList.add(new Ambusher(app.loadImage("src/main/resources/ambusher.png"), x, y));
                     } else if (symbol.equals("c")) {
-                        mapList.add(new Chaser(app.loadImage("src/main/resources/chaser.png"), x - 6, y - 5));
+                        mapList.add(new Chaser(app.loadImage("src/main/resources/chaser.png"), x, y));
                     } else if (symbol.equals("i")) {
-                        mapList.add(new Ignorant(app.loadImage("src/main/resources/ignorant.png"), x - 6, y - 5));
+                        mapList.add(new Ignorant(app.loadImage("src/main/resources/ignorant.png"), x, y));
                     } else if (symbol.equals("w")) {
-                        mapList.add(new Whim(app.loadImage("src/main/resources/whim.png"), x - 6, y - 5));
+                        mapList.add(new Whim(app.loadImage("src/main/resources/whim.png"), x, y));
                     } 
                     x += 16;
                 }

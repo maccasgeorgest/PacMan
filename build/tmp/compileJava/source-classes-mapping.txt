@@ -1,15 +1,13 @@
-ghost/Ambusher.java
- ghost.Ambusher
-ghost/Ignorant.java
- ghost.Ignorant
 ghost/Chaser.java
  ghost.Chaser
+ghost/Ambusher.java
+ ghost.Ambusher
 ghost/Whim.java
  ghost.Whim
+ghost/Ignorant.java
+ ghost.Ignorant
 ghost/ParseJSON.java
  ghost.ParseJSON
-ghost/CollisionGauge.java
- ghost.CollisionGauge
 ghost/Wall.java
  ghost.Wall
 ghost/Superfruit.java
