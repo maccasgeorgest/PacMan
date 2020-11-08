@@ -6,6 +6,7 @@ public class MovableCharacter extends GameCell {
 
     protected int yVel;
     protected int xVel;    
+    protected boolean invincible = false;
     protected boolean skipMovement;
 
     public MovableCharacter(PImage sprite, int x, int y) {
@@ -39,6 +40,14 @@ public class MovableCharacter extends GameCell {
                 break;
             }
         }
+    }
+
+    public void makeInvincible() {
+        this.invincible = true;
+    }
+
+    public boolean isInvincible() {
+        return this.invincible;
     }
 
     public int getXVel() {

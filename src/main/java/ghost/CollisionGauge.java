@@ -8,6 +8,8 @@ public class CollisionGauge {
                 && character.Top() + character.getYVel() < gamecell.Bottom() && character.Bottom() + character.getYVel() > gamecell.Top()) {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
+                } else if (gamecell.getName().equals("Superfruit")) {
+                    character.makeInvincible();
                 }
                 return true;
             }
@@ -17,6 +19,8 @@ public class CollisionGauge {
                 && character.Top() + character.getYVel() < gamecell.Bottom() && character.Bottom() + character.getYVel() > gamecell.Top()) {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
+                } else if (gamecell.getName().equals("Superfruit")) {
+                    character.makeInvincible();
                 }
                 return true;
             }
@@ -26,6 +30,8 @@ public class CollisionGauge {
                 && character.Top() < gamecell.Bottom() && character.Bottom() > gamecell.Top()) {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
+                } else if (gamecell.getName().equals("Superfruit")) {
+                    character.makeInvincible();
                 }
                 return true;
             }
@@ -35,6 +41,8 @@ public class CollisionGauge {
                 && character.Top() < gamecell.Bottom() && character.Bottom() > gamecell.Top()) {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
+                } else if (gamecell.getName().equals("Superfruit")) {
+                    character.makeInvincible();
                 }
                 return true;
             }

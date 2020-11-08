@@ -5,7 +5,6 @@ import processing.core.PImage;
 public class Waka extends MovableCharacter {
 
     private int changeSprite = 1;  // modulo 0 is undefined
-    private boolean invincible = false;
     private PImage lastSprite;
     private PImage liveSprite;
 
@@ -19,6 +18,8 @@ public class Waka extends MovableCharacter {
     public void tick(App app) { 
         this.setCellCoord();
         this.moveAfterCollision(app);
+
+        System.out.println(this.invincible);
 
         if (!this.skipMovement) {
             this.y += this.yVel;
@@ -63,9 +64,5 @@ public class Waka extends MovableCharacter {
         } else if (this.xVel == 0 && this.yVel == 0) {
             this.sprite = this.lastSprite;
         }
-    }
-
-    public boolean isInvincible() {
-        return this.invincible;
-    }
+    }    
 }
