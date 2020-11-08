@@ -13,6 +13,7 @@ public class App extends PApplet {
     public Waka waka = null; 
     public ArrayList<GameCell> sprites = new ArrayList<GameCell>(); 
     public ArrayList<Wall> wallList = new ArrayList<Wall>();
+    public ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
     public int fruitCount = 0;
 
     public String map;
@@ -37,6 +38,8 @@ public class App extends PApplet {
                 this.fruitCount++;
             } else if (cell.getName().equals("Wall")) {
                 this.wallList.add((Wall) cell);
+            } else if (cell.getName().equals("Ghost")) {
+                this.ghostList.add((Ghost) cell);
             }
         }
     }
@@ -64,7 +67,6 @@ public class App extends PApplet {
                 cell.tick(this);
                 cell.draw(this);
             }
-            // this.image(this.waka.sprite, this.waka.Left(), this.waka.Top()); // so that waka is redrawn upon all other objects
         }
     }
 

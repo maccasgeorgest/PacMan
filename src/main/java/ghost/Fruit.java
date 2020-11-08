@@ -14,7 +14,7 @@ public class Fruit extends GameCell {
 
     public void tick(App app) {
         this.isEaten(app.waka); 
-        if (!this.uneaten) {
+        if (!this.uneaten) {      // if it is has been eaten, disable it's sprite
             this.sprite = new PImage();
             if (!this.accounted) {
                 app.fruitCount--;
@@ -26,7 +26,7 @@ public class Fruit extends GameCell {
     // Determines if fruit object has been consumed by Waka
     public void isEaten(Waka waka) {
         if (this.uneaten) { 
-            boolean collision = checkCollision(waka);
+            boolean collision = CollisionGauge.collision(waka, this);
             if (collision) {
                 this.uneaten = false;
             }

@@ -18,12 +18,7 @@ public class Waka extends MovableCharacter {
 
     public void tick(App app) { 
         this.setCellCoord();
-        for (Wall wall : app.wallList) {
-            this.collision(wall);
-            if (this.collision(wall)) {
-                break;
-            }
-        }
+        this.moveAfterCollision(app);
 
         if (!this.skipMovement) {
             this.y += this.yVel;
@@ -45,23 +40,6 @@ public class Waka extends MovableCharacter {
             this.changeSprite++;
         } else {
             this.changeSprite = 0;
-        }
-    }
-
-    // Controls Waka movement by changing direction of velocity
-    public void move(String command, App app) {
-        if (command.equals("up")) {
-            this.yVel = -1 * (app.speed);
-            this.xVel = 0;
-        } else if (command.equals("down")) {
-            this.yVel = app.speed;
-            this.xVel = 0;
-        } else if (command.equals("left")) {
-            this.xVel = -1 * (app.speed);
-            this.yVel = 0;
-        } else if (command.equals("right")) {
-            this.xVel = app.speed;
-            this.yVel = 0;
         }
     }
 
@@ -89,51 +67,5 @@ public class Waka extends MovableCharacter {
 
     public boolean isInvincible() {
         return this.invincible;
-    }
-
-    public void setXVel(int xVel) {
-        this.xVel = xVel;
-    }
-    public void setYVel(int yVel) {
-        this.yVel = yVel;
-    }
-
-    public boolean collision(Wall wall) {
-        // Character heading up
-        if (this.getXVel() == 0 && this.getYVel() < 0) {
-            if (this.Left() < wall.Right() && this.Right() > wall.Left()
-                && this.Top() + this.getYVel() < wall.Bottom() && this.Bottom() + this.getYVel() > wall.Top()) {
-                    this.skipMovement = true;
-                    return true;
-            }
-        // Character heading down
-        } else if (this.getXVel() == 0 && this.getYVel() > 0) {
-            if (this.Left() < wall.Right() && this.Right() > wall.Left()
-                && this.Top() + this.getYVel() < wall.Bottom() && this.Bottom() + this.getYVel() > wall.Top()) {
-                    this.skipMovement = true;
-                    return true;
-            }
-        // Character heading left
-        } else if (this.getXVel() < 0 && this.getYVel() == 0) {
-            if (this.Left() + this.getXVel() < wall.Right() && this.Right() + this.getXVel() > wall.Left()
-                && this.Top() < wall.Bottom() && this.Bottom() > wall.Top()) {
-                    this.skipMovement = true;
-                    return true;
-            }
-        // Character heading right
-        } else if (this.getXVel() > 0 && this.getYVel() == 0) {
-            if (this.Left() + this.getXVel() < wall.Right() && this.Right() + this.getXVel() > wall.Left()
-                && this.Top() < wall.Bottom() && this.Bottom() > wall.Top()) {
-                    this.skipMovement = true;
-                    return true;
-            }
-        }    
-        this.skipMovement = false;
-        return false;
-        
-        // waka attributes: inputted move, current trajectory
-        // if input move returns true go that way
-        // if false, check if current trajectory returns true or false
-        // if its false, then waka doesn't move, else go current trajectory
     }
 }
