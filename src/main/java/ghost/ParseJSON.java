@@ -25,6 +25,9 @@ public class ParseJSON {
             Long speed = (long) jsonObject.get("speed");
             int speedInt = speed.intValue();
             app.speed = speedInt;
+            Long frightenedLength = (long) jsonObject.get("frightenedLength");
+            int frightenedLengthInt = frightenedLength.intValue();
+            app.frightenedLength = frightenedLengthInt;
             JSONArray modeLengths = (JSONArray) jsonObject.get("modeLengths");
             ArrayList<Integer> modeLengthsList = new ArrayList<Integer>();
             @SuppressWarnings("unchecked")

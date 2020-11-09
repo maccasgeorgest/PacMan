@@ -19,6 +19,7 @@ public class App extends PApplet {
     public String map;
     public int lives;
     public int speed;
+    public int frightenedLength;
     public ArrayList<Integer> modeLengths = new ArrayList<Integer>();
 
     public int restartTime;
@@ -50,8 +51,7 @@ public class App extends PApplet {
         // Load images
         MapParser mp = new MapParser();
         this.sprites = mp.parse(this, this.map);
-
-        this.setGameAttributes(); 
+        this.setGameAttributes();
     }
 
     public void settings() {

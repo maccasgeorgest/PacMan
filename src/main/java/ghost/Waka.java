@@ -19,8 +19,6 @@ public class Waka extends MovableCharacter {
         this.setCellCoord();
         this.moveAfterCollision(app);
 
-        System.out.println(this.invincible);
-
         if (!this.skipMovement) {
             this.y += this.yVel;
             this.x += this.xVel;

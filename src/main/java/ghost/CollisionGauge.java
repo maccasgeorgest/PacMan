@@ -1,5 +1,9 @@
 package ghost;
 
+
+// check if you actually need character.getXVel() == 0 etc for each of them
+
+
 public class CollisionGauge {
     public static boolean collision(MovableCharacter character, GameCell gamecell) {
         // Character heading up
