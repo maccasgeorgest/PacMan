@@ -101,10 +101,6 @@ public class App extends PApplet {
         background(0);
         textFont(gameFont);
         text("YOU WIN", WIDTH/4, HEIGHT/3);
-        // restartTime = millis() + 3000;
-        // if (millis() > restartTime) {
-        //     this.fruitCount = 500;
-        // }
     }
 
     public void gameOverScreen() {
@@ -112,10 +108,6 @@ public class App extends PApplet {
         background(0);
         textFont(gameFont);
         text("GAME OVER", WIDTH/5, HEIGHT/3);
-        // restartTime = millis() + 3000;
-        // if (millis() > restartTime) {
-        //     this.fruitCount = 500;
-        // }
     }
 
     public static void main(String[] args) {

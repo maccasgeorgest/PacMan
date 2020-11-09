@@ -7,6 +7,7 @@ public class Waka extends MovableCharacter {
     private int changeSprite = 1;  // modulo 0 is undefined
     private PImage lastSprite;
     private PImage liveSprite;
+    private String lastKeyPressed;
 
     public Waka(PImage sprite, int x, int y) {
         super(sprite, x, y);
@@ -62,5 +63,5 @@ public class Waka extends MovableCharacter {
         } else if (this.xVel == 0 && this.yVel == 0) {
             this.sprite = this.lastSprite;
         }
-    }    
+    } 
 }

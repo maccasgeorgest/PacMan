@@ -8,7 +8,7 @@ public class Wall extends GameCell {
     boolean collision = false;
 
     public Wall(PImage sprite, int x, int y) {
-        super(sprite, x, y, true);
+        super(sprite, x, y);
         this.name = "Wall";
     }
 

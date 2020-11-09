@@ -8,11 +8,12 @@ public class MovableCharacter extends GameCell {
     protected int xVel;    
     protected int initialX;
     protected int initialY;
+    protected String direction = "left";
     protected boolean invincible = false;
     protected boolean skipMovement;
 
     public MovableCharacter(PImage sprite, int x, int y) {
-        super(sprite, x, y, false);
+        super(sprite, x, y);
         this.initialX = x;
         this.initialY = y;
     }
@@ -23,15 +24,19 @@ public class MovableCharacter extends GameCell {
     // Controls Waka movement by changing direction of velocity
     public void move(String command, App app) {
         if (command.equals("up")) {
+            this.direction = "up";
             this.yVel = -1 * (app.speed);
             this.xVel = 0;
         } else if (command.equals("down")) {
+            this.direction = "down";
             this.yVel = app.speed;
             this.xVel = 0;
         } else if (command.equals("left")) {
+            this.direction = "left";
             this.xVel = -1 * (app.speed);
             this.yVel = 0;
         } else if (command.equals("right")) {
+            this.direction = "right";
             this.xVel = app.speed;
             this.yVel = 0;
         }

@@ -8,14 +8,12 @@ public abstract class GameCell {
     protected int x;            // the subclasses can directly access them
     protected int y;
     protected String name;
-    protected boolean impenetrable;
     protected int[] cellCoord;
 
-    public GameCell(PImage sprite, int x, int y, boolean impenetrable) {
+    public GameCell(PImage sprite, int x, int y) {
         this.sprite = sprite;
         this.x = x;
         this.y = y;
-        this.impenetrable = impenetrable;
         this.cellCoord = new int[]{this.x, this.y, this.x + 16, this.y + 16, this.x + 8, this.y + 8};
     }
 

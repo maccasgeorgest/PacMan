@@ -7,4 +7,10 @@ public class Chaser extends Ghost {
         super(sprite, x, y);
         this.name = "Chaser";
     }
+
+    @Override
+    public void setTarget(App app) {
+        this.targetX = app.waka.CentreX();
+        this.targetY = app.waka.CentreY();
+    }
 }

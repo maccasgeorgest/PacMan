@@ -18,10 +18,10 @@ public class Ghost extends MovableCharacter {
         this.invincible = true;
     }
     public void tick(App app) {
-        if (app.waka.isInvincible()) {
+        if (app.waka.isInvincible()) {              // if waka has eaten superfruit
             this.frighten(true);
             this.changeVulnerability(false);
-        } else {
+        } else {                                    // if waka has not eaten superfruit
             this.frighten(false);
             this.changeVulnerability(true);
         }
@@ -41,7 +41,7 @@ public class Ghost extends MovableCharacter {
                     ghost.reset();
                 }
             } else {
-                this.die();
+                this.die(true);
             }
         }
 
@@ -64,56 +64,10 @@ public class Ghost extends MovableCharacter {
         }
     }
 
-    public void setTarget(App app) {
-        if (this.getName().equals("Chaser")) {
-            this.targetX = app.waka.CentreX();
-            this.targetY = app.waka.CentreY();
-        } else if (this.getName().equals("Ambusher")) {
-            if (app.waka.getXVel() > 0) {
-                this.targetX = app.waka.CentreX() + 64;
-                this.targetY = app.waka.CentreY();
-            } else if (app.waka.getXVel() < 0) {
-                        this.targetX = app.waka.CentreX() - 64;
-                        this.targetY = app.waka.CentreY();
-            } else if (app.waka.getYVel() > 0) {
-                        this.targetX = app.waka.CentreX();
-                        this.targetY = app.waka.CentreY() + 64;
-            } else if (app.waka.getYVel() < 0) {
-                        this.targetX = app.waka.CentreX();
-                        this.targetY = app.waka.CentreY() - 64;
-            }
-        } else if (this.getName().equals("Ignorant")) {
-            double distance = Math.sqrt(Math.pow((this.CentreX() - app.waka.CentreX()), 2) + Math.pow((this.CentreY() - app.waka.CentreY()), 2));
-            if (distance < 128) {
-                this.targetX = app.waka.CentreX();
-                this.targetY = app.waka.CentreY();
-            } else {
-                this.targetX = 40;
-                this.targetY = 500;
-            }
-        
-            // the formula here was derived from the midpoint formula where Waka(x1, y1)
-            // and Whim(x3, y3) were the endpoints of the line on which Chaser(x2, y2) was 
-            // the midpoint
-        } else if (this.getName().equals("Whim")) {
-            if (app.waka.getXVel() > 0) {
-                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX() + 64;
-                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY();
-            } else if (app.waka.getXVel() < 0) {
-                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX() - 64;
-                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY();
-            } else if (app.waka.getYVel() > 0) {
-                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX();
-                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY() + 64;
-            } else if (app.waka.getYVel() < 0) {
-                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX();
-                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY() - 64;
-            }
-        }
-    }
-
-    public void die() {
-        this.dead = true;
+    public void setTarget(App app) {}
+    
+    public void die(boolean death) {
+        this.dead = death;
     }
 
     public boolean isDead() {

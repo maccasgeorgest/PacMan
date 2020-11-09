@@ -8,7 +8,7 @@ public class Fruit extends GameCell {
     private boolean accounted = false;
 
     public Fruit(PImage sprite, int x, int y) {
-        super(sprite, x, y, false);
+        super(sprite, x, y);
         this.name = "Fruit";
     }
 
