@@ -35,11 +35,15 @@ public class Ghost extends MovableCharacter {
         this.moveAfterCollision(app);
         
         if (!this.skipMovement) {
-            this.y += this.yVel;
-            this.x += this.xVel;
+            // this.y += this.yVel;
+            // this.x += this.xVel;
         }
         this.setTarget(app);
-        this.targetLine(app, this.targetX, this.targetY);
+        if (app.debugMode) {
+            if (!this.frightened) {
+                this.targetLine(app, this.targetX, this.targetY);
+            }
+        }
     }
 
     public void setTarget(App app) {
@@ -70,8 +74,19 @@ public class Ghost extends MovableCharacter {
                 this.targetY = 500;
             }
         } else if (this.getName().equals("Whim")) {
-            this.targetX = 5;
-            this.targetY = 5;
+            if (app.waka.getXVel() > 0) {
+                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX() + 64;
+                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY();
+            } else if (app.waka.getXVel() < 0) {
+                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX() - 64;
+                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY();
+            } else if (app.waka.getYVel() > 0) {
+                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX();
+                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY() + 64;
+            } else if (app.waka.getYVel() < 0) {
+                this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX();
+                this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY() - 64;
+            }
         }
     }
 

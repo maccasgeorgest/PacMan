@@ -11,6 +11,7 @@ public class App extends PApplet {
     public static final int HEIGHT = 576;  
 
     public Waka waka = null; 
+    public Chaser chaser = null;
     public ArrayList<GameCell> sprites = new ArrayList<GameCell>(); 
     public ArrayList<Wall> wallList = new ArrayList<Wall>();
     public ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
@@ -22,6 +23,7 @@ public class App extends PApplet {
     public int frightenedLength;
     public ArrayList<Integer> modeLengths = new ArrayList<Integer>();
 
+    public boolean debugMode = false;
     public int restartTime;
 
     public App() {
@@ -32,7 +34,9 @@ public class App extends PApplet {
     // Sets the waka for the game, and counts the total number of fruit and walls
     public void setGameAttributes() {
         for (GameCell cell : this.sprites) {
-            if (cell.getName().equals("Waka")) {
+            if (cell.getName().equals("Chaser")) {
+                this.chaser = (Chaser) cell;
+            } if (cell.getName().equals("Waka")) {
                 this.waka = (Waka) cell;
             } else if (cell.getName().equals("Fruit") || 
                     cell.getName().equals("Superfruit")) {
@@ -47,7 +51,6 @@ public class App extends PApplet {
 
     public void setup() {
         frameRate(60);
-
         // Load images
         MapParser mp = new MapParser();
         this.sprites = mp.parse(this, this.map);
@@ -71,6 +74,13 @@ public class App extends PApplet {
     }
 
     public void keyPressed() {
+        if (key == ' ') {
+            if (this.debugMode) {
+                this.debugMode = false;
+            } else {
+                this.debugMode = true;
+            }
+        }
         if (key == CODED) {
             if (keyCode == UP) {
                 this.waka.move("up", this);
