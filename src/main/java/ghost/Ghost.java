@@ -28,6 +28,8 @@ public class Ghost extends MovableCharacter {
 
         if (this.frightened) {
             this.sprite = app.loadImage("src/main/resources/frightened.png");
+        } if (this.isDead()) {
+            this.sprite = new PImage();
         }
 
         boolean collision = CollisionGauge.collision(app.waka, this);
@@ -38,6 +40,8 @@ public class Ghost extends MovableCharacter {
                 for (Ghost ghost : app.ghostList) {
                     ghost.reset();
                 }
+            } else {
+                this.die();
             }
         }
 
