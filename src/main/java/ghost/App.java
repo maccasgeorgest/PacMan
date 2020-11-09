@@ -64,6 +64,8 @@ public class App extends PApplet {
     public void draw() { 
         if (this.fruitCount == 0) {
             this.gameWinScreen();
+        } else if (this.lives == 0) {
+            this.gameOverScreen();
         } else {
             background(0, 0, 0);
             for (GameCell cell : this.sprites) {

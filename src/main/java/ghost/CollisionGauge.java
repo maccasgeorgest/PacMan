@@ -13,7 +13,7 @@ public class CollisionGauge {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
-                    character.makeInvincible();
+                    character.changeVulnerability(true);
                 }
                 return true;
             }
@@ -24,7 +24,7 @@ public class CollisionGauge {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
-                    character.makeInvincible();
+                    character.changeVulnerability(true);
                 }
                 return true;
             }
@@ -35,7 +35,7 @@ public class CollisionGauge {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
-                    character.makeInvincible();
+                    character.changeVulnerability(true);
                 }
                 return true;
             }
@@ -46,7 +46,7 @@ public class CollisionGauge {
                 if (gamecell.getName().equals("Wall")) {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
-                    character.makeInvincible();
+                    character.changeVulnerability(true);
                 }
                 return true;
             }

@@ -6,11 +6,15 @@ public class MovableCharacter extends GameCell {
 
     protected int yVel;
     protected int xVel;    
+    protected int initialX;
+    protected int initialY;
     protected boolean invincible = false;
     protected boolean skipMovement;
 
     public MovableCharacter(PImage sprite, int x, int y) {
         super(sprite, x, y, false);
+        this.initialX = x;
+        this.initialY = y;
     }
     
     public void tick(App app) {
@@ -42,19 +46,25 @@ public class MovableCharacter extends GameCell {
         }
     }
 
-    public void makeInvincible() {
-        this.invincible = true;
+    public void changeVulnerability(boolean invincible) {
+        this.invincible = invincible;
+    }
+
+    public int getXVel() {
+        return this.xVel;
+    }
+    public int getYVel() {
+        return this.yVel;
     }
 
     public boolean isInvincible() {
         return this.invincible;
     }
 
-    public int getXVel() {
-        return this.xVel;
-    }
-
-    public int getYVel() {
-        return this.yVel;
+    public void reset() {
+        this.x = this.initialX;
+        this.xVel = 0;
+        this.y = this.initialY;
+        this.yVel = 0;
     }
 }

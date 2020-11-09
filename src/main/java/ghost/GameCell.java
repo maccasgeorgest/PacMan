@@ -32,8 +32,6 @@ public abstract class GameCell {
         } else {
             app.image(this.sprite, this.x, this.y);
         }
-        
-        
     }
 
     public String getName() {

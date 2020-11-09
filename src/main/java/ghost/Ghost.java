@@ -15,16 +15,30 @@ public class Ghost extends MovableCharacter {
 
     public Ghost(PImage sprite, int x, int y) {
         super(sprite, x, y);
+        this.invincible = true;
     }
     public void tick(App app) {
         if (app.waka.isInvincible()) {
             this.frighten(true);
+            this.changeVulnerability(false);
         } else {
             this.frighten(false);
+            this.changeVulnerability(true);
         }
 
         if (this.frightened) {
             this.sprite = app.loadImage("src/main/resources/frightened.png");
+        }
+
+        boolean collision = CollisionGauge.collision(app.waka, this);
+        if (collision) {
+            if (this.isInvincible()) {
+                app.waka.reset();
+                app.lives--;
+                for (Ghost ghost : app.ghostList) {
+                    ghost.reset();
+                }
+            }
         }
 
         Random random = new Random(); 
@@ -35,8 +49,8 @@ public class Ghost extends MovableCharacter {
         this.moveAfterCollision(app);
         
         if (!this.skipMovement) {
-            // this.y += this.yVel;
-            // this.x += this.xVel;
+            this.y += this.yVel;
+            this.x += this.xVel;
         }
         this.setTarget(app);
         if (app.debugMode) {
@@ -73,6 +87,10 @@ public class Ghost extends MovableCharacter {
                 this.targetX = 40;
                 this.targetY = 500;
             }
+        
+            // the formula here was derived from the midpoint formula where Waka(x1, y1)
+            // and Whim(x3, y3) were the endpoints of the line on which Chaser(x2, y2) was 
+            // the midpoint
         } else if (this.getName().equals("Whim")) {
             if (app.waka.getXVel() > 0) {
                 this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX() + 64;
