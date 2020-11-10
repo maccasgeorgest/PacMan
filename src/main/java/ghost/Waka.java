@@ -63,4 +63,16 @@ public class Waka extends MovableCharacter {
             this.sprite = this.lastSprite;
         }
     } 
+
+    public void moveHandler(App app, int move) {
+            if (move == 38) {
+                app.waka.move("up", app);
+            } else if (move == 40) {
+                app.waka.move("down", app);
+            } else if (move == 37) {
+                app.waka.move("left", app);
+            } else if (move == 39) {
+                app.waka.move("right", app);
+            }
+    }
 }

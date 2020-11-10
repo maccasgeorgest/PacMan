@@ -2,7 +2,6 @@ package ghost;
 
 import processing.core.PApplet; // xming = export DISPLAY=:0
 import processing.core.PFont;
-
 import java.util.ArrayList;
 
 public class App extends PApplet {
@@ -28,17 +27,14 @@ public class App extends PApplet {
     public int restartTime;
 
     public App() {
-        //Set up your objects
         ParseJSON.reader("config.json", this);
     }
 
     public void setup() {
         frameRate(60);
         gameFont = createFont("PressStart2P-Regular.ttf", 32);
-        // Load images
         MapParser mp = new MapParser();
         this.sprites = mp.parse(this, this.map);
-        // this.setGameAttributes();
         mp.setGameAttributes(this);
     }
 
@@ -61,23 +57,10 @@ public class App extends PApplet {
     }
 
     public void keyPressed() {
-        if (key == ' ') {
-            if (this.debugMode) {
-                this.debugMode = false;
-            } else {
-                this.debugMode = true;
-            }
-        }
         if (key == CODED) {
-            if (keyCode == UP) {
-                this.waka.move("up", this);
-            } else if (keyCode == DOWN) {
-                this.waka.move("down", this);
-            } else if (keyCode == LEFT) {
-                this.waka.move("left", this);
-            } else if (keyCode == RIGHT) {
-                this.waka.move("right", this);
-            }
+            this.waka.moveHandler(this, keyCode);
+        } else if (key == ' ') {
+            this.waka.initiateDebugMode(this);
         }
     }
 

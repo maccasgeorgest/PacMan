@@ -66,6 +66,14 @@ public class MovableCharacter extends GameCell {
         return this.invincible;
     }
 
+    public void initiateDebugMode(App app) {
+        if (app.debugMode) {
+            app.debugMode = false;
+        } else {
+            app.debugMode = true;
+        }
+    }
+
     public void reset() {
         this.x = this.initialX;
         this.xVel = 0;
