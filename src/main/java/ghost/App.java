@@ -22,6 +22,7 @@ public class App extends PApplet {
     public int speed;
     public int frightenedLength;
     public ArrayList<Integer> modeLengths = new ArrayList<Integer>();
+    public PFont gameFont; 
 
     public boolean debugMode = false;
     public int restartTime;
@@ -31,30 +32,14 @@ public class App extends PApplet {
         ParseJSON.reader("config.json", this);
     }
 
-    // Sets the waka for the game, and counts the total number of fruit and walls
-    public void setGameAttributes() {
-        for (GameCell cell : this.sprites) {
-            if (cell.getName().equals("Chaser")) {
-                this.chaser = (Chaser) cell;
-            } if (cell.getName().equals("Waka")) {
-                this.waka = (Waka) cell;
-            } else if (cell.getName().equals("Fruit") || 
-                    cell.getName().equals("Superfruit")) {
-                this.fruitCount++;
-            } else if (cell.getName().equals("Wall")) {
-                this.wallList.add((Wall) cell);
-            } else if (cell.getName().equals("Ghost")) {
-                this.ghostList.add((Ghost) cell);
-            }
-        }
-    }
-
     public void setup() {
         frameRate(60);
+        gameFont = createFont("PressStart2P-Regular.ttf", 32);
         // Load images
         MapParser mp = new MapParser();
         this.sprites = mp.parse(this, this.map);
-        this.setGameAttributes();
+        // this.setGameAttributes();
+        mp.setGameAttributes(this);
     }
 
     public void settings() {
@@ -63,9 +48,9 @@ public class App extends PApplet {
 
     public void draw() { 
         if (this.fruitCount == 0) {
-            this.gameWinScreen();
+            this.gameFinishScreen(true);
         } else if (this.lives == 0) {
-            this.gameOverScreen();
+            this.gameFinishScreen(false);
         } else {
             background(0, 0, 0);
             for (GameCell cell : this.sprites) {
@@ -96,18 +81,14 @@ public class App extends PApplet {
         }
     }
 
-    public void gameWinScreen() {
-        PFont gameFont = createFont("PressStart2P-Regular.ttf", 32);
+    public void gameFinishScreen(boolean won) {
         background(0);
         textFont(gameFont);
-        text("YOU WIN", WIDTH/4, HEIGHT/3);
-    }
-
-    public void gameOverScreen() {
-        PFont gameFont = createFont("PressStart2P-Regular.ttf", 32);
-        background(0);
-        textFont(gameFont);
-        text("GAME OVER", WIDTH/5, HEIGHT/3);
+        if (won) {
+            text("YOU WIN", WIDTH/4, HEIGHT/3);
+        } else {
+            text("GAME OVER", WIDTH/5, HEIGHT/3);
+        }
     }
 
     public static void main(String[] args) {

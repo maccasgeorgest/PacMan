@@ -6,13 +6,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import processing.core.PImage;
-import processing.core.PApplet;
 
 public class MapParser {
 
     public MapParser() {}
     
-    public ArrayList<GameCell> parse(PApplet app, String filename) {
+    public ArrayList<GameCell> parse(App app, String filename) {
         ArrayList<GameCell> mapList = new ArrayList<GameCell>(); // List to be returned
         
         try {
@@ -69,5 +68,23 @@ public class MapParser {
         charKey.put("5", "src/main/resources/downLeft.png");
         charKey.put("6", "src/main/resources/downRight.png");
         return charKey.get(key);
+    }
+
+    // Sets the waka for the game, and counts the total number of fruit and walls
+    public void setGameAttributes(App app) {
+        for (GameCell cell : app.sprites) {
+            if (cell.getName().equals("Chaser")) {
+                app.chaser = (Chaser) cell;
+            } if (cell.getName().equals("Waka")) {
+                app.waka = (Waka) cell;
+            } else if (cell.getName().equals("Fruit") || 
+                    cell.getName().equals("Superfruit")) {
+                app.fruitCount++;
+            } else if (cell.getName().equals("Wall")) {
+                app.wallList.add((Wall) cell);
+            } else if (cell.getName().equals("Ghost")) {
+                app.ghostList.add((Ghost) cell);
+            }
+        }
     }
 }
