@@ -21,24 +21,36 @@ public class MovableCharacter extends GameCell {
     public void tick(App app) {
     }
 
-    // Controls Waka movement by changing direction of velocity
+    // Controls character movement by changing direction of velocity
     public void move(String command, App app) {
         if (command.equals("up")) {
-            this.direction = "up";
-            this.yVel = -1 * (app.speed);
-            this.xVel = 0;
+            boolean check = CollisionGauge.turnCheck(app, this, "up");
+            if (check) {
+                this.direction = "up";
+                this.yVel = -1 * (app.speed);
+                this.xVel = 0;
+            }
         } else if (command.equals("down")) {
-            this.direction = "down";
-            this.yVel = app.speed;
-            this.xVel = 0;
+            boolean check = CollisionGauge.turnCheck(app, this, "down");
+            if (check) {
+                this.direction = "down";
+                this.yVel = app.speed;
+                this.xVel = 0;
+            }
         } else if (command.equals("left")) {
-            this.direction = "left";
-            this.xVel = -1 * (app.speed);
-            this.yVel = 0;
+            boolean check = CollisionGauge.turnCheck(app, this, "left");
+            if (check) {
+                this.direction = "left";
+                this.xVel = -1 * (app.speed);
+                this.yVel = 0;
+            }
         } else if (command.equals("right")) {
-            this.direction = "right";
-            this.xVel = app.speed;
-            this.yVel = 0;
+            boolean check = CollisionGauge.turnCheck(app, this, "right");
+            if (check) {
+                this.direction = "right";
+                this.xVel = app.speed;
+                this.yVel = 0;
+            }
         }
     }
 

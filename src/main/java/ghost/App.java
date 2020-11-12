@@ -9,21 +9,20 @@ public class App extends PApplet {
     public static final int WIDTH = 448;
     public static final int HEIGHT = 576;  
 
-    public Waka waka = null; 
-    public Chaser chaser = null;
-    public ArrayList<GameCell> sprites = new ArrayList<GameCell>(); 
+    public Waka waka; 
+    public Chaser chaser;
+    public ArrayList<GameCell> cells = new ArrayList<GameCell>(); 
     public ArrayList<Wall> wallList = new ArrayList<Wall>();
     public ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
     public int fruitCount = 0;
-
     public String map;
     public int lives;
     public int speed;
     public int frightenedLength;
+    public int frightenedCounter;
     public ArrayList<Integer> modeLengths = new ArrayList<Integer>();
     public PFont gameFont; 
-
-    public boolean debugMode = false;
+    public boolean debugMode;
     public int restartTime;
 
     public App() {
@@ -34,7 +33,7 @@ public class App extends PApplet {
         frameRate(60);
         gameFont = createFont("PressStart2P-Regular.ttf", 32);
         MapParser mp = new MapParser();
-        this.sprites = mp.parse(this, this.map);
+        this.cells = mp.parse(this, this.map);
         mp.setGameAttributes(this);
     }
 
@@ -49,10 +48,13 @@ public class App extends PApplet {
             this.gameFinishScreen(false);
         } else {
             background(0, 0, 0);
-            for (GameCell cell : this.sprites) {
+            for (GameCell cell : this.cells) {
                 cell.tick(this);
                 cell.draw(this);
             }
+        }
+        if (this.fruitCount > 0 && this.lives > 0) {
+            this.ghostList.forEach((ghost) -> ghost.draw(this)); // draw the ghosts last so that their sprites appear over the fruit
         }
     }
 

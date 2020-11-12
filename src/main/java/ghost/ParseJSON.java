@@ -8,6 +8,7 @@ import java.util.Iterator;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
+
 import org.json.simple.parser.JSONParser;
 
 public class ParseJSON {
@@ -31,9 +32,11 @@ public class ParseJSON {
             JSONArray modeLengths = (JSONArray) jsonObject.get("modeLengths");
             ArrayList<Integer> modeLengthsList = new ArrayList<Integer>();
             @SuppressWarnings("unchecked")
-            Iterator<Integer> iterator = modeLengths.iterator();
+            Iterator<Long> iterator = modeLengths.iterator();
             while (iterator.hasNext()) {
-                modeLengthsList.add(iterator.next());
+                Long modeVal = (Long) iterator.next();
+                int modeValInt = modeVal.intValue();
+                modeLengthsList.add(modeValInt);
             }
             app.modeLengths = modeLengthsList;
             

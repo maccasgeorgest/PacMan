@@ -6,7 +6,7 @@ public class Waka extends MovableCharacter {
 
     private int changeSprite = 1;  // modulo 0 is undefined
     private PImage lastSprite;
-    private PImage liveSprite;
+    private PImage livesSprite;
 
     public Waka(PImage sprite, int x, int y) {
         super(sprite, x, y);
@@ -25,12 +25,12 @@ public class Waka extends MovableCharacter {
         }
         
         lastSprite = app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
-        liveSprite = app.loadImage("src/main/resources/playerRight.png");  
+        livesSprite = app.loadImage("src/main/resources/playerRight.png"); // this is the sprite used to indicate the amount of remaining waka lives 
 
         // draw lives 
         int space = 29;
         for (int i = 0; i < app.lives; i ++) {
-            app.image(this.liveSprite, i * space + 9, 543);
+            app.image(this.livesSprite, i * space + 9, 543);
         }
 
         this.spriteTransition(app);
@@ -47,16 +47,16 @@ public class Waka extends MovableCharacter {
             this.sprite = app.loadImage("src/main/resources/playerClosed.png");
             return;
         }
-        if (this.xVel > 0) {
+        if (this.direction.equals("right")) {
             this.sprite = app.loadImage("src/main/resources/playerRight.png");
             this.lastSprite = app.loadImage("src/main/resources/playerRight.png");
-        } else if (this.xVel < 0) {
+        } else if (this.direction.equals("left")) {
             this.sprite = app.loadImage("src/main/resources/playerLeft.png");
             this.lastSprite = app.loadImage("src/main/resources/playerLeft.png");
-        } else if (this.yVel > 0) {
+        } else if (this.direction.equals("down")) {
             this.sprite = app.loadImage("src/main/resources/playerDown.png");
             this.lastSprite = app.loadImage("src/main/resources/playerDown.png");
-        } else if (this.yVel < 0) {
+        } else if (this.direction.equals("up")) {
             this.sprite = app.loadImage("src/main/resources/playerUp.png");
             this.lastSprite = app.loadImage("src/main/resources/playerUp.png");
         } else if (this.xVel == 0 && this.yVel == 0) {

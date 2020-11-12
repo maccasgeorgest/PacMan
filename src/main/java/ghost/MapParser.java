@@ -72,7 +72,7 @@ public class MapParser {
 
     // Sets the waka for the game, and counts the total number of fruit and walls
     public void setGameAttributes(App app) {
-        for (GameCell cell : app.sprites) {
+        for (GameCell cell : app.cells) {
             if (cell.getName().equals("Chaser")) {
                 app.chaser = (Chaser) cell;
             } if (cell.getName().equals("Waka")) {
@@ -82,8 +82,9 @@ public class MapParser {
                 app.fruitCount++;
             } else if (cell.getName().equals("Wall")) {
                 app.wallList.add((Wall) cell);
-            } else if (cell.getName().equals("Ghost")) {
-                app.ghostList.add((Ghost) cell);
+            } else if (cell instanceof Ghost) {   // while using instanceof is generally bad codestyle, thought it was necessary here
+                app.ghostList.add((Ghost) cell);  // as rather than adding another attribute to every single cell class and then only using 
+                                                  // it for ghost seemed a little pointless
             }
         }
     }

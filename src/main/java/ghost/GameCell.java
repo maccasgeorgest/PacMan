@@ -20,7 +20,6 @@ public abstract class GameCell {
     public abstract void tick(App app); // handles logic
 
     public void draw(PApplet app) { // handles graphics
-        //app.rect(this.x, this.y, 16, 16);
         if (this instanceof Superfruit) {
             app.image(this.sprite, this.x - 8, this.y - 8);
         } else if (this instanceof Ghost) {
