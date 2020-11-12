@@ -58,19 +58,19 @@ public class CollisionGauge {
     public static boolean turnCheck(App app, MovableCharacter character, String move) {
         for (Wall wall : app.wallList) {
             if (move.equals("up")) {
-                if (character.CentreY() - 16 == wall.CentreY() && character.CentreX() > wall.Left() && character.CentreX() < wall.Right()) {
+                if (character.CentreY() - 16 == wall.CentreY() && character.CentreX() >= wall.Left() && character.CentreX() <= wall.Right()) {
                     return false;
                 }
             } else if (move.equals("down")) {
-                if (character.CentreY() + 16 == wall.CentreY() && character.CentreX() > wall.Left() && character.CentreX() < wall.Right()) {
+                if (character.CentreY() + 16 == wall.CentreY() && character.CentreX() >= wall.Left() && character.CentreX() <= wall.Right()) {
                     return false;
                 }
             } else if (move.equals("left")) {
-                if (character.CentreY() > wall.Top() && character.CentreY() < wall.Bottom() && character.CentreX() - 16 == wall.CentreX()) {
+                if (character.CentreY() >= wall.Top() && character.CentreY() <= wall.Bottom() && character.CentreX() - 16 == wall.CentreX()) {
                     return false;
                 }
             } else if (move.equals("right")) {
-                if (character.CentreY() > wall.Top() && character.CentreY() < wall.Bottom() && character.CentreX() + 16 == wall.CentreX()) {
+                if (character.CentreY() >= wall.Top() && character.CentreY() <= wall.Bottom() && character.CentreX() + 16 == wall.CentreX()) {
                     return false;
                 }
             }

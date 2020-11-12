@@ -1,19 +1,15 @@
 ghost/Wall.java
  ghost.Wall
-ghost/CollisionGauge.java
- ghost.CollisionGauge
-ghost/Superfruit.java
- ghost.Superfruit
-ghost/MovableCharacter.java
- ghost.MovableCharacter
-ghost/Waka.java
- ghost.Waka
-ghost/Fruit.java
- ghost.Fruit
-ghost/EmptyCell.java
- ghost.EmptyCell
 ghost/ParseJSON.java
  ghost.ParseJSON
+ghost/Superfruit.java
+ ghost.Superfruit
+ghost/EmptyCell.java
+ ghost.EmptyCell
+ghost/Waka.java
+ ghost.Waka
+ghost/CollisionGauge.java
+ ghost.CollisionGauge
 ghost/Whim.java
  ghost.Whim
 ghost/GameCell.java
@@ -26,7 +22,11 @@ ghost/Ignorant.java
  ghost.Ignorant
 ghost/MapParser.java
  ghost.MapParser
+ghost/Fruit.java
+ ghost.Fruit
 ghost/Ghost.java
  ghost.Ghost
+ghost/MovableCharacter.java
+ ghost.MovableCharacter
 ghost/App.java
  ghost.App

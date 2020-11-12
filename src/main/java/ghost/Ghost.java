@@ -72,7 +72,9 @@ public class Ghost extends MovableCharacter {
             this.x += this.xVel;
         }
 
-        this.modeShiftCounter++;
+        if (!this.frightened) {
+            this.modeShiftCounter++;
+        }
         int time = app.modeLengths.get(this.modeInterval); // time prescribed by config file
         if (this.modeShiftCounter == 60 * time) {
             this.switchMode();
