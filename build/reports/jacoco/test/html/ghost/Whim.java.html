@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Whim.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Waka</a> &gt; <a href="index.source.html" class="el_package">ghost</a> &gt; <span class="el_source">Whim.java</span></div><h1>Whim.java</h1><pre class="source lang-java linenums">package ghost;
+
+import processing.core.PImage;
+
+public class Whim extends Ghost {
+    public Whim(PImage sprite, int x, int y) {
+<span class="nc" id="L7">        super(sprite, x, y);</span>
+<span class="nc" id="L8">        this.name = &quot;Whim&quot;;</span>
+<span class="nc" id="L9">        this.normalSprite = &quot;src/main/resources/whim.png&quot;;</span>
+<span class="nc" id="L10">    }</span>
+
+    @Override
+    // the formula here was derived from the midpoint formula where Waka(x1, y1)
+    // and Whim(x3, y3) were the endpoints of the line on which Chaser(x2, y2) was 
+    // the midpoint
+    public void setTarget(App app, boolean mode) {
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        if (mode) { // Scatter mode = bottom right corner</span>
+<span class="nc" id="L18">            this.targetX = 448;</span>
+<span class="nc" id="L19">            this.targetY = 576;</span>
+        } else {
+<span class="nc bnc" id="L21" title="All 4 branches missed.">            if (app.chaser.isDead() || app.chaser == null) {</span>
+<span class="nc" id="L22">                this.targetX = app.waka.CentreX();</span>
+<span class="nc" id="L23">                this.targetY = app.waka.CentreY();</span>
+            } else {
+<span class="nc bnc" id="L25" title="All 2 branches missed.">                if (app.waka.getXVel() &gt; 0) {</span>
+<span class="nc" id="L26">                    this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX() + 64;</span>
+<span class="nc" id="L27">                    this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY();</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">                } else if (app.waka.getXVel() &lt; 0) {</span>
+<span class="nc" id="L29">                    this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX() - 64;</span>
+<span class="nc" id="L30">                    this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY();</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                } else if (app.waka.getYVel() &gt; 0) {</span>
+<span class="nc" id="L32">                    this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX();</span>
+<span class="nc" id="L33">                    this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY() + 64;</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">                } else if (app.waka.getYVel() &lt; 0) {</span>
+<span class="nc" id="L35">                    this.targetX = 2 * app.waka.CentreX() - app.chaser.CentreX();</span>
+<span class="nc" id="L36">                    this.targetY = 2 * app.waka.CentreY() - app.chaser.CentreY() - 64;</span>
+                }
+            }
+        }
+<span class="nc" id="L40">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

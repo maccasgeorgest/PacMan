@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParseJSON.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Waka</a> &gt; <a href="index.source.html" class="el_package">ghost</a> &gt; <span class="el_source">ParseJSON.java</span></div><h1>ParseJSON.java</h1><pre class="source lang-java linenums">package ghost;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.util.Iterator;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+
+import org.json.simple.parser.JSONParser;
+
+<span class="nc" id="L14">public class ParseJSON {</span>
+
+    public static void reader(String filename, App app) {
+<span class="nc" id="L17">        JSONParser parser = new JSONParser();</span>
+
+        try {
+<span class="nc" id="L20">            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(filename));</span>
+<span class="nc" id="L21">            String  map = (String) jsonObject.get(&quot;map&quot;);</span>
+<span class="nc" id="L22">            app.map = map;</span>
+<span class="nc" id="L23">            Long  lives = (long) jsonObject.get(&quot;lives&quot;);</span>
+<span class="nc" id="L24">            int livesInt = lives.intValue();</span>
+<span class="nc" id="L25">            app.lives = livesInt;</span>
+<span class="nc" id="L26">            Long speed = (long) jsonObject.get(&quot;speed&quot;);</span>
+<span class="nc" id="L27">            int speedInt = speed.intValue();</span>
+<span class="nc" id="L28">            app.speed = speedInt;</span>
+<span class="nc" id="L29">            Long frightenedLength = (long) jsonObject.get(&quot;frightenedLength&quot;);</span>
+<span class="nc" id="L30">            int frightenedLengthInt = frightenedLength.intValue();</span>
+<span class="nc" id="L31">            app.frightenedLength = frightenedLengthInt;</span>
+<span class="nc" id="L32">            JSONArray modeLengths = (JSONArray) jsonObject.get(&quot;modeLengths&quot;);</span>
+<span class="nc" id="L33">            ArrayList&lt;Integer&gt; modeLengthsList = new ArrayList&lt;Integer&gt;();</span>
+            @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L35">            Iterator&lt;Long&gt; iterator = modeLengths.iterator();</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            while (iterator.hasNext()) {</span>
+<span class="nc" id="L37">                Long modeVal = (Long) iterator.next();</span>
+<span class="nc" id="L38">                int modeValInt = modeVal.intValue();</span>
+<span class="nc" id="L39">                modeLengthsList.add(modeValInt);</span>
+<span class="nc" id="L40">            }</span>
+<span class="nc" id="L41">            app.modeLengths = modeLengthsList;</span>
+            
+<span class="nc" id="L43">        } catch (FileNotFoundException e) {</span>
+<span class="nc" id="L44">            return;</span>
+<span class="nc" id="L45">        } catch (IOException e) {</span>
+<span class="nc" id="L46">            return;</span>
+<span class="nc" id="L47">        } catch (ParseException e) {</span>
+<span class="nc" id="L48">            return;</span>
+<span class="nc" id="L49">        }</span>
+<span class="nc" id="L50">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

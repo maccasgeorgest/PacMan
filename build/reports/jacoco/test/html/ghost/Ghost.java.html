@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Ghost.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Waka</a> &gt; <a href="index.source.html" class="el_package">ghost</a> &gt; <span class="el_source">Ghost.java</span></div><h1>Ghost.java</h1><pre class="source lang-java linenums">package ghost;
+
+import processing.core.PImage;
+
+public class Ghost extends MovableCharacter {
+
+    protected int targetX;
+    protected int targetY;
+    protected int distanceX;
+    protected int distanceY;
+    protected boolean dead;
+    protected String normalSprite;
+    protected boolean frightened;
+<span class="nc" id="L14">    protected int modeShiftCounter = 0;</span>
+<span class="nc" id="L15">    protected int modeInterval = 0;</span>
+    protected boolean scatter;
+
+    public Ghost(PImage sprite, int x, int y) {
+<span class="nc" id="L19">        super(sprite, x, y);</span>
+<span class="nc" id="L20">        this.invincible = true;</span>
+<span class="nc" id="L21">    }</span>
+    public void tick(App app) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (app.waka.isInvincible()) {              // if waka has eaten superfruit</span>
+<span class="nc" id="L24">            this.frighten(true);</span>
+<span class="nc" id="L25">            this.changeVulnerability(false);</span>
+        } else {                                    // if waka has not eaten superfruit
+<span class="nc" id="L27">            this.frighten(false);</span>
+<span class="nc" id="L28">            this.changeVulnerability(true);</span>
+        }
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (this.frightened) {</span>
+<span class="nc" id="L31">            this.sprite = app.loadImage(&quot;src/main/resources/frightened.png&quot;);</span>
+<span class="nc" id="L32">            app.frightenedCounter++;</span>
+<span class="nc" id="L33">            int GhostMultiplier = app.ghostList.size(); // this is used to account for the fact that multiple ghosts are adding to any count per tick</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (app.frightenedCounter == 60 * app.frightenedLength * GhostMultiplier) {</span>
+<span class="nc" id="L35">                this.frighten(false);</span>
+<span class="nc" id="L36">                app.waka.changeVulnerability(false);</span>
+<span class="nc" id="L37">                app.frightenedCounter = 0;</span>
+            } 
+<span class="nc" id="L39">        } else {</span>
+<span class="nc" id="L40">            this.sprite = app.loadImage(this.normalSprite);</span>
+        }
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (this.isDead()) {</span>
+<span class="nc" id="L44">            this.sprite = new PImage();</span>
+        }
+
+<span class="nc" id="L47">        boolean collision = CollisionGauge.collision(app.waka, this);</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (collision) {</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (!this.isDead()) {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                if (this.isInvincible()) {</span>
+<span class="nc" id="L51">                    app.waka.reset();</span>
+<span class="nc" id="L52">                    app.lives--;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">                    for (Ghost ghost : app.ghostList) {</span>
+<span class="nc" id="L54">                        ghost.reset();</span>
+<span class="nc" id="L55">                        ghost.die(false);</span>
+<span class="nc" id="L56">                    }</span>
+                } else {
+<span class="nc" id="L58">                    this.die(true);</span>
+                }
+            }
+        }
+
+<span class="nc" id="L63">        this.setCellCoord();</span>
+<span class="nc" id="L64">        this.distanceX = this.CentreX() - this.targetX;</span>
+<span class="nc" id="L65">        this.distanceY = this.CentreY() - this.targetY;</span>
+<span class="nc" id="L66">        this.move(this.ghostAI(this.distanceX, this.distanceY), app);</span>
+<span class="nc" id="L67">        this.moveAfterCollision(app);</span>
+        
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (!this.skipMovement) {</span>
+<span class="nc" id="L70">            this.y += this.yVel;</span>
+<span class="nc" id="L71">            this.x += this.xVel;</span>
+        }
+
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (!this.frightened) {</span>
+<span class="nc" id="L75">            this.modeShiftCounter++;</span>
+        }
+<span class="nc" id="L77">        int time = app.modeLengths.get(this.modeInterval); // time prescribed by config file</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (this.modeShiftCounter == 60 * time) {</span>
+<span class="nc" id="L79">            this.switchMode();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (this.modeInterval == app.modeLengths.size() - 1) {</span>
+<span class="nc" id="L81">                this.modeInterval = -1; // if its the last element in the array, reset from beginning</span>
+            }
+<span class="nc" id="L83">            this.modeInterval++;</span>
+<span class="nc" id="L84">            this.modeShiftCounter = 0;</span>
+        }
+<span class="nc" id="L86">        this.setTarget(app, this.scatter);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (app.debugMode) {</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (!this.frightened) {</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">                if (!this.isDead()) {</span>
+<span class="nc" id="L90">                    this.targetLine(app, this.targetX, this.targetY);</span>
+                }
+            }
+        }
+<span class="nc" id="L94">    }</span>
+
+<span class="nc" id="L96">    public void setTarget(App app, boolean mode) {}</span>
+
+    public String ghostAI(int distanceX, int distanceY) {
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (Math.abs(distanceX) &lt; Math.abs(distanceY)) { // distance in X direction is closer</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (distanceX &gt; 0) {</span>
+<span class="nc" id="L101">                return &quot;left&quot;;</span>
+            } else {
+<span class="nc" id="L103">                return &quot;right&quot;;</span>
+            }
+        } else { // distance in Y direction is closer
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (distanceY &gt; 0) {</span>
+<span class="nc" id="L107">                return &quot;up&quot;;</span>
+            } else {
+<span class="nc" id="L109">                return &quot;down&quot;;</span>
+            }
+        }
+    }
+    
+    public void die(boolean death) {
+<span class="nc" id="L115">        this.dead = death;</span>
+<span class="nc" id="L116">    }</span>
+
+    public boolean isDead() {
+<span class="nc" id="L119">        return this.dead;</span>
+    }
+
+    public void frighten(boolean fright) {
+<span class="nc" id="L123">        this.frightened = fright;</span>
+<span class="nc" id="L124">    }</span>
+
+    public void targetLine(App app, int targetX, int targetY) {
+<span class="nc" id="L127">        app.stroke(255);</span>
+<span class="nc" id="L128">        app.line(this.CentreX(), this.CentreY(), targetX, targetY);</span>
+<span class="nc" id="L129">    }</span>
+
+    public void switchMode() {
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        if (this.scatter) {</span>
+<span class="nc" id="L133">            this.scatter = false;</span>
+        } else {
+<span class="nc" id="L135">            this.scatter = true;</span>
+        }
+<span class="nc" id="L137">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

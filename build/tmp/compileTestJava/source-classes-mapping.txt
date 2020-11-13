@@ -1,2 +1,8 @@
+ghost/FruitTest.java
+ ghost.FruitTest
+ghost/WakaTest.java
+ ghost.WakaTest
 ghost/AppTest.java
  ghost.AppTest
+ghost/GhostTest.java
+ ghost.GhostTest

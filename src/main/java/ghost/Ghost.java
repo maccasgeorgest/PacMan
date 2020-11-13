@@ -61,9 +61,10 @@ public class Ghost extends MovableCharacter {
         }
 
         this.setCellCoord();
+        this.setTarget(app, this.scatter);
         this.distanceX = this.CentreX() - this.targetX;
         this.distanceY = this.CentreY() - this.targetY;
-        this.move(this.ghostAI(this.distanceX, this.distanceY), app);
+        this.move(this.ghostAI(this.distanceX, this.distanceY, app), app);
         this.moveAfterCollision(app);
         
         if (!this.skipMovement) {
@@ -83,7 +84,7 @@ public class Ghost extends MovableCharacter {
             this.modeInterval++;
             this.modeShiftCounter = 0;
         }
-        this.setTarget(app, this.scatter);
+        
         if (app.debugMode) {
             if (!this.frightened) {
                 if (!this.isDead()) {
@@ -95,18 +96,54 @@ public class Ghost extends MovableCharacter {
 
     public void setTarget(App app, boolean mode) {}
 
-    public String ghostAI(int distanceX, int distanceY) {
+    public String ghostAI(int distanceX, int distanceY, App app) {
+        boolean up = CollisionGauge.turnCheck(app, this, "up");
+        boolean down = CollisionGauge.turnCheck(app, this, "down");
+        boolean left = CollisionGauge.turnCheck(app, this, "left");
+        boolean right = CollisionGauge.turnCheck(app, this, "right");
         if (Math.abs(distanceX) < Math.abs(distanceY)) { // distance in X direction is closer
-            if (distanceX > 0) {
-                return "left";
-            } else {
-                return "right";
+            if (distanceX > 0) {  // if target is to the left of ghost
+                if (left) {
+                    return "left";
+                } else if (distanceY > 0 && up) {
+                    return "up";
+                } else if (distanceY < 0 && down) {
+                    return "down";
+                } else {
+                    return "right";
+                }
+            } else { // if target is to the right of ghost
+                if (right) {
+                    return "right";
+                } else if (distanceY > 0 && up) {
+                    return "up";
+                } else if (distanceY < 0 && down) {
+                    return "down";
+                } else {
+                    return "left";
+                }
             }
         } else { // distance in Y direction is closer
-            if (distanceY > 0) {
-                return "up";
-            } else {
-                return "down";
+            if (distanceY > 0) { // if target is above ghost
+                if (up) {
+                    return "up";
+                } else if (distanceX > 0 && left) {
+                    return "left";
+                } else if (distanceX < 0 && right) {
+                    return "right";
+                } else {
+                    return "down";
+                }
+            } else { // if target is below ghost
+                if (down) {
+                    return "down";
+                } else if (distanceX > 0 && left) {
+                    return "left";
+                } else if (distanceX < 0 && right) {
+                    return "right";
+                } else {
+                    return "up";
+                }
             }
         }
     }

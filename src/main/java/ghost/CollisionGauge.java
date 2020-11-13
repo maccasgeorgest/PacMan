@@ -77,4 +77,8 @@ public class CollisionGauge {
         }
         return true;
     }
+
+	public static boolean collision(App app, Waka waka, String moveAttempt) {
+		return false;
+	}
 }

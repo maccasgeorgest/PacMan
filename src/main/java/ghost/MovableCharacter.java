@@ -9,9 +9,8 @@ public class MovableCharacter extends GameCell {
     protected int initialX;
     protected int initialY;
     protected String direction = "left";
+    protected String moveAttempt = "left";
     protected boolean invincible = false;
-    protected String moveAttempt;
-    // every tick check if moveAttempt doesn't return false, if it returns true then turn.
     protected boolean skipMovement;
 
     public MovableCharacter(PImage sprite, int x, int y) {
@@ -92,5 +91,6 @@ public class MovableCharacter extends GameCell {
         this.xVel = 0;
         this.y = this.initialY;
         this.yVel = 0;
+        this.moveAttempt = "left";
     }
 }
