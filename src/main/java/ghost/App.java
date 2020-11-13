@@ -14,6 +14,7 @@ public class App extends PApplet {
     public ArrayList<GameCell> cells = new ArrayList<GameCell>(); 
     public ArrayList<Wall> wallList = new ArrayList<Wall>();
     public ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
+	public ArrayList<GameCell> spaceList = new ArrayList<GameCell>();
     public int fruitCount = 0;
     public String map;
     public int lives;

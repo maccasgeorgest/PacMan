@@ -77,9 +77,12 @@ public class MapParser {
                 app.chaser = (Chaser) cell;
             } if (cell.getName().equals("Waka")) {
                 app.waka = (Waka) cell;
+            } else if (cell.getName().equals("empty")) {
+                app.spaceList.add(cell);
             } else if (cell.getName().equals("Fruit") || 
                     cell.getName().equals("Superfruit")) {
                 app.fruitCount++;
+                app.spaceList.add(cell);
             } else if (cell.getName().equals("Wall")) {
                 app.wallList.add((Wall) cell);
             } else if (cell instanceof Ghost) {   // while using instanceof is generally bad codestyle, thought it was necessary here

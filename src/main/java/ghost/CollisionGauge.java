@@ -78,7 +78,26 @@ public class CollisionGauge {
         return true;
     }
 
-	public static boolean collision(App app, Waka waka, String moveAttempt) {
-		return false;
-	}
+    public static boolean makeTurn(App app, MovableCharacter character, String move) {
+        for (GameCell cell : app.spaceList) {
+            if (move.equals("up")) {
+                if (character.CentreY() - 16 == cell.CentreY() && character.CentreX() == cell.CentreX()) {
+                    return true;
+                }
+            } else if (move.equals("down")) {
+                if (character.CentreY() + 16 == cell.CentreY() && character.CentreX() == cell.CentreX()) {
+                    return true;
+                }
+            } else if (move.equals("left")) {
+                if (character.CentreY() == cell.CentreY() && character.CentreX() - 16 == cell.CentreX()) {
+                    return true;
+                }
+            } else if (move.equals("right")) {
+                if (character.CentreY() == cell.CentreY() && character.CentreX() + 16 == cell.CentreX()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

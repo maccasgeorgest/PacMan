@@ -17,7 +17,7 @@ public class Waka extends MovableCharacter {
 
     public void tick(App app) { 
         this.setCellCoord();
-        boolean possible = CollisionGauge.turnCheck(app, this, this.moveAttempt);
+        boolean possible = CollisionGauge.makeTurn(app, this, this.moveAttempt);
             if (possible) {
                 app.waka.move(this.moveAttempt, app);
             } 
@@ -38,7 +38,6 @@ public class Waka extends MovableCharacter {
         }
 
         this.spriteTransition(app);
-
         if (this.changeSprite < 16) {
             this.changeSprite++;
         } else {
