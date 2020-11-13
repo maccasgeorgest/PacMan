@@ -4,7 +4,7 @@ import processing.core.PImage;
 
 public class Waka extends MovableCharacter {
 
-    private int changeSprite = 1;  // modulo 0 is undefined
+    private int changeSprite = 0;  
     private PImage lastSprite;
     private PImage livesSprite;
 
@@ -38,7 +38,7 @@ public class Waka extends MovableCharacter {
         if (this.changeSprite < 16) {
             this.changeSprite++;
         } else {
-            this.changeSprite = 0;
+            this.changeSprite = 0;  
         }
     }
 

@@ -10,6 +10,8 @@ public class MovableCharacter extends GameCell {
     protected int initialY;
     protected String direction = "left";
     protected boolean invincible = false;
+    protected String moveAttempt;
+    // every tick check if moveAttempt doesn't return false, if it returns true then turn.
     protected boolean skipMovement;
 
     public MovableCharacter(PImage sprite, int x, int y) {
@@ -18,8 +20,7 @@ public class MovableCharacter extends GameCell {
         this.initialY = y;
     }
     
-    public void tick(App app) {
-    }
+    public void tick(App app) {}
 
     // Controls character movement by changing direction of velocity
     public void move(String command, App app) {

@@ -23,14 +23,13 @@ public class App extends PApplet {
     public ArrayList<Integer> modeLengths = new ArrayList<Integer>();
     public PFont gameFont; 
     public boolean debugMode;
-    public int restartTime;
+    public int restartTime = 0;
 
-    public App() {
-        ParseJSON.reader("config.json", this);
-    }
+    public App() {}
 
     public void setup() {
         frameRate(60);
+        ParseJSON.reader("config.json", this);
         gameFont = createFont("PressStart2P-Regular.ttf", 32);
         MapParser mp = new MapParser();
         this.cells = mp.parse(this, this.map);
@@ -43,9 +42,13 @@ public class App extends PApplet {
 
     public void draw() { 
         if (this.fruitCount == 0) {
-            this.gameFinishScreen(true);
+            this.gameFinishScreen(true, true);
+            this.restartTime++;
+            this.restart();
         } else if (this.lives == 0) {
-            this.gameFinishScreen(false);
+            this.gameFinishScreen(true, false);
+            this.restartTime++;
+            this.restart();
         } else {
             background(0, 0, 0);
             for (GameCell cell : this.cells) {
@@ -66,13 +69,25 @@ public class App extends PApplet {
         }
     }
 
-    public void gameFinishScreen(boolean won) {
-        background(0);
-        textFont(gameFont);
-        if (won) {
-            text("YOU WIN", WIDTH/4, HEIGHT/3);
-        } else {
-            text("GAME OVER", WIDTH/5, HEIGHT/3);
+    public void gameFinishScreen(boolean display, boolean won) {
+        if (display) {
+            background(0);
+            textFont(gameFont);
+            if (won) {
+                text("YOU WIN", WIDTH/4, HEIGHT/3);
+            } else {
+                text("GAME OVER", WIDTH/5, HEIGHT/3);
+            }
+        }
+    }
+
+    public void restart() {
+        if (this.restartTime == 600) {
+            this.gameFinishScreen(false, false);
+            this.restartTime = 0;
+            this.fruitCount = 0;
+            this.ghostList.clear();
+            this.setup();
         }
     }
 

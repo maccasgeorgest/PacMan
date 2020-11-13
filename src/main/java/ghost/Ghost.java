@@ -53,6 +53,7 @@ public class Ghost extends MovableCharacter {
                     app.lives--;
                     for (Ghost ghost : app.ghostList) {
                         ghost.reset();
+                        ghost.die(false);
                     }
                 } else {
                     this.die(true);
