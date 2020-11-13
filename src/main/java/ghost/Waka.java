@@ -66,12 +66,16 @@ public class Waka extends MovableCharacter {
 
     public void moveHandler(App app, int move) {
             if (move == 38) {
+                this.moveAttempt = "up";
                 app.waka.move("up", app);
             } else if (move == 40) {
+                this.moveAttempt = "down";
                 app.waka.move("down", app);
             } else if (move == 37) {
+                this.moveAttempt = "left";
                 app.waka.move("left", app);
             } else if (move == 39) {
+                this.moveAttempt = "right";
                 app.waka.move("right", app);
             }
     }

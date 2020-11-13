@@ -1,20 +1,19 @@
 package ghost;
 
-import java.util.Random;
-
 import processing.core.PImage;
 
 public class Ghost extends MovableCharacter {
 
     protected int targetX;
     protected int targetY;
+    protected int distanceX;
+    protected int distanceY;
     protected boolean dead;
     protected String normalSprite;
     protected boolean frightened;
     protected int modeShiftCounter = 0;
     protected int modeInterval = 0;
     protected boolean scatter;
-    protected final String[] possibleMoves = {"up", "down", "left", "right"};
 
     public Ghost(PImage sprite, int x, int y) {
         super(sprite, x, y);
@@ -61,11 +60,10 @@ public class Ghost extends MovableCharacter {
             }
         }
 
-        Random random = new Random(); 
-        int randomNumber = random.nextInt(possibleMoves.length);
-
         this.setCellCoord();
-        this.move(possibleMoves[randomNumber], app);
+        this.distanceX = this.CentreX() - this.targetX;
+        this.distanceY = this.CentreY() - this.targetY;
+        this.move(this.ghostAI(this.distanceX, this.distanceY), app);
         this.moveAfterCollision(app);
         
         if (!this.skipMovement) {
@@ -96,6 +94,22 @@ public class Ghost extends MovableCharacter {
     }
 
     public void setTarget(App app, boolean mode) {}
+
+    public String ghostAI(int distanceX, int distanceY) {
+        if (Math.abs(distanceX) < Math.abs(distanceY)) { // distance in X direction is closer
+            if (distanceX > 0) {
+                return "left";
+            } else {
+                return "right";
+            }
+        } else { // distance in Y direction is closer
+            if (distanceY > 0) {
+                return "up";
+            } else {
+                return "down";
+            }
+        }
+    }
     
     public void die(boolean death) {
         this.dead = death;
