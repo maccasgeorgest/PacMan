@@ -44,7 +44,8 @@ public class Ghost extends MovableCharacter {
             this.sprite = new PImage();
         }
 
-        boolean collision = CollisionGauge.collision(app.waka, this);
+        // Check collision with Waka
+        boolean collision = CollisionGauge.collision(app.waka, this); 
         if (collision) {
             if (!this.isDead()) {
                 if (this.isInvincible()) {
@@ -64,8 +65,16 @@ public class Ghost extends MovableCharacter {
         this.setTarget(app, this.scatter);
         this.distanceX = this.CentreX() - this.targetX;
         this.distanceY = this.CentreY() - this.targetY;
-        this.move(this.ghostAI(this.distanceX, this.distanceY, app), app);
+        this.moveAttempt = this.ghostAI(this.distanceX, this.distanceY, app);
+        this.move(this.moveAttempt, app);
         this.moveAfterCollision(app);
+
+        System.out.println(this.getName());
+        System.out.println("Direction: " + this.direction);
+        System.out.println("Move Attempt: " + this.moveAttempt);
+        System.out.println("distanceXabs: " + Math.abs(this.distanceX) + " distanceYabs: " + Math.abs(this.distanceY));
+        System.out.println("distanceX: " + this.distanceX + " distanceY: " + this.distanceY);
+        
         
         if (!this.skipMovement) {
             this.y += this.yVel;
@@ -97,55 +106,204 @@ public class Ghost extends MovableCharacter {
     public void setTarget(App app, boolean mode) {}
 
     public String ghostAI(int distanceX, int distanceY, App app) {
-        boolean up = CollisionGauge.turnCheck(app, this, "up");
-        boolean down = CollisionGauge.turnCheck(app, this, "down");
-        boolean left = CollisionGauge.turnCheck(app, this, "left");
-        boolean right = CollisionGauge.turnCheck(app, this, "right");
-        if (Math.abs(distanceX) < Math.abs(distanceY)) { // distance in X direction is closer
-            if (distanceX > 0) {  // if target is to the left of ghost
-                if (left) {
-                    return "left";
-                } else if (distanceY > 0 && up) {
-                    return "up";
-                } else if (distanceY < 0 && down) {
-                    return "down";
+        boolean up = CollisionGauge.intersectionDetector(app, this, "up");
+        boolean down = CollisionGauge.intersectionDetector(app, this, "down");
+        boolean left = CollisionGauge.intersectionDetector(app, this, "left");
+        boolean right = CollisionGauge.intersectionDetector(app, this, "right");
+        if (this.direction.equals("up")) { // when going up
+            if (left || right) { // if an intersection is reached
+                if (Math.abs(this.distanceX) > Math.abs(this.distanceY)) {
+                    if (this.distanceX > 0) {
+                        if (left) {
+                            return "left"; 
+                        } else if (up) {
+                            return "up";
+                        } else if (right) {
+                            return "right";
+                        } else {
+                            return "down";
+                        }
+                    } else { // if this.distanceX < 0
+                        if (right) {
+                            return "right"; 
+                        } else if (up) {
+                            return "up";
+                        } else if (left) {
+                            return "left";
+                        } else {
+                            return "down";
+                        }
+                    }
                 } else {
-                    return "right";
-                }
-            } else { // if target is to the right of ghost
-                if (right) {
-                    return "right";
-                } else if (distanceY > 0 && up) {
-                    return "up";
-                } else if (distanceY < 0 && down) {
-                    return "down";
-                } else {
-                    return "left";
+                    if (up) {
+                        return "up";
+                    } else {
+                        if (this.distanceX > 0) {
+                            if (left) {
+                                return "left";
+                            } else if (right) {
+                                return "right";
+                            } else {
+                                return "down";
+                            }
+                        } else {
+                            if (right) {
+                                return "right";
+                            } else if (left) {
+                                return "left";
+                            } else {
+                                return "down";
+                            }
+                        }
+                    }
                 }
             }
-        } else { // distance in Y direction is closer
-            if (distanceY > 0) { // if target is above ghost
-                if (up) {
-                    return "up";
-                } else if (distanceX > 0 && left) {
-                    return "left";
-                } else if (distanceX < 0 && right) {
-                    return "right";
+        } else if (this.direction.equals("down")) { // when going down
+            if (left || right) { // if an intersection is reached
+                if (Math.abs(this.distanceX) > Math.abs(this.distanceY)) {
+                    if (this.distanceX > 0) {
+                        if (left) {
+                            return "left"; 
+                        } else if (down) {
+                            return "down";
+                        } else if (right) {
+                            return "right";
+                        } else {
+                            return "up";
+                        }
+                    } else { // if this.distanceX < 0
+                        if (right) {
+                            return "right"; 
+                        } else if (down) {
+                            return "down";
+                        } else if (left) {
+                            return "left";
+                        } else {
+                            return "up";
+                        }
+                    }
                 } else {
-                    return "down";
+                    if (down) {
+                        return "down";
+                    } else {
+                        if (this.distanceX > 0) {
+                            if (left) {
+                                return "left";
+                            } else if (right) {
+                                return "right";
+                            } else {
+                                return "up";
+                            }
+                        } else {
+                            if (right) {
+                                return "right";
+                            } else if (left) {
+                                return "left";
+                            } else {
+                                return "up";
+                            }
+                        }
+                    }
                 }
-            } else { // if target is below ghost
-                if (down) {
-                    return "down";
-                } else if (distanceX > 0 && left) {
-                    return "left";
-                } else if (distanceX < 0 && right) {
-                    return "right";
+            }
+        } else if (this.direction.equals("left")) { // when going left
+            if (up || down) { // if an intersection is reached
+                if (Math.abs(this.distanceY) > Math.abs(this.distanceX)) {
+                    if (this.distanceY > 0) {
+                        if (up) {
+                            return "up"; 
+                        } else if (left) {
+                            return "left";
+                        } else if (down) {
+                            return "down";
+                        } else {
+                            return "right";
+                        }
+                    } else { // if this.distanceX < 0
+                        if (down) {
+                            return "down"; 
+                        } else if (left) {
+                            return "left";
+                        } else if (up) {
+                            return "up";
+                        } else {
+                            return "right";
+                        }
+                    }
                 } else {
-                    return "up";
+                    if (left) {
+                        return "left";
+                    } else {
+                        if (this.distanceX > 0) {
+                            if (up) {
+                                return "up";
+                            } else if (down) {
+                                return "down";
+                            } else {
+                                return "right";
+                            }
+                        } else {
+                            if (down) {
+                                return "down";
+                            } else if (up) {
+                                return "up";
+                            } else {
+                                return "right";
+                            }
+                        }
+                    }
+                }
+            }
+        } else { // when going right
+            if (up || down) { // if an intersection is reached
+                if (Math.abs(this.distanceY) > Math.abs(this.distanceX)) {
+                    if (this.distanceY > 0) {
+                        if (up) {
+                            return "up"; 
+                        } else if (right) {
+                            return "right";
+                        } else if (down) {
+                            return "down";
+                        } else {
+                            return "left";
+                        }
+                    } else { // if this.distanceX < 0
+                        if (down) {
+                            return "down"; 
+                        } else if (right) {
+                            return "right";
+                        } else if (up) {
+                            return "up";
+                        } else {
+                            return "left";
+                        }
+                    }
+                } else {
+                    if (right) {
+                        return "right";
+                    } else {
+                        if (this.distanceX > 0) {
+                            if (up) {
+                                return "up";
+                            } else if (down) {
+                                return "down";
+                            } else {
+                                return "left";
+                            }
+                        } else {
+                            if (down) {
+                                return "down";
+                            } else if (up) {
+                                return "up";
+                            } else {
+                                return "left";
+                            }
+                        }
+                    }
                 }
             }
         }
+        return this.direction;
     }
     
     public void die(boolean death) {
@@ -163,6 +321,20 @@ public class Ghost extends MovableCharacter {
     public void targetLine(App app, int targetX, int targetY) {
         app.stroke(255);
         app.line(this.CentreX(), this.CentreY(), targetX, targetY);
+    }
+
+    public String doubleBack(String move) {
+        if (move.equals("up")) {
+            return "down";
+        } else if (move.equals("down")) {
+            return "up";
+        } else if (move.equals("left")) {
+            return "right";
+        } else if (move.equals("right")) {
+            return "left";
+        } else {
+            return null;
+        }
     }
 
     public void switchMode() {

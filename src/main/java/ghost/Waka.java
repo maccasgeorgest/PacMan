@@ -17,7 +17,7 @@ public class Waka extends MovableCharacter {
 
     public void tick(App app) { 
         this.setCellCoord();
-        boolean possible = CollisionGauge.makeTurn(app, this, this.moveAttempt);
+        boolean possible = CollisionGauge.intersectionDetector(app, this, this.moveAttempt);
             if (possible) {
                 app.waka.move(this.moveAttempt, app);
             } 
