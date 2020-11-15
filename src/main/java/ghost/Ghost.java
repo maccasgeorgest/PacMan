@@ -1,5 +1,7 @@
 package ghost;
 
+import java.util.Random;
+
 import processing.core.PImage;
 
 public class Ghost extends MovableCharacter {
@@ -69,11 +71,11 @@ public class Ghost extends MovableCharacter {
         this.move(this.moveAttempt, app);
         this.moveAfterCollision(app);
 
-        System.out.println(this.getName());
-        System.out.println("Direction: " + this.direction);
-        System.out.println("Move Attempt: " + this.moveAttempt);
-        System.out.println("distanceXabs: " + Math.abs(this.distanceX) + " distanceYabs: " + Math.abs(this.distanceY));
-        System.out.println("distanceX: " + this.distanceX + " distanceY: " + this.distanceY);
+        // System.out.println(this.getName());
+        // System.out.println("Direction: " + this.direction);
+        // System.out.println("Move Attempt: " + this.moveAttempt);
+        // System.out.println("distanceXabs: " + Math.abs(this.distanceX) + " distanceYabs: " + Math.abs(this.distanceY));
+        // System.out.println("distanceX: " + this.distanceX + " distanceY: " + this.distanceY);
         
         
         if (!this.skipMovement) {
@@ -110,6 +112,37 @@ public class Ghost extends MovableCharacter {
         boolean down = CollisionGauge.intersectionDetector(app, this, "down");
         boolean left = CollisionGauge.intersectionDetector(app, this, "left");
         boolean right = CollisionGauge.intersectionDetector(app, this, "right");
+        if (this.frightened) {
+            String[] moveList = new String[3];
+            if (this.direction.equals("up")) {
+                moveList[0] = "up";
+                moveList[1] = "left";
+                moveList[2] = "right";
+            } else if (this.direction.equals("down")) {
+                moveList[0] = "down";
+                moveList[1] = "left";
+                moveList[2] = "right";
+            } else if (this.direction.equals("left")) {
+                moveList[0] = "left";
+                moveList[1] = "down";
+                moveList[2] = "up";
+            } else {
+                moveList[0] = "right";
+                moveList[1] = "down";
+                moveList[2] = "up";
+            }
+            Random generator = new Random();
+            int number = generator.nextInt(moveList.length);
+            if (moveList[number].equals("up") && up) {
+                return moveList[number];
+            } else if (moveList[number].equals("down") && down) {
+                return moveList[number];
+            } else if (moveList[number].equals("left") && left) {
+                return moveList[number];
+            } else if (moveList[number].equals("right") && right) {
+                return moveList[number];
+            }
+        }
         if (this.direction.equals("up")) { // when going up
             if (left || right) { // if an intersection is reached
                 if (Math.abs(this.distanceX) > Math.abs(this.distanceY)) {
