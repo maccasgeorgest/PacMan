@@ -1,7 +1,7 @@
 {
     "map": "map.txt",
     "lives": 3,
-    "speed": 2,
+    "speed": 4,
     "frightenedLength": 10,
     "modeLengths": [
         1500,

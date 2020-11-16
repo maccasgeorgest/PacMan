@@ -13,6 +13,10 @@ import org.json.simple.parser.JSONParser;
 
 public class ParseJSON {
 
+    /**
+     * Takes in a JSON configuration file, and parses all relevant information.
+     * This information is then passed to the App
+     */
     public static void reader(String filename, App app) {
         JSONParser parser = new JSONParser();
 

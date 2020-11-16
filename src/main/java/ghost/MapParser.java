@@ -10,7 +10,10 @@ import processing.core.PImage;
 public class MapParser {
 
     public MapParser() {}
-    
+    /**
+     * Parses map and returns an ArrayList of game cell objects, which provide
+     * the functionality for the rest of the game
+     */
     public ArrayList<GameCell> parse(App app, String filename) {
         ArrayList<GameCell> mapList = new ArrayList<GameCell>(); // List to be returned
         
@@ -58,7 +61,9 @@ public class MapParser {
         }
         return mapList;
     }
-
+    /**
+     * Associates wall type with specified number
+     */
     public static String wallKey(String key) {
         HashMap<String,String> charKey = new HashMap<String,String>();
         charKey.put("1", "src/main/resources/horizontal.png");
@@ -70,7 +75,10 @@ public class MapParser {
         return charKey.get(key);
     }
 
-    // Sets the waka for the game, and counts the total number of fruit and walls
+    /**
+     * Sets the waka for the game, and counts the total number of fruit, as well as walls and spaces 
+     * characters can walk through
+     */
     public void setGameAttributes(App app) {
         for (GameCell cell : app.cells) {
             if (cell.getName().equals("Chaser")) {

@@ -21,7 +21,10 @@ public class MovableCharacter extends GameCell {
     
     public void tick(App app) {}
 
-    // Controls character movement by changing direction of velocity
+    /**
+     * Controls character movement by changing direction of velocity, provided
+     * a change in direction would not result in a collision 
+     */ 
     public void move(String command, App app) {
         if (command.equals("up")) {
             boolean check = CollisionGauge.turnCheck(app, this, "up");
@@ -53,12 +56,14 @@ public class MovableCharacter extends GameCell {
             }
         }
     }
-
+    /**
+     * Allows character movement as long as there is no collision
+     */
     public void moveAfterCollision(App app) {
         for (Wall wall : app.wallList) {
             boolean collision = CollisionGauge.collision(this, wall);
             if (collision) {
-                break;
+                break; // this break is used to prevent other walls from returning true
             }
         }
     }
@@ -66,18 +71,29 @@ public class MovableCharacter extends GameCell {
     public void changeVulnerability(boolean invincible) {
         this.invincible = invincible;
     }
-
+    /**
+     * Returns character XVel
+     */
     public int getXVel() {
         return this.xVel;
     }
+    /**
+     * Returns character YVel
+     */
     public int getYVel() {
         return this.yVel;
     }
 
+    /**
+     * Returns character vulnerability
+     */
     public boolean isInvincible() {
         return this.invincible;
     }
 
+    /**
+     * The space key activates debug mode
+     */
     public void initiateDebugMode(App app) {
         if (app.debugMode) {
             app.debugMode = false;
@@ -85,7 +101,9 @@ public class MovableCharacter extends GameCell {
             app.debugMode = true;
         }
     }
-
+    /**
+     * Resets character settings to initial game condition 
+     */
     public void reset() {
         this.x = this.initialX;
         this.xVel = 0;

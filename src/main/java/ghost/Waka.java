@@ -44,7 +44,11 @@ public class Waka extends MovableCharacter {
             this.changeSprite = 0;  
         }
     }
-
+    /**
+     * Changes Waka sprite depending on Waka conditions. Every 8 frames, Waka oscillates between
+     * his closed form and a direction form. Waka's direction form conforms to his game direction. 
+     * If Waka is stationary, his last used sprite is used.
+     */
     public void spriteTransition(App app) {
         if (this.changeSprite > 8) {
             this.sprite = app.loadImage("src/main/resources/playerClosed.png");
@@ -66,7 +70,9 @@ public class Waka extends MovableCharacter {
             this.sprite = this.lastSprite;
         }
     } 
-
+    /**
+     * User keyboard input is interpreted to move Waka
+     */
     public void moveHandler(App app, int move) {
             if (move == 38) {
                 this.moveAttempt = "up";

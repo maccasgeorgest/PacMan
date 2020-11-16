@@ -32,36 +32,6 @@ public class Fruit extends GameCell {
             }
         }
     }
-
-    public boolean checkCollision(Waka waka) {
-            
-        // Character heading up
-        if (waka.getXVel() == 0 && waka.getYVel() < 0) {
-            if (waka.Left() < this.Right() && waka.Right() > this.Left()
-                && waka.Top() + waka.getYVel() < this.Bottom() && waka.Bottom() + waka.getYVel() > this.Top()) {
-                    return true;
-            }
-        // Character heading down
-        } else if (waka.getXVel() == 0 && waka.getYVel() > 0) {
-            if (waka.Left() < this.Right() && waka.Right() > this.Left()
-                && waka.Top() + waka.getYVel() < this.Bottom() && waka.Bottom() + waka.getYVel() > this.Top()) {
-                    return true;
-            }
-        // Character heading left
-        } else if (waka.getXVel() < 0 && waka.getYVel() == 0) {
-            if (waka.Left() + waka.getXVel() < this.Right() && waka.Right() + waka.getXVel() > this.Left()
-                && waka.Top() < this.Bottom() && waka.Bottom() > this.Top()) {
-                    return true;
-            }
-        // Character heading right
-        } else if (waka.getXVel() > 0 && waka.getYVel() == 0) {
-            if (waka.Left() + waka.getXVel() < this.Right() && waka.Right() + waka.getXVel() > this.Left()
-                && waka.Top() < this.Bottom() && waka.Bottom() > this.Top()) {
-                    return true;
-            }
-        }    
-        return false;
-    }
 }
 
 

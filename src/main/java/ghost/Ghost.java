@@ -338,38 +338,34 @@ public class Ghost extends MovableCharacter {
         }
         return this.direction;
     }
-    
+    /**
+     * Changes ghost alive/death status
+     */
     public void die(boolean death) {
         this.dead = death;
     }
-
+    /**
+     * Returns ghost death status
+     */
     public boolean isDead() {
         return this.dead;
     }
-
+    /**
+     * Changes ghost frigtenened/unfrightened status
+     */
     public void frighten(boolean fright) {
         this.frightened = fright;
     }
-
+    /**
+     * Creates line used for debugging based on ghost target coordinates
+     */
     public void targetLine(App app, int targetX, int targetY) {
         app.stroke(255);
         app.line(this.CentreX(), this.CentreY(), targetX, targetY);
     }
-
-    public String doubleBack(String move) {
-        if (move.equals("up")) {
-            return "down";
-        } else if (move.equals("down")) {
-            return "up";
-        } else if (move.equals("left")) {
-            return "right";
-        } else if (move.equals("right")) {
-            return "left";
-        } else {
-            return null;
-        }
-    }
-
+    /**
+     * Toggles between scatter and chase mode when appropriate
+     */
     public void switchMode() {
         if (this.scatter) {
             this.scatter = false;

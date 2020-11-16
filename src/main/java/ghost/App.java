@@ -1,6 +1,6 @@
 package ghost;
 
-import processing.core.PApplet; // xming = export DISPLAY=:0
+import processing.core.PApplet; 
 import processing.core.PFont;
 import java.util.ArrayList;
 
@@ -42,24 +42,7 @@ public class App extends PApplet {
     }
 
     public void draw() { 
-        if (this.fruitCount == 0) {
-            this.gameFinishScreen(true, true);
-            this.restartTime++;
-            this.restart();
-        } else if (this.lives == 0) {
-            this.gameFinishScreen(true, false);
-            this.restartTime++;
-            this.restart();
-        } else {
-            background(0, 0, 0);
-            for (GameCell cell : this.cells) {
-                cell.tick(this);
-                cell.draw(this);
-            }
-        }
-        if (this.fruitCount > 0 && this.lives > 0) {
-            this.ghostList.forEach((ghost) -> ghost.draw(this)); // draw the ghosts last so that their sprites appear over the fruit
-        }
+        GameEvent.gameEvent(this);
     }
 
     public void keyPressed() {
@@ -67,28 +50,6 @@ public class App extends PApplet {
             this.waka.moveHandler(this, keyCode);
         } else if (key == ' ') {
             this.waka.initiateDebugMode(this);
-        }
-    }
-
-    public void gameFinishScreen(boolean display, boolean won) {
-        if (display) {
-            background(0);
-            textFont(gameFont);
-            if (won) {
-                text("YOU WIN", WIDTH/4, HEIGHT/3);
-            } else {
-                text("GAME OVER", WIDTH/5, HEIGHT/3);
-            }
-        }
-    }
-
-    public void restart() {
-        if (this.restartTime == 600) {
-            this.gameFinishScreen(false, false);
-            this.restartTime = 0;
-            this.fruitCount = 0;
-            this.ghostList.clear();
-            this.setup();
         }
     }
 
