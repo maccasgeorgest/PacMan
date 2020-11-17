@@ -17,8 +17,10 @@ public class Fruit extends GameCell {
         if (!this.uneaten) {      // if it is has been eaten, disable it's sprite
             this.sprite = new PImage();
             if (!this.accounted) {
-                app.fruitCount--;
-                this.accounted = true;
+                if (!this.name.equals("Soda")) { // since Waka doesn't have to eat all soda to win the game
+                    app.fruitCount--;
+                    this.accounted = true;
+                }
             }
         }
     }

@@ -146,15 +146,23 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="../ghost/GameCell.html" title="class in ghost">GameCell</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../ghost/MapParser.html#parse-ghost.App-java.lang.String-">parse</a></span>(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app,
-     java.lang.String&nbsp;filename)</code>&nbsp;</td>
+     java.lang.String&nbsp;filename)</code>
+<div class="block">Parses map and returns an ArrayList of game cell objects, which provide
+ the functionality for the rest of the game</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/MapParser.html#setGameAttributes-ghost.App-">setGameAttributes</a></span>(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/MapParser.html#setGameAttributes-ghost.App-">setGameAttributes</a></span>(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app)</code>
+<div class="block">Sets the waka for the game, and counts the total number of fruit, as well as walls and spaces 
+ characters can walk through</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/MapParser.html#wallKey-java.lang.String-">wallKey</a></span>(java.lang.String&nbsp;key)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/MapParser.html#wallKey-java.lang.String-">wallKey</a></span>(java.lang.String&nbsp;key)</code>
+<div class="block">Associates wall type with specified number</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -203,6 +211,8 @@ extends java.lang.Object</pre>
 <h4>parse</h4>
 <pre>public&nbsp;java.util.ArrayList&lt;<a href="../ghost/GameCell.html" title="class in ghost">GameCell</a>&gt;&nbsp;parse(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app,
                                            java.lang.String&nbsp;filename)</pre>
+<div class="block">Parses map and returns an ArrayList of game cell objects, which provide
+ the functionality for the rest of the game</div>
 </li>
 </ul>
 <a name="wallKey-java.lang.String-">
@@ -212,6 +222,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>wallKey</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;wallKey(java.lang.String&nbsp;key)</pre>
+<div class="block">Associates wall type with specified number</div>
 </li>
 </ul>
 <a name="setGameAttributes-ghost.App-">
@@ -221,6 +232,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setGameAttributes</h4>
 <pre>public&nbsp;void&nbsp;setGameAttributes(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app)</pre>
+<div class="block">Sets the waka for the game, and counts the total number of fruit, as well as walls and spaces 
+ characters can walk through</div>
 </li>
 </ul>
 </li>

@@ -49,6 +49,8 @@ public class MapParser {
                         mapList.add(new Ignorant(app.loadImage("src/main/resources/ignorant.png"), x, y));
                     } else if (symbol.equals("w")) {
                         mapList.add(new Whim(app.loadImage("src/main/resources/whim.png"), x, y));
+                    } else if (symbol.equals("s")) {
+                        mapList.add(new Soda(app.loadImage("src/main/resources/Soda.png"), x, y));
                     } 
                     x += 16;
                 }
@@ -90,6 +92,8 @@ public class MapParser {
             } else if (cell.getName().equals("Fruit") || 
                     cell.getName().equals("Superfruit")) {
                 app.fruitCount++;
+                app.spaceList.add(cell);
+            } else if (cell.getName().equals("Soda")) {
                 app.spaceList.add(cell);
             } else if (cell.getName().equals("Wall")) {
                 app.wallList.add((Wall) cell);

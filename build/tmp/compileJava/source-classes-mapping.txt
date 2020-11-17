@@ -10,6 +10,8 @@ ghost/Ignorant.java
  ghost.Ignorant
 ghost/MapParser.java
  ghost.MapParser
+ghost/Soda.java
+ ghost.Soda
 ghost/EmptyCell.java
  ghost.EmptyCell
 ghost/Wall.java

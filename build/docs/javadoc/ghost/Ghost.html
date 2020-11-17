@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -230,42 +230,48 @@ extends <a href="../ghost/MovableCharacter.html" title="class in ghost">MovableC
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#die-boolean-">die</a></span>(boolean&nbsp;death)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#die-boolean-">die</a></span>(boolean&nbsp;death)</code>
+<div class="block">Changes ghost alive/death status</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#doubleBack-java.lang.String-">doubleBack</a></span>(java.lang.String&nbsp;move)</code>&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#frighten-boolean-">frighten</a></span>(boolean&nbsp;fright)</code>
+<div class="block">Changes ghost frigtenened/unfrightened status</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#frighten-boolean-">frighten</a></span>(boolean&nbsp;fright)</code>&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#ghostAI-int-int-ghost.App-">ghostAI</a></span>(int&nbsp;distanceX,
        int&nbsp;distanceY,
        <a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app)</code>&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#isDead--">isDead</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#isDead--">isDead</a></span>()</code>
+<div class="block">Returns ghost death status</div>
+</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#setTarget-ghost.App-boolean-">setTarget</a></span>(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app,
          boolean&nbsp;mode)</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#switchMode--">switchMode</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#switchMode--">switchMode</a></span>()</code>
+<div class="block">Toggles between scatter and chase mode when appropriate</div>
+</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#targetLine-ghost.App-int-int-">targetLine</a></span>(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app,
           int&nbsp;targetX,
-          int&nbsp;targetY)</code>&nbsp;</td>
+          int&nbsp;targetY)</code>
+<div class="block">Creates line used for debugging based on ghost target coordinates</div>
+</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../ghost/Ghost.html#tick-ghost.App-">tick</a></span>(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app)</code>&nbsp;</td>
 </tr>
@@ -463,6 +469,7 @@ extends <a href="../ghost/MovableCharacter.html" title="class in ghost">MovableC
 <li class="blockList">
 <h4>die</h4>
 <pre>public&nbsp;void&nbsp;die(boolean&nbsp;death)</pre>
+<div class="block">Changes ghost alive/death status</div>
 </li>
 </ul>
 <a name="isDead--">
@@ -472,6 +479,7 @@ extends <a href="../ghost/MovableCharacter.html" title="class in ghost">MovableC
 <li class="blockList">
 <h4>isDead</h4>
 <pre>public&nbsp;boolean&nbsp;isDead()</pre>
+<div class="block">Returns ghost death status</div>
 </li>
 </ul>
 <a name="frighten-boolean-">
@@ -481,6 +489,7 @@ extends <a href="../ghost/MovableCharacter.html" title="class in ghost">MovableC
 <li class="blockList">
 <h4>frighten</h4>
 <pre>public&nbsp;void&nbsp;frighten(boolean&nbsp;fright)</pre>
+<div class="block">Changes ghost frigtenened/unfrightened status</div>
 </li>
 </ul>
 <a name="targetLine-ghost.App-int-int-">
@@ -492,15 +501,7 @@ extends <a href="../ghost/MovableCharacter.html" title="class in ghost">MovableC
 <pre>public&nbsp;void&nbsp;targetLine(<a href="../ghost/App.html" title="class in ghost">App</a>&nbsp;app,
                        int&nbsp;targetX,
                        int&nbsp;targetY)</pre>
-</li>
-</ul>
-<a name="doubleBack-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>doubleBack</h4>
-<pre>public&nbsp;java.lang.String&nbsp;doubleBack(java.lang.String&nbsp;move)</pre>
+<div class="block">Creates line used for debugging based on ghost target coordinates</div>
 </li>
 </ul>
 <a name="switchMode--">
@@ -510,6 +511,7 @@ extends <a href="../ghost/MovableCharacter.html" title="class in ghost">MovableC
 <li class="blockList">
 <h4>switchMode</h4>
 <pre>public&nbsp;void&nbsp;switchMode()</pre>
+<div class="block">Toggles between scatter and chase mode when appropriate</div>
 </li>
 </ul>
 </li>

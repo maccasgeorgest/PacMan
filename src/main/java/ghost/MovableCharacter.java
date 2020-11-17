@@ -10,7 +10,8 @@ public class MovableCharacter extends GameCell {
     protected int initialY;
     protected String direction = "left";
     protected String moveAttempt = "left";
-    protected boolean invincible = false;
+    protected boolean invincible;
+    protected boolean drankSoda;
     protected boolean skipMovement;
 
     public MovableCharacter(PImage sprite, int x, int y) {
@@ -110,5 +111,13 @@ public class MovableCharacter extends GameCell {
         this.y = this.initialY;
         this.yVel = 0;
         this.moveAttempt = "left";
+    }
+
+    public void sodaEffect(boolean effect) {
+        this.drankSoda = effect;
+    }
+
+    public boolean drunk() {
+        return this.drankSoda;
     }
 }

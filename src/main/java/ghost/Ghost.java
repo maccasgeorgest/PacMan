@@ -13,6 +13,7 @@ public class Ghost extends MovableCharacter {
     protected boolean dead;
     protected String normalSprite;
     protected boolean frightened;
+    protected int invisibleCounter = 0;
     protected int modeShiftCounter = 0;
     protected int modeInterval = 0;
     protected boolean scatter;
@@ -40,6 +41,20 @@ public class Ghost extends MovableCharacter {
             } 
         } else {
             this.sprite = app.loadImage(this.normalSprite);
+        }
+
+        if (app.waka.drunk()) {
+            this.invisibleCounter++;
+            if (this.invisibleCounter % 10 == 0) { // alternating between invisible/normal to make a "wavy" effect
+                this.sprite = app.loadImage(this.normalSprite); // ghosts are invisible to visible 9 frames to 1 to maximise the effect
+            } else {
+                this.sprite = new PImage();
+            }
+            
+            if (this.invisibleCounter == 300) { // Ghosts invisible for 5 seconds
+                app.waka.sodaEffect(false);     
+                this.invisibleCounter = 0;
+            }
         }
 
         if (this.isDead()) {
@@ -112,7 +127,7 @@ public class Ghost extends MovableCharacter {
         boolean down = CollisionGauge.intersectionDetector(app, this, "down");
         boolean left = CollisionGauge.intersectionDetector(app, this, "left");
         boolean right = CollisionGauge.intersectionDetector(app, this, "right");
-        if (this.frightened) {
+        if (this.frightened || app.waka.drunk()) {
             String[] moveList = new String[3];
             if (this.direction.equals("up")) {
                 moveList[0] = "up";

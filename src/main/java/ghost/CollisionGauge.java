@@ -1,8 +1,8 @@
 package ghost;
 
 public class CollisionGauge {
-    /** This method is the main collision detection between walls & ghosts/waka, as well as 
-     * functionality for fruit/superfruit  
+    /** This method is the main collision detection between walls and ghosts/waka, as well as 
+     * functionality for fruit/superfruit/soda  
      */ 
     public static boolean collision(MovableCharacter character, GameCell gamecell) {
         // Character heading up
@@ -13,6 +13,8 @@ public class CollisionGauge {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
+                } else if (gamecell.getName().equals("Soda")) {
+                    character.sodaEffect(true);
                 }
                 return true;
             }
@@ -24,6 +26,8 @@ public class CollisionGauge {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
+                }  else if (gamecell.getName().equals("Soda")) {
+                    character.sodaEffect(true);
                 }
                 return true;
             }
@@ -35,6 +39,8 @@ public class CollisionGauge {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
+                }  else if (gamecell.getName().equals("Soda")) {
+                    character.sodaEffect(true);
                 }
                 return true;
             }
@@ -46,6 +52,8 @@ public class CollisionGauge {
                     character.skipMovement = true;
                 } else if (gamecell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
+                }  else if (gamecell.getName().equals("Soda")) {
+                    character.sodaEffect(true);
                 }
                 return true;
             }
