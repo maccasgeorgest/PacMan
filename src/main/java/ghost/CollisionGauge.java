@@ -65,8 +65,8 @@ public class CollisionGauge {
     /**
      * This method provides functionality for turns at intersection 
      * */ 
-    public static boolean turnCheck(App app, MovableCharacter character, String move) {
-        for (Wall wall : app.wallList) {
+    public static boolean turnCheck(GameEvent gameEvent, MovableCharacter character, String move) {
+        for (Wall wall : gameEvent.wallList) {
             if (move.equals("up")) {
                 if (character.CentreY() - 16 == wall.CentreY() && character.CentreX() >= wall.Left() && character.CentreX() <= wall.Right()) {
                     return false;
@@ -91,8 +91,8 @@ public class CollisionGauge {
     /**
      * This method acts as the ghosts/waka intersection detector 
      */ 
-    public static boolean intersectionDetector(App app, MovableCharacter character, String move) {
-        for (GameCell cell : app.spaceList) {
+    public static boolean intersectionDetector(GameEvent gameEvent, MovableCharacter character, String move) {
+        for (GameCell cell : gameEvent.spaceList) {
             if (move.equals("up")) {
                 if (character.CentreY() - 16 == cell.CentreY() && character.CentreX() == cell.CentreX()) {
                     return true;

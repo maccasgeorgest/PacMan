@@ -17,22 +17,22 @@ public class ParseJSON {
      * Takes in a JSON configuration file, and parses all relevant information.
      * This information is then passed to the App
      */
-    public static void reader(String filename, App app) {
+    public static void reader(String filename, GameEvent gameEvent) {
         JSONParser parser = new JSONParser();
 
         try {
             JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(filename));
             String  map = (String) jsonObject.get("map");
-            app.map = map;
+            gameEvent.map = map;
             Long  lives = (long) jsonObject.get("lives");
             int livesInt = lives.intValue();
-            app.lives = livesInt;
+            gameEvent.lives = livesInt;
             Long speed = (long) jsonObject.get("speed");
             int speedInt = speed.intValue();
-            app.speed = speedInt;
+            gameEvent.speed = speedInt;
             Long frightenedLength = (long) jsonObject.get("frightenedLength");
             int frightenedLengthInt = frightenedLength.intValue();
-            app.frightenedLength = frightenedLengthInt;
+            gameEvent.frightenedLength = frightenedLengthInt;
             JSONArray modeLengths = (JSONArray) jsonObject.get("modeLengths");
             ArrayList<Integer> modeLengthsList = new ArrayList<Integer>();
             @SuppressWarnings("unchecked")
@@ -42,7 +42,7 @@ public class ParseJSON {
                 int modeValInt = modeVal.intValue();
                 modeLengthsList.add(modeValInt);
             }
-            app.modeLengths = modeLengthsList;
+            gameEvent.modeLengths = modeLengthsList;
             
         } catch (FileNotFoundException e) {
             return;

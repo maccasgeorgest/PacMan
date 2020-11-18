@@ -1,6 +1,5 @@
 package ghost;
 
-
 import processing.core.PImage;
 
 public class EmptyCell extends GameCell {
@@ -9,5 +8,5 @@ public class EmptyCell extends GameCell {
         this.name = "empty";
     }
 
-    public void tick(App app) {}
+    public void tick(GameEvent gameEvent) {}
 }

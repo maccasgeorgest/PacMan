@@ -10,23 +10,23 @@ public class Ambusher extends Ghost {
     }
 
     @Override
-    public void setTarget(App app, boolean mode) {
+    public void setTarget(GameEvent gameEvent, boolean mode) {
         if (mode) { // Scatter mode = top right corner
             this.targetX = 448; 
             this.targetY = 0;
         } else {
-            if (app.waka.getXVel() > 0) {
-                this.targetX = app.waka.CentreX() + 64;
-                this.targetY = app.waka.CentreY();
-            } else if (app.waka.getXVel() < 0) {
-                        this.targetX = app.waka.CentreX() - 64;
-                        this.targetY = app.waka.CentreY();
-            } else if (app.waka.getYVel() > 0) {
-                        this.targetX = app.waka.CentreX();
-                        this.targetY = app.waka.CentreY() + 64;
-            } else if (app.waka.getYVel() < 0) {
-                        this.targetX = app.waka.CentreX();
-                        this.targetY = app.waka.CentreY() - 64;
+            if (gameEvent.waka.getXVel() > 0) {
+                this.targetX = gameEvent.waka.CentreX() + 64;
+                this.targetY = gameEvent.waka.CentreY();
+            } else if (gameEvent.waka.getXVel() < 0) {
+                        this.targetX = gameEvent.waka.CentreX() - 64;
+                        this.targetY = gameEvent.waka.CentreY();
+            } else if (gameEvent.waka.getYVel() > 0) {
+                        this.targetX = gameEvent.waka.CentreX();
+                        this.targetY = gameEvent.waka.CentreY() + 64;
+            } else if (gameEvent.waka.getYVel() < 0) {
+                        this.targetX = gameEvent.waka.CentreX();
+                        this.targetY = gameEvent.waka.CentreY() - 64;
             }
         }
     }

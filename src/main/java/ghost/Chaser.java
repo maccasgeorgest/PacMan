@@ -10,13 +10,13 @@ public class Chaser extends Ghost {
     }
 
     @Override
-    public void setTarget(App app, boolean mode) {
+    public void setTarget(GameEvent gameEvent, boolean mode) {
         if (mode) { // Scatter mode = top left corner
             this.targetX = 0;
             this.targetY = 0;
         } else {
-            this.targetX = app.waka.CentreX();
-            this.targetY = app.waka.CentreY();
+            this.targetX = gameEvent.waka.CentreX();
+            this.targetY = gameEvent.waka.CentreY();
         }
     }
 }

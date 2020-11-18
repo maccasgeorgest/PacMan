@@ -20,39 +20,39 @@ public class MovableCharacter extends GameCell {
         this.initialY = y;
     }
     
-    public void tick(App app) {}
+    public void tick(GameEvent gameEvent) {}
 
     /**
      * Controls character movement by changing direction of velocity, provided
      * a change in direction would not result in a collision 
      */ 
-    public void move(String command, App app) {
+    public void move(String command, GameEvent gameEvent) {
         if (command.equals("up")) {
-            boolean check = CollisionGauge.turnCheck(app, this, "up");
+            boolean check = CollisionGauge.turnCheck(gameEvent, this, "up");
             if (check) {
                 this.direction = "up";
-                this.yVel = -1 * (app.speed);
+                this.yVel = -1 * (gameEvent.speed);
                 this.xVel = 0;
             }
         } else if (command.equals("down")) {
-            boolean check = CollisionGauge.turnCheck(app, this, "down");
+            boolean check = CollisionGauge.turnCheck(gameEvent, this, "down");
             if (check) {
                 this.direction = "down";
-                this.yVel = app.speed;
+                this.yVel = gameEvent.speed;
                 this.xVel = 0;
             }
         } else if (command.equals("left")) {
-            boolean check = CollisionGauge.turnCheck(app, this, "left");
+            boolean check = CollisionGauge.turnCheck(gameEvent, this, "left");
             if (check) {
                 this.direction = "left";
-                this.xVel = -1 * (app.speed);
+                this.xVel = -1 * (gameEvent.speed);
                 this.yVel = 0;
             }
         } else if (command.equals("right")) {
-            boolean check = CollisionGauge.turnCheck(app, this, "right");
+            boolean check = CollisionGauge.turnCheck(gameEvent, this, "right");
             if (check) {
                 this.direction = "right";
-                this.xVel = app.speed;
+                this.xVel = gameEvent.speed;
                 this.yVel = 0;
             }
         }
@@ -60,8 +60,8 @@ public class MovableCharacter extends GameCell {
     /**
      * Allows character movement as long as there is no collision
      */
-    public void moveAfterCollision(App app) {
-        for (Wall wall : app.wallList) {
+    public void moveAfterCollision(GameEvent gameEvent) {
+        for (Wall wall : gameEvent.wallList) {
             boolean collision = CollisionGauge.collision(this, wall);
             if (collision) {
                 break; // this break is used to prevent other walls from returning true
@@ -95,11 +95,11 @@ public class MovableCharacter extends GameCell {
     /**
      * The space key activates debug mode
      */
-    public void initiateDebugMode(App app) {
-        if (app.debugMode) {
-            app.debugMode = false;
+    public void initiateDebugMode(GameEvent gameEvent) {
+        if (gameEvent.debugMode) {
+            gameEvent.debugMode = false;
         } else {
-            app.debugMode = true;
+            gameEvent.debugMode = true;
         }
     }
     /**

@@ -12,7 +12,5 @@ public class Wall extends GameCell {
         this.name = "Wall";
     }
 
-    public void tick(App app) {
-        
-    }
+    public void tick(GameEvent gameEvent) {}
 }

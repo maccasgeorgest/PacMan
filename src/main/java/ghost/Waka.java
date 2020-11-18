@@ -15,29 +15,29 @@ public class Waka extends MovableCharacter {
         this.name = "Waka";
     }
 
-    public void tick(App app) { 
+    public void tick(GameEvent gameEvent) { 
         this.setCellCoord();
-        boolean possible = CollisionGauge.intersectionDetector(app, this, this.moveAttempt);
+        boolean possible = CollisionGauge.intersectionDetector(gameEvent, this, this.moveAttempt);
             if (possible) {
-                app.waka.move(this.moveAttempt, app);
+                gameEvent.waka.move(this.moveAttempt, gameEvent);
             } 
-        this.moveAfterCollision(app);
+        this.moveAfterCollision(gameEvent);
 
         if (!this.skipMovement) {
             this.y += this.yVel;
             this.x += this.xVel;
         }
         
-        lastSprite = app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
-        livesSprite = app.loadImage("src/main/resources/playerRight.png"); // this is the sprite used to indicate the amount of remaining waka lives 
+        lastSprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
+        livesSprite = gameEvent.app.loadImage("src/main/resources/playerRight.png"); // this is the sprite used to indicate the amount of remaining waka lives 
 
         // draw lives 
         int space = 29;
-        for (int i = 0; i < app.lives; i ++) {
-            app.image(this.livesSprite, i * space + 9, 543);
+        for (int i = 0; i < gameEvent.lives; i ++) {
+            gameEvent.app.image(this.livesSprite, i * space + 9, 543);
         }
 
-        this.spriteTransition(app);
+        this.spriteTransition(gameEvent);
         if (this.changeSprite < 16) {
             this.changeSprite++;
         } else {
@@ -49,23 +49,23 @@ public class Waka extends MovableCharacter {
      * his closed form and a direction form. Waka's direction form conforms to his game direction. 
      * If Waka is stationary, his last used sprite is used.
      */
-    public void spriteTransition(App app) {
+    public void spriteTransition(GameEvent gameEvent) {
         if (this.changeSprite > 8) {
-            this.sprite = app.loadImage("src/main/resources/playerClosed.png");
+            this.sprite = gameEvent.app.loadImage("src/main/resources/playerClosed.png");
             return;
         }
         if (this.direction.equals("right")) {
-            this.sprite = app.loadImage("src/main/resources/playerRight.png");
-            this.lastSprite = app.loadImage("src/main/resources/playerRight.png");
+            this.sprite = gameEvent.app.loadImage("src/main/resources/playerRight.png");
+            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerRight.png");
         } else if (this.direction.equals("left")) {
-            this.sprite = app.loadImage("src/main/resources/playerLeft.png");
-            this.lastSprite = app.loadImage("src/main/resources/playerLeft.png");
+            this.sprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png");
+            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png");
         } else if (this.direction.equals("down")) {
-            this.sprite = app.loadImage("src/main/resources/playerDown.png");
-            this.lastSprite = app.loadImage("src/main/resources/playerDown.png");
+            this.sprite = gameEvent.app.loadImage("src/main/resources/playerDown.png");
+            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerDown.png");
         } else if (this.direction.equals("up")) {
-            this.sprite = app.loadImage("src/main/resources/playerUp.png");
-            this.lastSprite = app.loadImage("src/main/resources/playerUp.png");
+            this.sprite = gameEvent.app.loadImage("src/main/resources/playerUp.png");
+            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerUp.png");
         } else if (this.xVel == 0 && this.yVel == 0) {
             this.sprite = this.lastSprite;
         }
@@ -73,7 +73,7 @@ public class Waka extends MovableCharacter {
     /**
      * User keyboard input is interpreted to move Waka
      */
-    public void moveHandler(App app, int move) {
+    public void moveHandler(int move) {
             if (move == 38) {
                 this.moveAttempt = "up";
             } else if (move == 40) {

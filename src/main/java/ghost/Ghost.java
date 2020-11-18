@@ -1,7 +1,6 @@
 package ghost;
 
 import java.util.Random;
-
 import processing.core.PImage;
 
 public class Ghost extends MovableCharacter {
@@ -22,8 +21,8 @@ public class Ghost extends MovableCharacter {
         super(sprite, x, y);
         this.invincible = true;
     }
-    public void tick(App app) {
-        if (app.waka.isInvincible()) {              // if waka has eaten superfruit
+    public void tick(GameEvent gameEvent) {
+        if (gameEvent.waka.isInvincible()) {              // if waka has eaten superfruit
             this.frighten(true);
             this.changeVulnerability(false);
         } else {                                    // if waka has not eaten superfruit
@@ -31,28 +30,28 @@ public class Ghost extends MovableCharacter {
             this.changeVulnerability(true);
         }
         if (this.frightened) {
-            this.sprite = app.loadImage("src/main/resources/frightened.png");
-            app.frightenedCounter++;
-            int GhostMultiplier = app.ghostList.size(); // this is used to account for the fact that multiple ghosts are adding to any count per tick
-            if (app.frightenedCounter == 60 * app.frightenedLength * GhostMultiplier) {
+            this.sprite = gameEvent.app.loadImage("src/main/resources/frightened.png");
+            gameEvent.frightenedCounter++;
+            int GhostMultiplier = gameEvent.ghostList.size(); // this is used to account for the fact that multiple ghosts are adding to any count per tick
+            if (gameEvent.frightenedCounter == 60 * gameEvent.frightenedLength * GhostMultiplier) {
                 this.frighten(false);
-                app.waka.changeVulnerability(false);
-                app.frightenedCounter = 0;
+                gameEvent.waka.changeVulnerability(false);
+                gameEvent.frightenedCounter = 0;
             } 
         } else {
-            this.sprite = app.loadImage(this.normalSprite);
+            this.sprite = gameEvent.app.loadImage(this.normalSprite);
         }
 
-        if (app.waka.drunk()) {
+        if (gameEvent.waka.drunk()) {
             this.invisibleCounter++;
             if (this.invisibleCounter % 10 == 0) { // alternating between invisible/normal to make a "wavy" effect
-                this.sprite = app.loadImage(this.normalSprite); // ghosts are invisible to visible 9 frames to 1 to maximise the effect
+                this.sprite = gameEvent.app.loadImage(this.normalSprite); // ghosts are invisible to visible 9 frames to 1 to maximise the effect
             } else {
                 this.sprite = new PImage();
             }
             
             if (this.invisibleCounter == 300) { // Ghosts invisible for 5 seconds
-                app.waka.sodaEffect(false);     
+                gameEvent.waka.sodaEffect(false);     
                 this.invisibleCounter = 0;
             }
         }
@@ -62,13 +61,13 @@ public class Ghost extends MovableCharacter {
         }
 
         // Check collision with Waka
-        boolean collision = CollisionGauge.collision(app.waka, this); 
+        boolean collision = CollisionGauge.collision(gameEvent.waka, this); 
         if (collision) {
             if (!this.isDead()) {
                 if (this.isInvincible()) {
-                    app.waka.reset();
-                    app.lives--;
-                    for (Ghost ghost : app.ghostList) {
+                    gameEvent.waka.reset();
+                    gameEvent.lives--;
+                    for (Ghost ghost : gameEvent.ghostList) {
                         ghost.reset();
                         ghost.die(false);
                     }
@@ -79,12 +78,12 @@ public class Ghost extends MovableCharacter {
         }
 
         this.setCellCoord();
-        this.setTarget(app, this.scatter);
+        this.setTarget(gameEvent, this.scatter);
         this.distanceX = this.CentreX() - this.targetX;
         this.distanceY = this.CentreY() - this.targetY;
-        this.moveAttempt = this.ghostAI(this.distanceX, this.distanceY, app);
-        this.move(this.moveAttempt, app);
-        this.moveAfterCollision(app);
+        this.moveAttempt = this.ghostAI(this.distanceX, this.distanceY, gameEvent);
+        this.move(this.moveAttempt, gameEvent);
+        this.moveAfterCollision(gameEvent);
 
         // System.out.println(this.getName());
         // System.out.println("Direction: " + this.direction);
@@ -101,33 +100,33 @@ public class Ghost extends MovableCharacter {
         if (!this.frightened) {
             this.modeShiftCounter++;
         }
-        int time = app.modeLengths.get(this.modeInterval); // time prescribed by config file
+        int time = gameEvent.modeLengths.get(this.modeInterval); // time prescribed by config file
         if (this.modeShiftCounter == 60 * time) {
             this.switchMode();
-            if (this.modeInterval == app.modeLengths.size() - 1) {
+            if (this.modeInterval == gameEvent.modeLengths.size() - 1) {
                 this.modeInterval = -1; // if its the last element in the array, reset from beginning
             }
             this.modeInterval++;
             this.modeShiftCounter = 0;
         }
         
-        if (app.debugMode) {
+        if (gameEvent.debugMode) {
             if (!this.frightened) {
                 if (!this.isDead()) {
-                    this.targetLine(app, this.targetX, this.targetY);
+                    this.targetLine(gameEvent, this.targetX, this.targetY);
                 }
             }
         }
     }
 
-    public void setTarget(App app, boolean mode) {}
+    public void setTarget(GameEvent gameEvent, boolean mode) {}
 
-    public String ghostAI(int distanceX, int distanceY, App app) {
-        boolean up = CollisionGauge.intersectionDetector(app, this, "up");
-        boolean down = CollisionGauge.intersectionDetector(app, this, "down");
-        boolean left = CollisionGauge.intersectionDetector(app, this, "left");
-        boolean right = CollisionGauge.intersectionDetector(app, this, "right");
-        if (this.frightened || app.waka.drunk()) {
+    public String ghostAI(int distanceX, int distanceY, GameEvent gameEvent) {
+        boolean up = CollisionGauge.intersectionDetector(gameEvent, this, "up");
+        boolean down = CollisionGauge.intersectionDetector(gameEvent, this, "down");
+        boolean left = CollisionGauge.intersectionDetector(gameEvent, this, "left");
+        boolean right = CollisionGauge.intersectionDetector(gameEvent, this, "right");
+        if (this.frightened || gameEvent.waka.drunk()) {
             String[] moveList = new String[3];
             if (this.direction.equals("up")) {
                 moveList[0] = "up";
@@ -374,12 +373,12 @@ public class Ghost extends MovableCharacter {
     /**
      * Creates line used for debugging based on ghost target coordinates
      */
-    public void targetLine(App app, int targetX, int targetY) {
-        app.stroke(255);
-        app.line(this.CentreX(), this.CentreY(), targetX, targetY);
+    public void targetLine(GameEvent gameEvent, int targetX, int targetY) {
+        gameEvent.app.stroke(255);
+        gameEvent.app.line(this.CentreX(), this.CentreY(), targetX, targetY);
     }
     /**
-     * Toggles between scatter and chase mode when appropriate
+     * Toggles between scatter and chase mode when gameEventropriate
      */
     public void switchMode() {
         if (this.scatter) {

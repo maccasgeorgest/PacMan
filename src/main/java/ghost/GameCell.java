@@ -1,6 +1,5 @@
 package ghost;
 
-import processing.core.PApplet;
 import processing.core.PImage;
 
 public abstract class GameCell {
@@ -17,20 +16,20 @@ public abstract class GameCell {
         this.cellCoord = new int[]{this.x, this.y, this.x + 16, this.y + 16, this.x + 8, this.y + 8};
     }
 
-    public abstract void tick(App app); // handles logic
+    public abstract void tick(GameEvent gameEvent); // handles logic
     /**
      * Handles game graphics by drawing sprites on to the screen. 
      * Certain sprites require offsets to maintain pixel art
      */
-    public void draw(PApplet app) { 
+    public void draw(GameEvent gameEvent) { 
         if (this instanceof Superfruit) {
-            app.image(this.sprite, this.x - 8, this.y - 8);
+            gameEvent.app.image(this.sprite, this.x - 8, this.y - 8);
         } else if (this instanceof Ghost) {
-            app.image(this.sprite, this.x - 6, this.y - 5);
+            gameEvent.app.image(this.sprite, this.x - 6, this.y - 5);
         } else if (this instanceof Waka) {
-            app.image(this.sprite, this.x - 4, this.y - 4);
+            gameEvent.app.image(this.sprite, this.x - 4, this.y - 4);
         } else {
-            app.image(this.sprite, this.x, this.y);
+            gameEvent.app.image(this.sprite, this.x, this.y);
         }
     }
     /**

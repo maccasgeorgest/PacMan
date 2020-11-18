@@ -14,7 +14,7 @@ public class MapParser {
      * Parses map and returns an ArrayList of game cell objects, which provide
      * the functionality for the rest of the game
      */
-    public ArrayList<GameCell> parse(App app, String filename) {
+    public ArrayList<GameCell> parse(GameEvent gameEvent, String filename) {
         ArrayList<GameCell> mapList = new ArrayList<GameCell>(); // List to be returned
         
         try {
@@ -32,25 +32,25 @@ public class MapParser {
                     if (symbol.equals("0")) {
                         mapList.add(new EmptyCell(new PImage(), x, y));
                     } else if (wallList.contains(symbol)) {
-                        mapList.add(new Wall(app.loadImage(wallKey(symbol)), x, y));
+                        mapList.add(new Wall(gameEvent.app.loadImage(wallKey(symbol)), x, y));
                     } else if (symbol.equals("7")) {
-                        mapList.add(new Fruit(app.loadImage("src/main/resources/fruit.png"), x, y));
+                        mapList.add(new Fruit(gameEvent.app.loadImage("src/main/resources/fruit.png"), x, y));
                     } else if (symbol.equals("8")) {
-                        PImage superfruit = app.loadImage("src/main/resources/fruit.png");
+                        PImage superfruit = gameEvent.app.loadImage("src/main/resources/fruit.png");
                         superfruit.resize(32, 32);
                         mapList.add(new Superfruit(superfruit, x, y));
                     } else if (symbol.equals("p")) {
-                        mapList.add(new Waka(app.loadImage("src/main/resources/playerLeft.png"), x, y));
+                        mapList.add(new Waka(gameEvent.app.loadImage("src/main/resources/playerLeft.png"), x, y));
                     } else if (symbol.equals("a")) {
-                        mapList.add(new Ambusher(app.loadImage("src/main/resources/ambusher.png"), x, y));
+                        mapList.add(new Ambusher(gameEvent.app.loadImage("src/main/resources/ambusher.png"), x, y));
                     } else if (symbol.equals("c")) {
-                        mapList.add(new Chaser(app.loadImage("src/main/resources/chaser.png"), x, y));
+                        mapList.add(new Chaser(gameEvent.app.loadImage("src/main/resources/chaser.png"), x, y));
                     } else if (symbol.equals("i")) {
-                        mapList.add(new Ignorant(app.loadImage("src/main/resources/ignorant.png"), x, y));
+                        mapList.add(new Ignorant(gameEvent.app.loadImage("src/main/resources/ignorant.png"), x, y));
                     } else if (symbol.equals("w")) {
-                        mapList.add(new Whim(app.loadImage("src/main/resources/whim.png"), x, y));
+                        mapList.add(new Whim(gameEvent.app.loadImage("src/main/resources/whim.png"), x, y));
                     } else if (symbol.equals("s")) {
-                        mapList.add(new Soda(app.loadImage("src/main/resources/Soda.png"), x, y));
+                        mapList.add(new Soda(gameEvent.app.loadImage("src/main/resources/Soda.png"), x, y));
                     } 
                     x += 16;
                 }
@@ -81,24 +81,24 @@ public class MapParser {
      * Sets the waka for the game, and counts the total number of fruit, as well as walls and spaces 
      * characters can walk through
      */
-    public void setGameAttributes(App app) {
-        for (GameCell cell : app.cells) {
+    public void setGameAttributes(GameEvent gameEvent) {
+        for (GameCell cell : gameEvent.cells) {
             if (cell.getName().equals("Chaser")) {
-                app.chaser = (Chaser) cell;
+                gameEvent.chaser = (Chaser) cell;
             } if (cell.getName().equals("Waka")) {
-                app.waka = (Waka) cell;
+                gameEvent.waka = (Waka) cell;
             } else if (cell.getName().equals("empty")) {
-                app.spaceList.add(cell);
+                gameEvent.spaceList.add(cell);
             } else if (cell.getName().equals("Fruit") || 
                     cell.getName().equals("Superfruit")) {
-                app.fruitCount++;
-                app.spaceList.add(cell);
+                gameEvent.fruitCount++;
+                gameEvent.spaceList.add(cell);
             } else if (cell.getName().equals("Soda")) {
-                app.spaceList.add(cell);
+                gameEvent.spaceList.add(cell);
             } else if (cell.getName().equals("Wall")) {
-                app.wallList.add((Wall) cell);
+                gameEvent.wallList.add((Wall) cell);
             } else if (cell instanceof Ghost) {   // while using instanceof is generally bad codestyle, thought it was necessary here
-                app.ghostList.add((Ghost) cell);  // as rather than adding another attribute to every single cell class and then only using 
+                gameEvent.ghostList.add((Ghost) cell);  // as rather than adding another attribute to every single cell class and then only using 
                                                   // it for ghost seemed a little pointless
             }
         }

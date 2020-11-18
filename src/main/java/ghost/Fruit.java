@@ -12,13 +12,13 @@ public class Fruit extends GameCell {
         this.name = "Fruit";
     }
 
-    public void tick(App app) {
-        this.isEaten(app.waka); 
+    public void tick(GameEvent gameEvent) {
+        this.isEaten(gameEvent.waka); 
         if (!this.uneaten) {      // if it is has been eaten, disable it's sprite
             this.sprite = new PImage();
             if (!this.accounted) {
                 if (!this.name.equals("Soda")) { // since Waka doesn't have to eat all soda to win the game
-                    app.fruitCount--;
+                    gameEvent.fruitCount--;
                     this.accounted = true;
                 }
             }
