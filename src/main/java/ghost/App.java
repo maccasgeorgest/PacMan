@@ -21,7 +21,7 @@ public class App extends PApplet {
     }
 
     public void draw() { 
-        this.gameEvent.gameEvent(this);
+        this.gameEvent.gameLogic(this);
     }
 
     public void keyPressed() {

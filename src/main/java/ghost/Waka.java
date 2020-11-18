@@ -28,7 +28,7 @@ public class Waka extends MovableCharacter {
             this.x += this.xVel;
         }
         
-        lastSprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
+        // lastSprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
         livesSprite = gameEvent.app.loadImage("src/main/resources/playerRight.png"); // this is the sprite used to indicate the amount of remaining waka lives 
 
         // draw lives 
@@ -56,19 +56,16 @@ public class Waka extends MovableCharacter {
         }
         if (this.direction.equals("right")) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/playerRight.png");
-            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerRight.png");
         } else if (this.direction.equals("left")) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png");
-            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png");
         } else if (this.direction.equals("down")) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/playerDown.png");
-            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerDown.png");
         } else if (this.direction.equals("up")) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/playerUp.png");
-            this.lastSprite = gameEvent.app.loadImage("src/main/resources/playerUp.png");
         } else if (this.xVel == 0 && this.yVel == 0) {
             this.sprite = this.lastSprite;
         }
+        this.lastSprite = this.sprite;
     } 
     /**
      * User keyboard input is interpreted to move Waka

@@ -34,7 +34,7 @@ public class GameEvent {
         mp.setGameAttributes(this);
     }
 
-    public void gameEvent(App app) {
+    public void gameLogic(App app) {
         if (this.fruitCount == 0) {
             this.gameFinishScreen(app, true, true);
             this.restartTime++;
@@ -55,14 +55,6 @@ public class GameEvent {
             this.ghostList.forEach((ghost) -> ghost.draw(this)); // draw the ghosts last so that their sprites appear over the fruit
         }
     }
-    // public void wakaMovement() {
-    //     char key = app.keyPressed(); 
-    //     if (key == CODED) {
-    //         this.waka.moveHandler(this, keyCode);
-    //     } else if (key == ' ') {
-    //         this.waka.initiateDebugMode(this);
-    //     }
-    // }
 
     public void gameFinishScreen(App app, boolean display, boolean won) {
         if (display) {

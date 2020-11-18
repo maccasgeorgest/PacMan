@@ -4,8 +4,10 @@
     "speed": 2,
     "frightenedLength": 10,
     "modeLengths": [
-        1500,
-        15
+        5,
+        10,
+        13,
+        4
     ]
 }
 

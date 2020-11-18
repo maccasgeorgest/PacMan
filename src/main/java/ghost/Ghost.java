@@ -49,10 +49,10 @@ public class Ghost extends MovableCharacter {
             } else {
                 this.sprite = new PImage();
             }
-            
+            System.out.println(invisibleCounter);
             if (this.invisibleCounter == 300) { // Ghosts invisible for 5 seconds
                 gameEvent.waka.sodaEffect(false);     
-                this.invisibleCounter = 0;
+                gameEvent.ghostList.forEach((ghost) -> ghost.invisibleCounter = 0);
             }
         }
 
@@ -111,7 +111,7 @@ public class Ghost extends MovableCharacter {
         }
         
         if (gameEvent.debugMode) {
-            if (!this.frightened) {
+            if (!this.frightened && this.invisibleCounter == 0) {
                 if (!this.isDead()) {
                     this.targetLine(gameEvent, this.targetX, this.targetY);
                 }

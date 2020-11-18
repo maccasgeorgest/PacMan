@@ -27,29 +27,26 @@ public class MovableCharacter extends GameCell {
      * a change in direction would not result in a collision 
      */ 
     public void move(String command, GameEvent gameEvent) {
+        boolean check = CollisionGauge.turnCheck(gameEvent, this, command);
         if (command.equals("up")) {
-            boolean check = CollisionGauge.turnCheck(gameEvent, this, "up");
             if (check) {
                 this.direction = "up";
                 this.yVel = -1 * (gameEvent.speed);
                 this.xVel = 0;
             }
         } else if (command.equals("down")) {
-            boolean check = CollisionGauge.turnCheck(gameEvent, this, "down");
             if (check) {
                 this.direction = "down";
                 this.yVel = gameEvent.speed;
                 this.xVel = 0;
             }
         } else if (command.equals("left")) {
-            boolean check = CollisionGauge.turnCheck(gameEvent, this, "left");
             if (check) {
                 this.direction = "left";
                 this.xVel = -1 * (gameEvent.speed);
                 this.yVel = 0;
             }
         } else if (command.equals("right")) {
-            boolean check = CollisionGauge.turnCheck(gameEvent, this, "right");
             if (check) {
                 this.direction = "right";
                 this.xVel = gameEvent.speed;
