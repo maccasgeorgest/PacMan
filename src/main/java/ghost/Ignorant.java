@@ -16,7 +16,7 @@ public class Ignorant extends Ghost {
             this.targetY = 576;
         } else {
             double distance = Math.sqrt(Math.pow((this.CentreX() - gameEvent.waka.CentreX()), 2) + Math.pow((this.CentreY() - gameEvent.waka.CentreY()), 2));
-            if (distance < 128) {
+            if (distance > 128) {
                 this.targetX = gameEvent.waka.CentreX();
                 this.targetY = gameEvent.waka.CentreY();
             } else {

@@ -25,7 +25,7 @@ public class Fruit extends GameCell {
         }
     }
 
-    // Determines if fruit object has been consumed by Waka
+    /** Determines if fruit object has been consumed by Waka */
     public void isEaten(Waka waka) {
         if (this.uneaten) { 
             boolean collision = CollisionGauge.collision(waka, this);

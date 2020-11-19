@@ -15,8 +15,10 @@ public abstract class GameCell {
         this.y = y;
         this.cellCoord = new int[]{this.x, this.y, this.x + 16, this.y + 16, this.x + 8, this.y + 8};
     }
-
-    public abstract void tick(GameEvent gameEvent); // handles logic
+    /**
+     * Handles cell logic within the game
+     */
+    public abstract void tick(GameEvent gameEvent);
     /**
      * Handles game graphics by drawing sprites on to the screen. 
      * Certain sprites require offsets to maintain pixel art

@@ -25,7 +25,9 @@ public class GameEvent {
     public GameEvent(App app) {
         this.app = app;
     }
-
+    /**
+     * Sets game attributes, as well as parsing the config file and the appropriate map to represent the game cells in window
+     */
     public void gameSetup(){
         ParseJSON.reader("config.json", this);
         this.gameFont = app.createFont("PressStart2P-Regular.ttf", 32);
@@ -33,7 +35,9 @@ public class GameEvent {
         this.cells = mp.parse(this, this.map);
         mp.setGameAttributes(this);
     }
-
+    /**
+     * Runs cell logic, as well as starting game finish screens when necessary and resetting the game
+     */
     public void gameLogic(App app) {
         if (this.fruitCount == 0) {
             this.gameFinishScreen(app, true, true);
@@ -55,7 +59,9 @@ public class GameEvent {
             this.ghostList.forEach((ghost) -> ghost.draw(this)); // draw the ghosts last so that their sprites appear over the fruit
         }
     }
-
+    /**
+     * Activates game finish screens for when the player either wins or loses
+     */
     public void gameFinishScreen(App app, boolean display, boolean won) {
         if (display) {
             app.background(0);
@@ -67,7 +73,9 @@ public class GameEvent {
             }
         }
     }
-
+    /**
+     * Restarts game from initial conditions
+     */
     public void restart(App app) {
         if (this.restartTime == 600) {
             this.gameFinishScreen(app, false, false);

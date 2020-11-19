@@ -65,7 +65,9 @@ public class MovableCharacter extends GameCell {
             }
         }
     }
-
+    /**
+     * Changes character vulnerability
+     */
     public void changeVulnerability(boolean invincible) {
         this.invincible = invincible;
     }
@@ -109,11 +111,15 @@ public class MovableCharacter extends GameCell {
         this.yVel = 0;
         this.moveAttempt = "left";
     }
-
+    /**
+     * Sets Waka's drunk condition
+     */
     public void sodaEffect(boolean effect) {
         this.drankSoda = effect;
     }
-
+    /**
+     * Returns Waka's drunk condition
+     */
     public boolean drunk() {
         return this.drankSoda;
     }

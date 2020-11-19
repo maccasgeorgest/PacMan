@@ -49,7 +49,6 @@ public class Ghost extends MovableCharacter {
             } else {
                 this.sprite = new PImage();
             }
-            System.out.println(invisibleCounter);
             if (this.invisibleCounter == 300) { // Ghosts invisible for 5 seconds
                 gameEvent.waka.sodaEffect(false);     
                 gameEvent.ghostList.forEach((ghost) -> ghost.invisibleCounter = 0);
@@ -118,9 +117,13 @@ public class Ghost extends MovableCharacter {
             }
         }
     }
-
+    /**
+     * Sets Ghost target coordinates, depending on whether Ghosts are in Scatter or Chase mode
+     */
     public void setTarget(GameEvent gameEvent, boolean mode) {}
-
+    /**
+     * Logic for ghost movement in differing situations
+     */
     public String ghostAI(int distanceX, int distanceY, GameEvent gameEvent) {
         boolean up = CollisionGauge.intersectionDetector(gameEvent, this, "up");
         boolean down = CollisionGauge.intersectionDetector(gameEvent, this, "down");

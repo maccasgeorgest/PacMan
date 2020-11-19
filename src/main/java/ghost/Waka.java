@@ -36,7 +36,7 @@ public class Waka extends MovableCharacter {
         for (int i = 0; i < gameEvent.lives; i ++) {
             gameEvent.app.image(this.livesSprite, i * space + 9, 543);
         }
-
+        // change sprite every 8 frames
         this.spriteTransition(gameEvent);
         if (this.changeSprite < 16) {
             this.changeSprite++;
@@ -80,6 +80,5 @@ public class Waka extends MovableCharacter {
             } else if (move == 39) {
                 this.moveAttempt = "right";
             }
-            
     }
 }
