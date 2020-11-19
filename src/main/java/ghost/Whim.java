@@ -18,7 +18,7 @@ public class Whim extends Ghost {
             this.targetX = 448;
             this.targetY = 576;
         } else {
-            if (gameEvent.chaser.isDead() || gameEvent.chaser == null) {
+            if (gameEvent.chaser == null || gameEvent.chaser.isDead()) {
                 this.targetX = gameEvent.waka.CentreX();
                 this.targetY = gameEvent.waka.CentreY();
             } else {

@@ -35,12 +35,8 @@ public class ParseJSON {
             gameEvent.frightenedLength = frightenedLengthInt;
             JSONArray modeLengths = (JSONArray) jsonObject.get("modeLengths");
             ArrayList<Integer> modeLengthsList = new ArrayList<Integer>();
-            @SuppressWarnings("unchecked")
-            Iterator<Long> iterator = modeLengths.iterator();
-            while (iterator.hasNext()) {
-                Long modeVal = (Long) iterator.next();
-                int modeValInt = modeVal.intValue();
-                modeLengthsList.add(modeValInt);
+            for (Object obj : modeLengths) {
+                modeLengthsList.add(((Long) obj).intValue());
             }
             gameEvent.modeLengths = modeLengthsList;
             
