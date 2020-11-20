@@ -27,8 +27,7 @@ public class Waka extends MovableCharacter {
             this.y += this.yVel;
             this.x += this.xVel;
         }
-        
-        // lastSprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png"); // since Waka starts facing left
+
         livesSprite = gameEvent.app.loadImage("src/main/resources/playerRight.png"); // this is the sprite used to indicate the amount of remaining waka lives 
 
         // draw lives 

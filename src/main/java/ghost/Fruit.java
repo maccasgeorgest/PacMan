@@ -5,7 +5,7 @@ import processing.core.PImage;
 public class Fruit extends GameCell {
 
     protected boolean uneaten = true;
-    private boolean accounted = false;
+    private boolean accounted; // this boolean prevents the same fruit from lowering the fruitcount multiple times
 
     public Fruit(PImage sprite, int x, int y) {
         super(sprite, x, y);

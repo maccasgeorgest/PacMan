@@ -2,7 +2,7 @@ package ghost;
 
 public class CollisionGauge {
     /** This method is the main collision detection between walls and ghosts/waka, as well as 
-     * functionality for fruit/superfruit/soda  
+     * functionality for fruit/superfruit/soda, returning a boolean based on if a collision has occurred
      */ 
     public static boolean collision(MovableCharacter character, GameCell gamecell) {
         // Character heading up
@@ -63,7 +63,7 @@ public class CollisionGauge {
     }
 
     /**
-     * This method provides functionality for turns at intersection 
+     * This method provides functionality for turns at intersection, returning a boolean based on if a character can make the turn
      * */ 
     public static boolean turnCheck(GameEvent gameEvent, MovableCharacter character, String move) {
         for (Wall wall : gameEvent.wallList) {
@@ -89,7 +89,7 @@ public class CollisionGauge {
     }
 
     /**
-     * This method acts as the ghosts/waka intersection detector 
+     * This method acts as the ghosts/waka intersection detector, returning a boolean if the character is at an intersection 
      */ 
     public static boolean intersectionDetector(GameEvent gameEvent, MovableCharacter character, String move) {
         for (GameCell cell : gameEvent.spaceList) {

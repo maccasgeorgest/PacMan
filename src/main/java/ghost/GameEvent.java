@@ -67,9 +67,9 @@ public class GameEvent {
             app.background(0);
             app.textFont(this.gameFont);
             if (won) {
-                app.text("YOU WIN", app.WIDTH/4, app.HEIGHT/3);
+                app.text("YOU WIN", App.WIDTH/4, App.HEIGHT/3);
             } else {
-                app.text("GAME OVER", app.WIDTH/5, app.HEIGHT/3);
+                app.text("GAME OVER", App.WIDTH/5, App.HEIGHT/3);
             }
         }
     }

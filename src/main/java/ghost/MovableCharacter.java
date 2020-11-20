@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 
-public class MovableCharacter extends GameCell {
+public abstract class MovableCharacter extends GameCell {
 
     protected int yVel;
     protected int xVel;    
@@ -20,7 +20,7 @@ public class MovableCharacter extends GameCell {
         this.initialY = y;
     }
     
-    public void tick(GameEvent gameEvent) {}
+    public abstract void tick(GameEvent gameEvent);
 
     /**
      * Controls character movement by changing direction of velocity, provided

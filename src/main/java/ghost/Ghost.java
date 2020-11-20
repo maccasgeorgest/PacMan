@@ -89,12 +89,6 @@ public abstract class Ghost extends MovableCharacter {
         this.move(this.moveAttempt, gameEvent);
         this.moveAfterCollision(gameEvent);
 
-        System.out.println(this.getName());
-        System.out.println("Direction: " + this.direction);
-        System.out.println("Move Attempt: " + this.moveAttempt);
-        System.out.println("distanceX: " + this.distanceX + " distanceY: " + this.distanceY);
-        
-        
         if (!this.skipMovement) {
             this.y += this.yVel;
             this.x += this.xVel;

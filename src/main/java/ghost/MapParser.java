@@ -40,14 +40,19 @@ public class MapParser {
                         superfruit.resize(32, 32);
                         mapList.add(new Superfruit(superfruit, x, y));
                     } else if (symbol.equals("p")) {
+                        mapList.add(new EmptyCell(new PImage(), x, y));
                         mapList.add(new Waka(gameEvent.app.loadImage("src/main/resources/playerLeft.png"), x, y));
                     } else if (symbol.equals("a")) {
+                        mapList.add(new EmptyCell(new PImage(), x, y));
                         mapList.add(new Ambusher(gameEvent.app.loadImage("src/main/resources/ambusher.png"), x, y));
                     } else if (symbol.equals("c")) {
+                        mapList.add(new EmptyCell(new PImage(), x, y));
                         mapList.add(new Chaser(gameEvent.app.loadImage("src/main/resources/chaser.png"), x, y));
                     } else if (symbol.equals("i")) {
+                        mapList.add(new EmptyCell(new PImage(), x, y));
                         mapList.add(new Ignorant(gameEvent.app.loadImage("src/main/resources/ignorant.png"), x, y));
                     } else if (symbol.equals("w")) {
+                        mapList.add(new EmptyCell(new PImage(), x, y));
                         mapList.add(new Whim(gameEvent.app.loadImage("src/main/resources/whim.png"), x, y));
                     } else if (symbol.equals("s")) {
                         mapList.add(new Soda(gameEvent.app.loadImage("src/main/resources/Soda.png"), x, y));
@@ -87,7 +92,7 @@ public class MapParser {
                 gameEvent.chaser = (Chaser) cell;
             } if (cell.getName().equals("Waka")) {
                 gameEvent.waka = (Waka) cell;
-            } else if (cell.getName().equals("empty")) {
+            } else if (cell.getName().equals("Empty")) {
                 gameEvent.spaceList.add(cell);
             } else if (cell.getName().equals("Fruit") || 
                     cell.getName().equals("Superfruit")) {
@@ -97,10 +102,9 @@ public class MapParser {
                 gameEvent.spaceList.add(cell);
             } else if (cell.getName().equals("Wall")) {
                 gameEvent.wallList.add((Wall) cell);
-            } else if (cell instanceof Ghost) {   // while using instanceof is generally bad codestyle, thought it was necessary here
+            } else if (cell instanceof Ghost) {         // while using instanceof is generally bad code style, thought it was necessary here
                 gameEvent.ghostList.add((Ghost) cell);  // as rather than adding another attribute to every single cell class and then only using 
-                                                  // it for ghost seemed a little pointless
-            }
+            }                                           // it for ghost seemed a little pointless
         }
     }
 }
