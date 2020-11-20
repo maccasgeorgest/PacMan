@@ -4,7 +4,7 @@ import processing.core.PImage;
 
 public class Fruit extends GameCell {
 
-    protected boolean uneaten = true;
+    protected boolean unconsumed = true;
     private boolean accounted; // this boolean prevents the same fruit from lowering the fruitcount multiple times
 
     public Fruit(PImage sprite, int x, int y) {
@@ -13,8 +13,8 @@ public class Fruit extends GameCell {
     }
 
     public void tick(GameEvent gameEvent) {
-        this.isEaten(gameEvent.waka); 
-        if (!this.uneaten) {      // if it is has been eaten, disable it's sprite
+        this.isConsumed(gameEvent.waka); 
+        if (!this.unconsumed) {      // if it is has been eaten, disable it's sprite
             this.sprite = new PImage();
             if (!this.accounted) {
                 if (!this.name.equals("Soda")) { // since Waka doesn't have to eat all soda to win the game
@@ -26,11 +26,11 @@ public class Fruit extends GameCell {
     }
 
     /** Determines if fruit object has been consumed by Waka */
-    public void isEaten(Waka waka) {
-        if (this.uneaten) { 
+    public void isConsumed(Waka waka) {
+        if (this.unconsumed) { 
             boolean collision = CollisionGauge.collision(waka, this);
             if (collision) {
-                this.uneaten = false;
+                this.unconsumed = false;
             }
         }
     }

@@ -28,7 +28,7 @@ public class App extends PApplet {
         if (key == CODED) {
             this.gameEvent.waka.moveHandler(keyCode);
         } else if (key == ' ') {
-            this.gameEvent.waka.initiateDebugMode(this.gameEvent);
+            this.gameEvent.initiateDebugMode(this.gameEvent);
         }
     }
     /** Main method for entire app */

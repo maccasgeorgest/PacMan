@@ -45,4 +45,14 @@ public class WakaTest {
         app.setup();
         // assertTrue(app.gameEvent.waka.direction.equals("left"));
     }
+
+    @Test
+    public void sodaDrinkTest() {
+        Waka w = new Waka(new PImage(), 0, 0);
+        assertEquals(w.drunk(), false);
+        w.sodaEffect(true);
+        assertEquals(w.drunk(), true);
+        w.sodaEffect(false);
+        assertEquals(w.drunk(), false);
+    }
 }

@@ -23,4 +23,41 @@ public class IgnorantTest {
         assertTrue(i.CentreX() == 8);
         assertTrue(i.CentreY() == 8);
     }
+    @Test
+    public void setTargetTest() {
+        App app = new App();
+        GameEvent ge = new GameEvent(app);
+        Ignorant i = new Ignorant(new PImage(), 0, 0);
+        i.setTarget(ge, true);
+        assertEquals(i.targetX, 0);
+        assertEquals(i.targetY, 576);
+    }
+
+    @Test
+    public void switchModeTest() {
+        Ignorant i = new Ignorant(new PImage(), 0, 0); 
+        assertTrue(i.scatter == false);
+        i.switchMode();
+        assertTrue(i.scatter == true);
+        i.switchMode();
+        assertTrue(i.scatter == false);
+    }
+
+    @Test
+    public void reverseTest() {
+        GameEvent ge = new GameEvent(null);
+        Ignorant i = new Ignorant(new PImage(), 0, 0);
+        assertTrue(i.direction.equals("left"));
+        String reverse = i.reverse();
+        assertEquals(reverse, "right");
+        i.move("right", ge);
+        reverse = i.reverse();
+        assertEquals(reverse, "left");
+        i.move("down", ge);
+        reverse = i.reverse();
+        assertEquals(reverse, "up");
+        i.move("up", ge);
+        reverse = i.reverse();
+        assertEquals(reverse, "down");
+    }
 }

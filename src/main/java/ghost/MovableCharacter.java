@@ -92,16 +92,6 @@ public abstract class MovableCharacter extends GameCell {
     }
 
     /**
-     * The space key activates debug mode
-     */
-    public void initiateDebugMode(GameEvent gameEvent) {
-        if (gameEvent.debugMode) {
-            gameEvent.debugMode = false;
-        } else {
-            gameEvent.debugMode = true;
-        }
-    }
-    /**
      * Resets character settings to initial game condition 
      */
     public void reset() {

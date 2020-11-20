@@ -60,6 +60,16 @@ public class GameEvent {
         }
     }
     /**
+     * The space key activates debug mode
+     */
+    public void initiateDebugMode(GameEvent gameEvent) {
+        if (gameEvent.debugMode) {
+            gameEvent.debugMode = false;
+        } else {
+            gameEvent.debugMode = true;
+        }
+    }
+    /**
      * Activates game finish screens for when the player either wins or loses
      */
     public void gameFinishScreen(App app, boolean display, boolean won) {

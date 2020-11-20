@@ -23,4 +23,40 @@ public class AmbusherTest {
         assertTrue(a.CentreX() == 8);
         assertTrue(a.CentreY() == 8);
     }
+    @Test
+    public void setTargetTest() {
+        App app = new App();
+        GameEvent ge = new GameEvent(app);
+        Ambusher a = new Ambusher(new PImage(), 0, 0);
+        a.setTarget(ge, true);
+        assertEquals(a.targetX, 448);
+        assertEquals(a.targetY, 0);
+    }
+    @Test
+    public void switchModeTest() {
+        Ambusher a = new Ambusher(new PImage(), 0, 0); 
+        assertTrue(a.scatter == false);
+        a.switchMode();
+        assertTrue(a.scatter == true);
+        a.switchMode();
+        assertTrue(a.scatter == false);
+    }
+
+    @Test
+    public void reverseTest() {
+        GameEvent ge = new GameEvent(null);
+        Ambusher a = new Ambusher(new PImage(), 0, 0);
+        assertTrue(a.direction.equals("left"));
+        String reverse = a.reverse();
+        assertEquals(reverse, "right");
+        a.move("right", ge);
+        reverse = a.reverse();
+        assertEquals(reverse, "left");
+        a.move("down", ge);
+        reverse = a.reverse();
+        assertEquals(reverse, "up");
+        a.move("up", ge);
+        reverse = a.reverse();
+        assertEquals(reverse, "down");
+    }
 }

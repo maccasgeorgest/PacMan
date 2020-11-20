@@ -32,8 +32,32 @@ public class ChaserTest {
         c.setTarget(ge, true);
         assertEquals(c.targetX, 0);
         assertEquals(c.targetY, 0);
-        // c.setTarget(ge, false);
-        // assertEquals(c.targetX, ge.waka.CentreX());
-        // assertEquals(c.targetY, ge.waka.CentreY());
+    }
+    @Test
+    public void switchModeTest() {
+        Chaser c = new Chaser(new PImage(), 0, 0); 
+        assertTrue(c.scatter == false);
+        c.switchMode();
+        assertTrue(c.scatter == true);
+        c.switchMode();
+        assertTrue(c.scatter == false);
+    }
+
+    @Test
+    public void reverseTest() {
+        GameEvent ge = new GameEvent(null);
+        Chaser c = new Chaser(new PImage(), 0, 0);
+        assertTrue(c.direction.equals("left"));
+        String reverse = c.reverse();
+        assertEquals(reverse, "right");
+        c.move("right", ge);
+        reverse = c.reverse();
+        assertEquals(reverse, "left");
+        c.move("down", ge);
+        reverse = c.reverse();
+        assertEquals(reverse, "up");
+        c.move("up", ge);
+        reverse = c.reverse();
+        assertEquals(reverse, "down");
     }
 }
