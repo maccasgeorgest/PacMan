@@ -11,8 +11,7 @@ public class CollisionGauge {
      */
     public CollisionGauge() {}
     
-    /** This method is the main collision detection between walls and ghosts/waka, as well as 
-     * functionality for fruit/superfruit/soda, returning a boolean based on if a collision has occurred
+    /** This method is the main collision detection between walls and ghosts/waka
      * @param character character to be checked if collided with
      * @param gameCell game cell to be checked if collided with
      * @return whether a collision occured 
@@ -23,49 +22,50 @@ public class CollisionGauge {
             if (character.Left() < gameCell.Right() && character.Right() > gameCell.Left()
                     && character.Top() + character.getYVel() < gameCell.Bottom()
                     && character.Bottom() + character.getYVel() > gameCell.Top()) {
-                if (gameCell.getName().equals("Wall")) {
-                    character.skipMovement = true;
-                } else if (gameCell.getName().equals("Superfruit")) {
-                    character.changeVulnerability(true);
-                } else if (gameCell.getName().equals("Soda")) {
-                    character.sodaEffect(true);
+                if (checkList(character, gameCell)) {
+                    return true;
                 }
-                return true;
             }
             // Character heading down
         } else if (character.getYVel() > 0) {
             if (character.Left() < gameCell.Right() && character.Right() > gameCell.Left()
                     && character.Top() + character.getYVel() < gameCell.Bottom()
                     && character.Bottom() + character.getYVel() > gameCell.Top()) {
-                if (gameCell.getName().equals("Wall")) {
-                    character.skipMovement = true;
-                } else if (gameCell.getName().equals("Superfruit")) {
-                    character.changeVulnerability(true);
-                } else if (gameCell.getName().equals("Soda")) {
-                    character.sodaEffect(true);
+                if (checkList(character, gameCell)) {
+                    return true;
                 }
-                return true;
             }
             // Character heading left
         } else if (character.getXVel() < 0) {
             if (character.Left() + character.getXVel() < gameCell.Right()
                     && character.Right() + character.getXVel() > gameCell.Left() && character.Top() < gameCell.Bottom()
                     && character.Bottom() > gameCell.Top()) {
-                if (gameCell.getName().equals("Wall")) {
-                    character.skipMovement = true;
-                } else if (gameCell.getName().equals("Superfruit")) {
-                    character.changeVulnerability(true);
-                } else if (gameCell.getName().equals("Soda")) {
-                    character.sodaEffect(true);
+                if (checkList(character, gameCell)) {
+                    return true;
                 }
-                return true;
             }
             // Character heading right
         } else if (character.getXVel() > 0) {
             if (character.Left() + character.getXVel() < gameCell.Right()
                     && character.Right() + character.getXVel() > gameCell.Left() && character.Top() < gameCell.Bottom()
                     && character.Bottom() > gameCell.Top()) {
-                if (gameCell.getName().equals("Wall")) {
+                if (checkList(character, gameCell)) {
+                    return true;
+                }
+            }
+        }    
+        character.skipMovement = false;
+        return false;
+    }
+    /**
+     * Functionality for wall/superfruit/soda, returning a boolean based on if a collision has occurred <br>
+     * Acts as a helper method to Collision
+     * @param character character to be checked if collided with
+     * @param gameCell game cell to be checked if collided with
+     * @return whether a collision occured 
+     */
+    public static boolean checkList(MovableCharacter character, GameCell gameCell) {
+        if (gameCell.getName().equals("Wall")) {
                     character.skipMovement = true;
                 } else if (gameCell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
@@ -73,10 +73,6 @@ public class CollisionGauge {
                     character.sodaEffect(true);
                 }
                 return true;
-            }
-        }    
-        character.skipMovement = false;
-        return false;
     }
 
     /**
@@ -110,7 +106,8 @@ public class CollisionGauge {
     }
 
     /**
-     * This method acts as the ghosts/waka intersection detector, returning a boolean if the character is at an intersection 
+     * This method acts as the ghosts/waka intersection detector, returning a boolean if the character is at an intersection. <br>
+     * Works by checking if for any given frame perpendicular movment is possible - if yes, then the character is at an intersection
      * @param gameEvent GameEvent object that is hosting the game
      * @param character character to be checked
      * @param move character's attempted move

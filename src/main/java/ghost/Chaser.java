@@ -20,7 +20,7 @@ public class Chaser extends Ghost {
     }
 
     @Override
-    public void setTarget(GameEvent gameEvent, boolean mode) {
+    public void setTarget(GameEvent gameEvent, boolean mode) { // Targets Waka's position
         if (mode) { // Scatter mode = top left corner
             this.targetX = 0;
             this.targetY = 0;

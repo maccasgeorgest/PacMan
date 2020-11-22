@@ -23,7 +23,7 @@ public class Fruit extends GameCell {
 
     public void tick(GameEvent gameEvent) {
         this.isConsumed(gameEvent.waka); 
-        if (!this.unconsumed) {      // if it is has been eaten, disable it's sprite
+        if (!this.unconsumed) {      // if it is has been eaten, disable its sprite
             this.sprite = new PImage();
             if (!this.accounted) {
                 if (!this.name.equals("Soda")) { // since Waka doesn't have to eat all soda to win the game

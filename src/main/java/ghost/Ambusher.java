@@ -25,7 +25,7 @@ public class Ambusher extends Ghost {
             this.targetX = 448; 
             this.targetY = 0;
         } else {
-            if (gameEvent.waka.getXVel() > 0) {
+            if (gameEvent.waka.getXVel() > 0) { // Targets square two in front of trajectory
                 this.targetX = gameEvent.waka.CentreX() + 64;
                 this.targetY = gameEvent.waka.CentreY();
             } else if (gameEvent.waka.getXVel() < 0) {

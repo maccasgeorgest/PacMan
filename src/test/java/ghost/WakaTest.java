@@ -39,11 +39,19 @@ public class WakaTest {
     }
 
     @Test
-    public void spriteTransitionTest() {
+    public void directionTest() {
         App app = new App();
         PApplet.runSketch(new String[] {"App"}, app);
+        app.delay(1000);
+        app.noLoop();
         app.setup();
-        // assertTrue(app.gameEvent.waka.direction.equals("left"));
+        assertEquals(app.gameEvent.waka.direction, "left");
+        app.gameEvent.waka.move("right", app.gameEvent);
+        assertEquals(app.gameEvent.waka.direction, "right");
+        app.gameEvent.waka.move("up", app.gameEvent);
+        assertEquals(app.gameEvent.waka.direction, "right");
+        app.gameEvent.waka.move("down", app.gameEvent);
+        assertEquals(app.gameEvent.waka.direction, "right");
     }
 
     @Test
@@ -54,5 +62,14 @@ public class WakaTest {
         assertEquals(w.drunk(), true);
         w.sodaEffect(false);
         assertEquals(w.drunk(), false);
+    }
+
+    @Test
+    public void movement() {
+        App app = new App();
+        PApplet.runSketch(new String[] {"App"}, app);
+        app.delay(1000);
+        app.noLoop();
+        app.setup();
     }
 }

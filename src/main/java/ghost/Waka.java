@@ -26,9 +26,11 @@ public class Waka extends MovableCharacter {
     public void tick(GameEvent gameEvent) { 
         this.setCellCoord();
         boolean possible = CollisionGauge.intersectionDetector(gameEvent, this, this.moveAttempt);
-            if (possible) {
-                gameEvent.waka.move(this.moveAttempt, gameEvent);
-            } 
+
+        if (possible) {
+            gameEvent.waka.move(this.moveAttempt, gameEvent);
+        }
+    
         this.moveAfterCollision(gameEvent);
 
         if (!this.skipMovement) {
@@ -45,6 +47,7 @@ public class Waka extends MovableCharacter {
         }
         // change sprite every 8 frames
         this.spriteTransition(gameEvent);
+
         if (this.changeSprite < 16) {
             this.changeSprite++;
         } else {
@@ -61,8 +64,7 @@ public class Waka extends MovableCharacter {
         if (this.changeSprite > 8) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/playerClosed.png");
             return;
-        }
-        if (this.direction.equals("right")) {
+        } if (this.direction.equals("right")) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/playerRight.png");
         } else if (this.direction.equals("left")) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/playerLeft.png");

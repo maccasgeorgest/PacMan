@@ -2,6 +2,7 @@ package ghost;
 
 import org.junit.jupiter.api.Test;
 
+import processing.core.PApplet;
 import processing.core.PImage;
 
 import static org.junit.jupiter.api.Assertions.*; 
@@ -59,5 +60,20 @@ public class ChaserTest {
         c.move("up", ge);
         reverse = c.reverse();
         assertEquals(reverse, "down");
+    }
+    @Test
+    public void chaseModeTest() {
+        App app = new App();
+        PApplet.runSketch(new String[] {"App"}, app);
+        app.delay(1000);
+        app.noLoop();
+        app.setup();
+        for (Ghost ghost : app.gameEvent.ghostList) {
+            if (ghost.getName().equals("Chaser")) {
+                ghost.setTarget(app.gameEvent, false);
+                assertEquals(ghost.targetX, 216);
+                assertEquals(ghost.targetY, 328);
+            }
+        } 
     }
 }

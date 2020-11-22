@@ -24,7 +24,7 @@ public class Ignorant extends Ghost {
         if (mode) { // Scatter mode = bottom left corner
             this.targetX = 0;
             this.targetY = 576;
-        } else {
+        } else { // Targets Waka until Waka gets within 8 units
             double distance = Math.sqrt(Math.pow((this.CentreX() - gameEvent.waka.CentreX()), 2) + Math.pow((this.CentreY() - gameEvent.waka.CentreY()), 2));
             if (distance > 128) {
                 this.targetX = gameEvent.waka.CentreX();

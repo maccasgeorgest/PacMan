@@ -50,73 +50,70 @@ public abstract class Ghost extends MovableCharacter {
         }
         if (this.frightened) {
             this.sprite = gameEvent.app.loadImage("src/main/resources/frightened.png");
-            gameEvent.frightenedCounter++;
+            gameEvent.frightenedCounter++; // increase counter for every frame Ghost is frightened
             int GhostMultiplier = gameEvent.ghostList.size(); // this is used to account for the fact that multiple ghosts are adding to any count per tick
             if (gameEvent.frightenedCounter == 60 * gameEvent.frightenedLength * GhostMultiplier) {
                 this.frighten(false);
-                gameEvent.waka.changeVulnerability(false);
+                gameEvent.waka.changeVulnerability(false); // return Waka to vulnerable
                 gameEvent.frightenedCounter = 0;
             } 
         } else {
-            this.sprite = gameEvent.app.loadImage(this.normalSprite);
-        }
-
-        if (gameEvent.waka.drunk()) {
+            this.sprite = gameEvent.app.loadImage(this.normalSprite); // when not frightened use normal sprite
+        } if (gameEvent.waka.drunk()) {
             this.invisibleCounter++;
             if (this.invisibleCounter % 10 == 0) { // alternating between invisible/normal to make a "wavy" effect
                 this.sprite = gameEvent.app.loadImage(this.normalSprite); // ghosts are invisible to visible 9 frames to 1 to maximise the effect
             } else {
                 this.sprite = new PImage();
-            }
-            if (this.invisibleCounter == 300) { // Ghosts invisible for 5 seconds
+            } if (this.invisibleCounter == 300) { // Ghosts invisible for 5 seconds
                 gameEvent.waka.sodaEffect(false);     
-                gameEvent.ghostList.forEach((ghost) -> ghost.invisibleCounter = 0);
+                gameEvent.ghostList.forEach((ghost) -> ghost.invisibleCounter = 0); // reset each ghost's invisible counter to 0
             }
-        }
-
-        if (this.isDead()) {
-            this.sprite = new PImage();
+        } if (this.isDead()) {
+            this.sprite = new PImage(); // if dead, Ghosts have no image
         }
 
         // Check collision with Waka
         boolean collision = CollisionGauge.collision(gameEvent.waka, this); 
         if (collision) {
             if (!this.isDead()) {
-                if (this.isInvincible()) {
-                    gameEvent.waka.reset();
+                if (this.isInvincible()) { // if Ghosts are alive and Waka is vulnerable...
+                    gameEvent.waka.reset(); // reset and kill Waka
                     gameEvent.lives--;
                     for (Ghost ghost : gameEvent.ghostList) {
-                        ghost.reset();
+                        ghost.reset(); // reset and ressurrect all ghosts
                         ghost.die(false);
                     }
                 } else {
-                    this.die(true);
+                    this.die(true); // if waka is invulnerable, the ghost dies
                 }
             }
         }
 
-        this.setCellCoord();
+        this.setCellCoord(); // constantly updating coords every frame
         this.setTarget(gameEvent, this.scatter);
+
         if (this.frightened || gameEvent.waka.drunk()) { // when frightened by Superfruit or Soda, Ghost movement should be random
-            Random generator = new Random();
+            Random generator = new Random(); 
             this.targetX = generator.nextInt(449);
             this.targetY = generator.nextInt(577);
         }
+
         this.distanceX = this.CentreX() - this.targetX;
         this.distanceY = this.CentreY() - this.targetY;
-        this.moveAttempt = this.ghostAI(this.distanceX, this.distanceY, gameEvent);
+        this.moveAttempt = this.ghostAI(this.distanceX, this.distanceY, gameEvent); // GhostAI generates best move to get to target
         this.move(this.moveAttempt, gameEvent);
-        this.moveAfterCollision(gameEvent);
+        this.moveAfterCollision(gameEvent); // filters moves depending on whether Ghosts crash into walls
 
-        if (!this.skipMovement) {
+        if (!this.skipMovement) { // move only if no collision
             this.y += this.yVel;
             this.x += this.xVel;
-        }
-
-        if (!this.frightened) {
+        } if (!this.frightened) {
             this.modeShiftCounter++;
         }
+
         int time = gameEvent.modeLengths.get(this.modeInterval); // time prescribed by config file
+        
         if (this.modeShiftCounter == 60 * time) {
             this.switchMode();
             if (this.modeInterval == gameEvent.modeLengths.size() - 1) {
@@ -124,11 +121,9 @@ public abstract class Ghost extends MovableCharacter {
             }
             this.modeInterval++;
             this.modeShiftCounter = 0;
-        }
-        
-        if (gameEvent.debugMode) {
+        } if (gameEvent.debugMode) { 
             if (!this.frightened && this.invisibleCounter == 0) {
-                if (!this.isDead()) {
+                if (!this.isDead()) { // only draw lines if ghost isn't dead or frightened
                     this.targetLine(gameEvent, this.targetX, this.targetY);
                 }
             }

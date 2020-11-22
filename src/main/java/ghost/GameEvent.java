@@ -117,11 +117,11 @@ public class GameEvent {
      */
     public void restart(App app) {
         if (this.restartTime == 600) {
-            this.gameFinishScreen(app, false, false);
+            this.gameFinishScreen(app, false, false); // removes game finish screen
             this.restartTime = 0;
             this.fruitCount = 0;
-            this.ghostList.clear();
-            app.setup();
+            this.ghostList.clear(); 
+            app.setup(); // resetting...
         }
     }
 }
