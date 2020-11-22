@@ -73,6 +73,11 @@ public class IgnorantTest {
                 ghost.setTarget(app.gameEvent, false);
                 assertEquals(ghost.targetX, 0);
                 assertEquals(ghost.targetY, 576);
+                app.gameEvent.waka.x = 0;
+                app.gameEvent.waka.y = 0;
+                ghost.setTarget(app.gameEvent, false);
+                assertEquals(ghost.targetX, 0);
+                assertEquals(ghost.targetX, 0); 
             }
         } 
     }

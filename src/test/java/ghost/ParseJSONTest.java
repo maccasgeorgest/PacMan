@@ -7,7 +7,7 @@ import org.junit.Test;
 public class ParseJSONTest {
 
     @Test
-    public void constructor(){
+    public void constructor() {
         assertNotNull(new ParseJSON());
     }
 

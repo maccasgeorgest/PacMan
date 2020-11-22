@@ -75,14 +75,35 @@ public class WhimTest {
                 ghost.setTarget(app.gameEvent, false);
                 assertEquals(ghost.targetX, 0);
                 assertEquals(ghost.targetY, 0);
+                app.gameEvent.waka.move("left", app.gameEvent);
+                ghost.setTarget(app.gameEvent, false);
+                assertEquals(ghost.targetX, 168);
+                assertEquals(ghost.targetY, 424);
                 app.gameEvent.chaser = null;
-                assertEquals(ghost.targetX, 0);
-                assertEquals(ghost.targetY, 0);
+                ghost.setTarget(app.gameEvent, false);
+                assertEquals(ghost.targetX, 216);
+                assertEquals(ghost.targetY, 328);
             }
-        } 
+        }
     }
 
-
+    @Test 
+    public void frightenTest() {
+        App app = new App();
+        PApplet.runSketch(new String[] {"App"}, app);
+        app.delay(1000);
+        app.setup();
+        app.noLoop();
+        app.gameEvent.waka.changeVulnerability(true);
+        for (Ghost ghost: app.gameEvent.ghostList) {
+            assertTrue(ghost.isInvincible());
+            assertFalse(ghost.frightened);
+            ghost.die(true);
+            assertTrue(ghost.isDead());
+            ghost.die(false);
+            assertFalse(ghost.isDead());
+        }
+    }
 
     
 }

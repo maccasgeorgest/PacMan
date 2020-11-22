@@ -65,11 +65,17 @@ public class WakaTest {
     }
 
     @Test
-    public void movement() {
+    public void resetTest() {
         App app = new App();
         PApplet.runSketch(new String[] {"App"}, app);
         app.delay(1000);
         app.noLoop();
-        app.setup();
+        app.setup(); 
+        app.gameEvent.waka.reset();
+        assertEquals(app.gameEvent.waka.x, app.gameEvent.waka.initialX);
+        assertEquals(app.gameEvent.waka.xVel, 0);
+        assertEquals(app.gameEvent.waka.y, app.gameEvent.waka.initialY);
+        assertEquals(app.gameEvent.waka.yVel, 0);
+        assertEquals(app.gameEvent.waka.moveAttempt, "left");
     }
 }

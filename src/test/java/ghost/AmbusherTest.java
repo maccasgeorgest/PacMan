@@ -74,6 +74,10 @@ public class AmbusherTest {
                 ghost.setTarget(app.gameEvent, false);
                 assertEquals(ghost.targetX, 0);
                 assertEquals(ghost.targetY, 0);
+                app.gameEvent.waka.xVel = 5;
+                ghost.setTarget(app.gameEvent, false);
+                assertEquals(ghost.targetX, 280);
+                assertEquals(ghost.targetY, 328); 
             }
         } 
     }

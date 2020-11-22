@@ -76,4 +76,41 @@ public class ChaserTest {
             }
         } 
     }
+    @Test
+    public void ghostLogicTest() {
+        App app = new App();
+        PApplet.runSketch(new String[] {"App"}, app);
+        app.delay(1000);
+        app.noLoop();
+        app.setup();
+        for (Ghost ghost : app.gameEvent.ghostList) {
+            if (ghost.getName().equals("Chaser")) {
+                ghost.tick(app.gameEvent);
+                assertTrue(ghost.isInvincible());
+                assertFalse(ghost.frightened);
+                assertFalse(app.gameEvent.waka.isInvincible());
+                ghost.modeShiftCounter = 299;
+                ghost.tick(app.gameEvent);
+                assertEquals(ghost.modeShiftCounter, 0);
+                assertFalse(ghost.isDead());
+                app.gameEvent.waka.changeVulnerability(true);
+                ghost.tick(app.gameEvent);
+                assertTrue(ghost.frightened);
+                app.gameEvent.frightenedCounter = 2399;
+                ghost.tick(app.gameEvent);
+                assertFalse(ghost.frightened);
+                assertFalse(app.gameEvent.waka.isInvincible());
+                app.gameEvent.waka.sodaEffect(true);
+                ghost.tick(app.gameEvent);
+                assertTrue(ghost.invisibleCounter == 1);
+                ghost.invisibleCounter = 9;
+                ghost.tick(app.gameEvent);
+                assertTrue(ghost.invisibleCounter % 10 == 0);
+                ghost.invisibleCounter = 299;
+                ghost.tick(app.gameEvent);
+                assertFalse(app.gameEvent.waka.drunk());
+                assertEquals(ghost.invisibleCounter, 0);
+            }
+        }  
+    }
 }
