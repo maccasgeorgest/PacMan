@@ -1,6 +1,6 @@
 package ghost;
 /**
- * Acts as the Collision manager between Game Cells <br>
+ * Acts as the Collision manager between Game Cells. <br>
  * 
  * Contains methods for collision checks, turning at an intersection and detecting an intersection
  * @author Ronen Bhaumik

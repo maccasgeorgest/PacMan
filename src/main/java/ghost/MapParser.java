@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import processing.core.PImage;
 /**
- * Acts as the map parser, to set up game attributes and cells <br>
+ * Acts as the map parser, to set up game attributes and cells. <br>
  * 
  * Retrieves the supplied ASCII map and converts it into a list of cells <br>
  * Loops through the list and converts it to game information

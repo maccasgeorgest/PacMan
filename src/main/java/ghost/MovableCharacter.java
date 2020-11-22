@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Acts as the blueprint for movable characters <br>
+ * Acts as the blueprint for movable characters. <br>
  * 
  * Hosts information such as velocity in both axes, as well as direction and attempted move <br>
  * Also contains information such as vulnerability, and the effects of Soda

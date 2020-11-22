@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Represents the Wall object <br>
+ * Represents the Wall object. <br>
  * 
  * Walls are impenetrable, and blocks both Waka and Ghosts from moving through <br>
  * Different wall shapes exist in order to make complete mazes

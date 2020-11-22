@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Represents the Superfruit object <br>
+ * Represents the Superfruit object. <br>
  * 
  * Upon consumption, Waka becomes invincible and can temporarily "kill" ghosts <br>
  * Ghosts are placed in "frightened" mode and make randomised movement <br>

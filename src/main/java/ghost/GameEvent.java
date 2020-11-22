@@ -3,7 +3,7 @@ package ghost;
 import processing.core.PFont;
 import java.util.ArrayList;
 /**
- * Acts as the engine for the game <br>
+ * Acts as the engine for the game. <br>
  * 
  * Hosts all game information, to be supplied to the App window
  * @author Ronen Bhaumik

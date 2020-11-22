@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 
 import org.json.simple.parser.JSONParser;
 /**
- * Acts as the json.config file parser <br>
+ * Acts as the json.config file parser. <br>
  * 
  * retrieving the game's map, Waka's lives and speed, and Ghost's frightened length and mode length intervals
  * @author Ronen Bhaumik

@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Acts as the blueprint for all game objects <br>
+ * Acts as the blueprint for all game objects. <br>
  * 
  * Hosts all methods and attributes required by cell types: name, sprite and cartesian coordinates at any given frame
  * @author Ronen Bhaumik

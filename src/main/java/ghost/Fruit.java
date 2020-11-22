@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Represents the Fruit object <br>
+ * Represents the Fruit object. <br>
  * 
  * Fruit can be consumed by Waka, upon which, disappears from the Game Map <br>
  * In order to win, Waka must consume all fruit

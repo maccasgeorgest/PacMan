@@ -3,7 +3,7 @@ package ghost;
 import java.util.Random;
 import processing.core.PImage;
 /**
- * Represents the game's antagonists, the Ghosts <br>
+ * Represents the game's antagonists, the Ghosts. <br>
  * 
  * Ghosts are programmed to hunt down Waka in specific patterns depending on type <br>
  * Upon contact they kill Waka, but become vulnerable when Waka has consumed a Superfruit <br>

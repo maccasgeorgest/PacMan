@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Represents the Soda object <br>
+ * Represents the Soda object. <br>
  * 
  * Upon consumption by Waka, ghosts are placed in a "frightened" mode <br>
  * Ghosts have randomised movement and maintain a "wavy" effect, however they can still kill Waka upon contact

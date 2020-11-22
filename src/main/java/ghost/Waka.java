@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Represents the game's protagonist, Waka <br>
+ * Represents the game's protagonist, Waka. <br>
  * 
  * Waka is user-controlled via keyboard input, who must guide Waka safely through the maze to consume all fruit and avoid Ghosts <br>
  * The player wins if Waka can consume all fruit, and loses if Waka doesn't have remaining lives

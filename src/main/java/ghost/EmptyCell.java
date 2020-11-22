@@ -2,7 +2,7 @@ package ghost;
 
 import processing.core.PImage;
 /**
- * Represents empty spaces in the game window <br>
+ * Represents empty spaces in the game window. <br>
  * 
  * This serves no functionality other than a potential pathway for Waka <br>
  * It can also act as a placeholder above and below the game map for game information
