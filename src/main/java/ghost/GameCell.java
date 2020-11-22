@@ -1,14 +1,26 @@
 package ghost;
 
 import processing.core.PImage;
-
+/**
+ * Acts as the blueprint for all game objects <br>
+ * 
+ * Hosts all methods and attributes required by cell types: name, sprite and cartesian coordinates at any given frame
+ * @author Ronen Bhaumik
+ */
 public abstract class GameCell {
-    protected PImage sprite;  // these attributes are protected so that 
-    protected int x;            // the subclasses can directly access them
+    /** Hosts the gamecell's sprite */
+    protected PImage sprite;  
+    /** Hosts the gamecell's x coordinate */
+    protected int x;            
+    /** Hosts the gamecell's y coordinate */
     protected int y;
+    /** Hosts the gamecell's name */
     protected String name;
+    /** Hosts an array of the gamecell's cardinal coordinates */
     protected int[] cellCoord;
-
+    /**
+     * Abstract constructor for classes inheriting from GameCell
+     */
     public GameCell(PImage sprite, int x, int y) {
         this.sprite = sprite;
         this.x = x;
@@ -17,11 +29,13 @@ public abstract class GameCell {
     }
     /**
      * Handles cell logic within the game
+     * @param gameEvent GameEvent object that is hosting the game
      */
     public abstract void tick(GameEvent gameEvent);
     /**
      * Handles game graphics by drawing sprites on to the screen. 
      * Certain sprites require offsets to maintain pixel art
+     * @param gameEvent GameEvent object that is hosting the game
      */
     public void draw(GameEvent gameEvent) { 
         if (this instanceof Superfruit) {
@@ -34,8 +48,8 @@ public abstract class GameCell {
             gameEvent.app.image(this.sprite, this.x, this.y);
         }
     }
-    /**
-     * Returns game cell object name
+    /** 
+     * @return game cell object name
      */
     public String getName() {
         return this.name;
@@ -52,38 +66,38 @@ public abstract class GameCell {
         this.cellCoord[5] = this.y + 8;
     }
     /**
-     * Returns game cell object left coordinate
+     * @return game cell object left coordinate
      */
     public int Left() {
         return this.cellCoord[0];
     }
     /**
-     * Returns game cell object top coordinate
+     * @return game cell object top coordinate
      */
     public int Top() {  
         return this.cellCoord[1];
     }
     /**
-     * Returns game cell object right coordinate
+     * @return game cell object right coordinate
      */
     public int Right() {
         return this.cellCoord[2];
     }
 
     /**
-     * Returns game cell object bottom coordinate
+     * @return game cell object bottom coordinate
      */
     public int Bottom() {
         return this.cellCoord[3];
     }
     /**
-     * Returns game cell object centre horizontal coordinate
+     * @return game cell object centre horizontal coordinate
      */
     public int CentreX() {
         return this.cellCoord[4];
     }
     /**
-     * Returns game cell object centre vertical coordinate
+     * @return game cell object centre vertical coordinate
      */
     public int CentreY() {
         return this.cellCoord[5];

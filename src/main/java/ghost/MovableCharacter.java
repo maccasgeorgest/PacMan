@@ -1,19 +1,35 @@
 package ghost;
 
 import processing.core.PImage;
-
+/**
+ * Acts as the blueprint for movable characters <br>
+ * 
+ * Hosts information such as velocity in both axes, as well as direction and attempted move <br>
+ * Also contains information such as vulnerability, and the effects of Soda
+ * @author Ronen Bhaumik
+ */
 public abstract class MovableCharacter extends GameCell {
-
+    /** Character's vertical velocity */
     protected int yVel;
-    protected int xVel;    
+    /** Character's horizontal velocity */
+    protected int xVel;   
+    /** Character's initial x coordinate */ 
     protected int initialX;
+    /** Character's initial y coordinate */
     protected int initialY;
+    /** Character's direction of trajectory */
     protected String direction = "left";
+    /** Character's attempted move */
     protected String moveAttempt = "left";
+    /** Character's vulnerability */
     protected boolean invincible;
+    /** Character's state due to soda effect */
     protected boolean drankSoda;
+    /** Determines whether character should move or not */
     protected boolean skipMovement;
-
+    /**
+     * Abstract constructor for classes inheriting from MovableCharacter
+     */
     public MovableCharacter(PImage sprite, int x, int y) {
         super(sprite, x, y);
         this.initialX = x;
@@ -25,6 +41,8 @@ public abstract class MovableCharacter extends GameCell {
     /**
      * Controls character movement by changing direction of velocity, provided
      * a change in direction would not result in a collision 
+     * @param command move attempted to be made
+     * @param gameEvent GameEvent object that is hosting the game
      */ 
     public void move(String command, GameEvent gameEvent) {
         boolean check = CollisionGauge.turnCheck(gameEvent, this, command);
@@ -56,6 +74,7 @@ public abstract class MovableCharacter extends GameCell {
     }
     /**
      * Allows character movement as long as there is no collision
+     * @param gameEvent GameEvent object that is hosting the game
      */
     public void moveAfterCollision(GameEvent gameEvent) {
         for (Wall wall : gameEvent.wallList) {
@@ -67,25 +86,26 @@ public abstract class MovableCharacter extends GameCell {
     }
     /**
      * Changes character vulnerability
+     * @param invincible character's vulnerability state
      */
     public void changeVulnerability(boolean invincible) {
         this.invincible = invincible;
     }
     /**
-     * Returns character XVel
+     * @return character XVel
      */
     public int getXVel() {
         return this.xVel;
     }
     /**
-     * Returns character YVel
+     * @return character YVel
      */
     public int getYVel() {
         return this.yVel;
     }
 
     /**
-     * Returns character vulnerability
+     * @return character vulnerability
      */
     public boolean isInvincible() {
         return this.invincible;
@@ -103,12 +123,13 @@ public abstract class MovableCharacter extends GameCell {
     }
     /**
      * Sets Waka's drunk condition
+     * @param effect whether the soda effect is on
      */
     public void sodaEffect(boolean effect) {
         this.drankSoda = effect;
     }
     /**
-     * Returns Waka's drunk condition
+     * @return Waka's drunk condition
      */
     public boolean drunk() {
         return this.drankSoda;

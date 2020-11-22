@@ -1,8 +1,18 @@
 package ghost;
 
 import processing.core.PImage;
-
+/**
+ * Represents the Whim ghost object. <br>
+ * 
+ * Sprite colour: Blue <br>
+ * Scatter mode target: bottom right corner <br>
+ * Chase mode target: double the vector from Chaser to Waka's trajectory plus two cells <br>
+ * @author Ronen Bhaumik
+ */
 public class Whim extends Ghost {
+    /**
+     * Initialises a new Whim object
+     */
     public Whim(PImage sprite, int x, int y) {
         super(sprite, x, y);
         this.name = "Whim";
@@ -10,9 +20,9 @@ public class Whim extends Ghost {
     }
 
     @Override
-    // the formula here was derived from the midpoint formula where Waka(x1, y1)
-    // and Whim(x3, y3) were the endpoints of the line on which Chaser(x2, y2) was 
-    // the midpoint
+    // the formula here was derived from the midpoint formula where Chaser's position (x1, y1) plus
+    // and Whim(x3, y3) were the endpoints of the line on which Waka's position(x2, y2) plus two 
+    // cells was the midpoint
     public void setTarget(GameEvent gameEvent, boolean mode) {
         if (mode) { // Scatter mode = bottom right corner
             this.targetX = 448;

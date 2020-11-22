@@ -6,13 +6,24 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import processing.core.PImage;
-
+/**
+ * Acts as the map parser, to set up game attributes and cells <br>
+ * 
+ * Retrieves the supplied ASCII map and converts it into a list of cells <br>
+ * Loops through the list and converts it to game information
+ * @author Ronen Bhaumik
+ */
 public class MapParser {
-
+    /**
+     * Initialises a new MapParser object
+     */
     public MapParser() {}
     /**
      * Parses map and returns an ArrayList of game cell objects, which provide
      * the functionality for the rest of the game
+     * @param gameEvent GameEvent object that is hosting the game
+     * @param filename ASCII map to be scanned
+     * @return list of GameCells to be supplied to the GameEvent
      */
     public ArrayList<GameCell> parse(GameEvent gameEvent, String filename) {
         ArrayList<GameCell> mapList = new ArrayList<GameCell>(); // List to be returned
@@ -70,6 +81,8 @@ public class MapParser {
     }
     /**
      * Associates wall type with specified number
+     * @param key Wall's key to determine type of wall
+     * @return file path to required wall sprite
      */
     public static String wallKey(String key) {
         HashMap<String,String> charKey = new HashMap<String,String>();
@@ -85,6 +98,7 @@ public class MapParser {
     /**
      * Sets the waka for the game, and counts the total number of fruit, as well as walls and spaces 
      * characters can walk through
+     * @param gameEvent GameEvent object that is hosting the game
      */
     public void setGameAttributes(GameEvent gameEvent) {
         for (GameCell cell : gameEvent.cells) {

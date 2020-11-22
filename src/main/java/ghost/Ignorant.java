@@ -1,8 +1,18 @@
 package ghost;
 
 import processing.core.PImage;
-
+/**
+ * Represents the Ignorant ghost object. <br>
+ * 
+ * Sprite colour: Orange <br>
+ * Scatter mode target: bottom left corner <br>
+ * Chase mode target: Waka's position unless within 8 cells of Waka <br>
+ * @author Ronen Bhaumik
+ */
 public class Ignorant extends Ghost {
+    /**
+     * Initialises a new Ignorant object
+     */
     public Ignorant(PImage sprite, int x, int y) {
         super(sprite, x, y);
         this.name = "Ignorant";

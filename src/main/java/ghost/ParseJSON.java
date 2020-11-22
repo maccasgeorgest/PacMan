@@ -9,12 +9,23 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 
 import org.json.simple.parser.JSONParser;
-
+/**
+ * Acts as the json.config file parser <br>
+ * 
+ * retrieving the game's map, Waka's lives and speed, and Ghost's frightened length and mode length intervals
+ * @author Ronen Bhaumik
+ */
 public class ParseJSON {
+    /**
+     * Initialises a new ParseJSON object
+     */
+    public ParseJSON() {}
 
     /**
      * Takes in a JSON configuration file, and parses all relevant information.
      * This information is then passed to the App
+     * @param filename json.config file to be parsed
+     * @param gameEvent GameEvent object that is hosting the game
      */
     public static void reader(String filename, GameEvent gameEvent) {
         JSONParser parser = new JSONParser();

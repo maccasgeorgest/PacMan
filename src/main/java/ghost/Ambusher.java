@@ -1,8 +1,18 @@
 package ghost;
 
 import processing.core.PImage;
-
+/**
+ * Represents the Ambusher ghost object. <br>
+ * 
+ * Sprite colour: Pink <br>
+ * Scatter mode target: top right corner <br>
+ * Chase mode target: 2 cells ahead of Waka's current trajectory
+ * @author Ronen Bhaumik
+ */
 public class Ambusher extends Ghost {
+    /**
+     * Initialises a new Ambusher object
+     */
     public Ambusher(PImage sprite, int x, int y) {
         super(sprite, x, y);
         this.name = "Ambusher";

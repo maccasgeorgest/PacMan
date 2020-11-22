@@ -1,13 +1,22 @@
 package ghost;
 
 import processing.core.PApplet; 
-
+/**
+ * Creates App window for all sketches to occur. <br>
+ * 
+ * Uses a GameEvent object as a game engine
+ * @author Ronen Bhaumik
+ */
 public class App extends PApplet {
-
+    /** App window width */
     public static final int WIDTH = 448;
+    /** App window height */
     public static final int HEIGHT = 576;  
+    /** App gameEvent manager */
     public GameEvent gameEvent;
-
+    /**
+     * Initialises a new App object
+     */
     public App() {}
     /** The setup() function is called once when the program starts. It establishes all initial conditions */
     public void setup() {
@@ -28,7 +37,7 @@ public class App extends PApplet {
         if (key == CODED) {
             this.gameEvent.waka.moveHandler(keyCode);
         } else if (key == ' ') {
-            this.gameEvent.initiateDebugMode(this.gameEvent);
+            this.gameEvent.initiateDebugMode();
         }
     }
     /** Main method for entire app */

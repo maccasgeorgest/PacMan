@@ -2,21 +2,40 @@ package ghost;
 
 import java.util.Random;
 import processing.core.PImage;
-
+/**
+ * Represents the game's antagonists, the Ghosts <br>
+ * 
+ * Ghosts are programmed to hunt down Waka in specific patterns depending on type <br>
+ * Upon contact they kill Waka, but become vulnerable when Waka has consumed a Superfruit <br>
+ * Have two modes: Scatter (target a specific corner of the map) and Chase (target cells based on Waka's position)
+ * @author Ronen Bhaumik
+ */
 public abstract class Ghost extends MovableCharacter {
-
+    /** Ghost's target horizontally */
     protected int targetX;
+    /** Ghost's target vertically */
     protected int targetY;
+    /** Ghost's distance to target horizontally */
     protected int distanceX;
+    /** Ghost's distance to target vertically */
     protected int distanceY;
+    /** Ghost's state of death */
     protected boolean dead;
+    /** Ghost's normal coloured sprite */
     protected String normalSprite;
+    /** Ghost's state of being frightened or not */
     protected boolean frightened;
+    /** Ghost's timer to determine when to stop being frightened */
     protected int invisibleCounter = 0;
+    /** Ghost's timer to determine when to switch mode */
     protected int modeShiftCounter = 0;
+    /** Ghost's timeframe for mode */
     protected int modeInterval = 0;
+    /** Ghost's current mode: scatter or chase */
     protected boolean scatter;
-
+    /**
+     * Abstract constructor for classes inheriting from Ghost
+     */
     public Ghost(PImage sprite, int x, int y) {
         super(sprite, x, y);
         this.invincible = true;
@@ -117,10 +136,16 @@ public abstract class Ghost extends MovableCharacter {
     }
     /**
      * Sets Ghost target coordinates, depending on whether Ghosts are in Scatter or Chase mode
+     * @param gameEvent GameEvent object that is hosting the game
+     * @param mode scatter or chase mode
      */
     public abstract void setTarget(GameEvent gameEvent, boolean mode);
     /**
      * Logic for ghost movement in differing situations
+     * @param distanceX ghost's horizontal distance 
+     * @param distanceY ghost's veritcal distance
+     * @param gameEvent GameEvent object that is hosting the game
+     * @return direction after Ghost AI computes optimal move
      */
     public String ghostAI(int distanceX, int distanceY, GameEvent gameEvent) {
         boolean up = CollisionGauge.intersectionDetector(gameEvent, this, "up");
@@ -196,24 +221,26 @@ public abstract class Ghost extends MovableCharacter {
     }
     /**
      * Changes ghost alive/death status
+     * @param death whether ghost is dead or not
      */
     public void die(boolean death) {
         this.dead = death;
     }
     /**
-     * Returns ghost death status
+     * @return ghost death status
      */
     public boolean isDead() {
         return this.dead;
     }
     /**
      * Changes ghost frigtenened/unfrightened status
+     * @param fright whether ghost is frigthened or not
      */
     public void frighten(boolean fright) {
         this.frightened = fright;
     }
     /**
-     * Returns the reverse of Ghost's current direction
+     * @return the reverse of Ghost's current direction
      */
     public String reverse() {
         if (this.direction.equals("up")) {
@@ -229,6 +256,9 @@ public abstract class Ghost extends MovableCharacter {
 
     /**
      * Creates line used for debugging based on ghost target coordinates
+     * @param gameEvent GameEvent object that is hosting the game
+     * @param targetX ghost's target horizontally
+     * @param targetY ghost's target vetically
      */
     public void targetLine(GameEvent gameEvent, int targetX, int targetY) {
         gameEvent.app.stroke(255);

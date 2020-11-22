@@ -1,58 +1,75 @@
 package ghost;
-
+/**
+ * Acts as the Collision manager between Game Cells <br>
+ * 
+ * Contains methods for collision checks, turning at an intersection and detecting an intersection
+ * @author Ronen Bhaumik
+ */
 public class CollisionGauge {
+    /**
+     * Initialises a new CollisionGauge object
+     */
+    public CollisionGauge() {}
+    
     /** This method is the main collision detection between walls and ghosts/waka, as well as 
      * functionality for fruit/superfruit/soda, returning a boolean based on if a collision has occurred
+     * @param character character to be checked if collided with
+     * @param gameCell game cell to be checked if collided with
+     * @return whether a collision occured 
      */ 
-    public static boolean collision(MovableCharacter character, GameCell gamecell) {
+    public static boolean collision(MovableCharacter character, GameCell gameCell) {
         // Character heading up
         if (character.getYVel() < 0) {
-            if (character.Left() < gamecell.Right() && character.Right() > gamecell.Left()
-                && character.Top() + character.getYVel() < gamecell.Bottom() && character.Bottom() + character.getYVel() > gamecell.Top()) {
-                if (gamecell.getName().equals("Wall")) {
+            if (character.Left() < gameCell.Right() && character.Right() > gameCell.Left()
+                    && character.Top() + character.getYVel() < gameCell.Bottom()
+                    && character.Bottom() + character.getYVel() > gameCell.Top()) {
+                if (gameCell.getName().equals("Wall")) {
                     character.skipMovement = true;
-                } else if (gamecell.getName().equals("Superfruit")) {
+                } else if (gameCell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
-                } else if (gamecell.getName().equals("Soda")) {
+                } else if (gameCell.getName().equals("Soda")) {
                     character.sodaEffect(true);
                 }
                 return true;
             }
-        // Character heading down
+            // Character heading down
         } else if (character.getYVel() > 0) {
-            if (character.Left() < gamecell.Right() && character.Right() > gamecell.Left()
-                && character.Top() + character.getYVel() < gamecell.Bottom() && character.Bottom() + character.getYVel() > gamecell.Top()) {
-                if (gamecell.getName().equals("Wall")) {
+            if (character.Left() < gameCell.Right() && character.Right() > gameCell.Left()
+                    && character.Top() + character.getYVel() < gameCell.Bottom()
+                    && character.Bottom() + character.getYVel() > gameCell.Top()) {
+                if (gameCell.getName().equals("Wall")) {
                     character.skipMovement = true;
-                } else if (gamecell.getName().equals("Superfruit")) {
+                } else if (gameCell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
-                }  else if (gamecell.getName().equals("Soda")) {
+                } else if (gameCell.getName().equals("Soda")) {
                     character.sodaEffect(true);
                 }
                 return true;
             }
-        // Character heading left
+            // Character heading left
         } else if (character.getXVel() < 0) {
-            if (character.Left() + character.getXVel() < gamecell.Right() && character.Right() + character.getXVel() > gamecell.Left()
-                && character.Top() < gamecell.Bottom() && character.Bottom() > gamecell.Top()) {
-                if (gamecell.getName().equals("Wall")) {
+            if (character.Left() + character.getXVel() < gameCell.Right()
+                    && character.Right() + character.getXVel() > gameCell.Left() && character.Top() < gameCell.Bottom()
+                    && character.Bottom() > gameCell.Top()) {
+                if (gameCell.getName().equals("Wall")) {
                     character.skipMovement = true;
-                } else if (gamecell.getName().equals("Superfruit")) {
+                } else if (gameCell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
-                }  else if (gamecell.getName().equals("Soda")) {
+                } else if (gameCell.getName().equals("Soda")) {
                     character.sodaEffect(true);
                 }
                 return true;
             }
-        // Character heading right
+            // Character heading right
         } else if (character.getXVel() > 0) {
-            if (character.Left() + character.getXVel() < gamecell.Right() && character.Right() + character.getXVel() > gamecell.Left()
-                && character.Top() < gamecell.Bottom() && character.Bottom() > gamecell.Top()) {
-                if (gamecell.getName().equals("Wall")) {
+            if (character.Left() + character.getXVel() < gameCell.Right()
+                    && character.Right() + character.getXVel() > gameCell.Left() && character.Top() < gameCell.Bottom()
+                    && character.Bottom() > gameCell.Top()) {
+                if (gameCell.getName().equals("Wall")) {
                     character.skipMovement = true;
-                } else if (gamecell.getName().equals("Superfruit")) {
+                } else if (gameCell.getName().equals("Superfruit")) {
                     character.changeVulnerability(true);
-                }  else if (gamecell.getName().equals("Soda")) {
+                } else if (gameCell.getName().equals("Soda")) {
                     character.sodaEffect(true);
                 }
                 return true;
@@ -64,7 +81,11 @@ public class CollisionGauge {
 
     /**
      * This method provides functionality for turns at intersection, returning a boolean based on if a character can make the turn
-     * */ 
+     * @param gameEvent GameEvent object that is hosting the game
+     * @param character Character to be checked
+     * @param move Attempted move
+     * @return whether the character can make the turn
+     */ 
     public static boolean turnCheck(GameEvent gameEvent, MovableCharacter character, String move) {
         for (Wall wall : gameEvent.wallList) {
             if (move.equals("up")) {
@@ -90,6 +111,10 @@ public class CollisionGauge {
 
     /**
      * This method acts as the ghosts/waka intersection detector, returning a boolean if the character is at an intersection 
+     * @param gameEvent GameEvent object that is hosting the game
+     * @param character character to be checked
+     * @param move character's attempted move
+     * @return whether character is at an intersection
      */ 
     public static boolean intersectionDetector(GameEvent gameEvent, MovableCharacter character, String move) {
         for (GameCell cell : gameEvent.spaceList) {

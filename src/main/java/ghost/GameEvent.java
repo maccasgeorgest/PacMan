@@ -2,26 +2,50 @@ package ghost;
 
 import processing.core.PFont;
 import java.util.ArrayList;
-
+/**
+ * Acts as the engine for the game <br>
+ * 
+ * Hosts all game information, to be supplied to the App window
+ * @author Ronen Bhaumik
+ */
 public class GameEvent {
+    /** App object that GameEvent uses as a canvas */
     public App app;
+    /** Game's Waka */
     public Waka waka; 
+    /** Game's Chaser */
     public Chaser chaser;
-    public ArrayList<GameCell> cells = new ArrayList<GameCell>(); 
-    public ArrayList<Wall> wallList = new ArrayList<Wall>();
-    public ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
-	public ArrayList<GameCell> spaceList = new ArrayList<GameCell>();
-    public int fruitCount = 0;
+    /** Game's map from config file */
     public String map;
+    /** Game's Waka's amount of lives from config file */
     public int lives;
+    /** Game's character speeds from config file */
     public int speed;
+    /** Game's amount of time for a ghost to be frightend from config file */
     public int frightenedLength;
+    /** Game's counter for amount of time ghosts are frightened */
     public int frightenedCounter;
+    /** List of modelength times from config file */
     public ArrayList<Integer> modeLengths = new ArrayList<Integer>();
+    /** List of gamecells to be drawn on to app window */
+    public ArrayList<GameCell> cells = new ArrayList<GameCell>(); 
+    /** List of gamecells that are walls */
+    public ArrayList<Wall> wallList = new ArrayList<Wall>();
+    /** List of gamecells that are ghosts */
+    public ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
+    /** List of gamecells that a character can pass through */
+    public ArrayList<GameCell> spaceList = new ArrayList<GameCell>();
+    /** Game's counter for amount of fruit unconsumed */
+    public int fruitCount = 0;
+    /** Game's font for finished game screens */
     public PFont gameFont; 
+    /** Game's state of whether debug mode has been activated */
     public boolean debugMode;
+    /** Game's counter to restart time after win/loss */
     public int restartTime = 0;
-
+    /**
+     * Initialises a new GameEvent object
+     */
     public GameEvent(App app) {
         this.app = app;
     }
@@ -37,6 +61,7 @@ public class GameEvent {
     }
     /**
      * Runs cell logic, as well as starting game finish screens when necessary and resetting the game
+     * @param app game window to be drawn in
      */
     public void gameLogic(App app) {
         if (this.fruitCount == 0) {
@@ -62,15 +87,18 @@ public class GameEvent {
     /**
      * The space key activates debug mode
      */
-    public void initiateDebugMode(GameEvent gameEvent) {
-        if (gameEvent.debugMode) {
-            gameEvent.debugMode = false;
+    public void initiateDebugMode() {
+        if (this.debugMode) {
+            this.debugMode = false;
         } else {
-            gameEvent.debugMode = true;
+            this.debugMode = true;
         }
     }
     /**
      * Activates game finish screens for when the player either wins or loses
+     * @param app game window to be drawn in 
+     * @param display whether to display game finish screen
+     * @param won whether the player has won or lost the game
      */
     public void gameFinishScreen(App app, boolean display, boolean won) {
         if (display) {
@@ -85,6 +113,7 @@ public class GameEvent {
     }
     /**
      * Restarts game from initial conditions
+     * @param app game window to be drawn in
      */
     public void restart(App app) {
         if (this.restartTime == 600) {

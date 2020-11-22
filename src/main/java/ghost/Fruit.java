@@ -1,12 +1,21 @@
 package ghost;
 
 import processing.core.PImage;
-
+/**
+ * Represents the Fruit object <br>
+ * 
+ * Fruit can be consumed by Waka, upon which, disappears from the Game Map <br>
+ * In order to win, Waka must consume all fruit
+ * @author Ronen Bhaumik
+ */
 public class Fruit extends GameCell {
-
+    /** Contains the state of a fruit's consumption */
     protected boolean unconsumed = true;
-    private boolean accounted; // this boolean prevents the same fruit from lowering the fruitcount multiple times
-
+    /** This boolean prevents the same fruit from lowering the fruitcount multiple times  */
+    protected boolean accounted; // 
+    /**
+     * Initialises a new Fruit object
+     */
     public Fruit(PImage sprite, int x, int y) {
         super(sprite, x, y);
         this.name = "Fruit";
@@ -25,7 +34,9 @@ public class Fruit extends GameCell {
         }
     }
 
-    /** Determines if fruit object has been consumed by Waka */
+    /** Determines if fruit object has been consumed by Waka 
+     * @param waka game's waka
+     */
     public void isConsumed(Waka waka) {
         if (this.unconsumed) { 
             boolean collision = CollisionGauge.collision(waka, this);
